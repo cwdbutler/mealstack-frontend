@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Mealstack frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Back end](https://github.com/emanfolo/mealstack-backend)
 
 ## Available Scripts
 

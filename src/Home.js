@@ -1,3 +1,4 @@
+// import { useState, useEffect } from 'react';
 import './Home.css';
 
 export default function Home() {
@@ -5,6 +6,12 @@ export default function Home() {
     event.preventDefault();
     alert('You have submitted the form.');
   };
+
+  // const fetchBackend = () => {
+  //   fetch('url')
+  //     .then((response) => response.json())
+  //     .then((data) => console.log(data));
+  // };
 
   return (
     <div className="Home">
@@ -32,6 +39,7 @@ export default function Home() {
         </fieldset>
         <button type="submit">Search</button>
       </form>
+      {/* <button onClick={() => fetchBackend()}>Fetch</button> */}
     </div>
   );
 }
