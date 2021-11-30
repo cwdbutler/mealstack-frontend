@@ -1,0 +1,23 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 3rem;
+  padding: 1rem;
+}
+
+.navbar a {
+  z-index: 1000;
+  color: red;
+  text-decoration: none;
+}
+
+.navbar-btn {
+  padding: 0.5rem 3rem;
+  background-color: green;
+  color: white;
+  border-radius: 1rem;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
