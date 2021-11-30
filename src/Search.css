@@ -1,11 +1,30 @@
 .Search {
-  
+  display: flex;
+  flex-direction: column;
+}
+
+.planContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 90%;
+  margin: 10px 5px 5px 5px;
+  border: 1px solid black;
 }
 
 .mealBox {
+  width: 30%;
   border: 1px solid black;
+  margin: 4px;
+}
+
+.mealBox > img {
+  width: 250px;
 }
 
 .macrosContainer {
   border: 1px solid black;
+  width: 100%;
+  margin: 4px;
 }
