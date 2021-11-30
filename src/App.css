@@ -4,12 +4,7 @@
   justify-content: space-around;
   height: 3rem;
   padding: 1rem;
-}
-
-.navbar a {
-  z-index: 1000;
-  color: red;
-  text-decoration: none;
+  border-bottom: 2px solid lightgreen;
 }
 
 .navbar-btn {
