@@ -1,6 +1,6 @@
 import './Home.css';
 
-function Home() {
+export default function Home() {
   const handleSubmit = (event) => {
     event.preventDefault();
     alert('You have submitted the form.');
@@ -35,5 +35,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;

@@ -1,0 +1,99 @@
+.plan-info {
+  margin: auto;
+  width: 80%;
+  background: white;
+  border-radius: 5px;
+  border: 2px solid lightgreen;
+}
+
+.plan-info__body {
+  display: grid;
+  grid-template-columns: 7fr 4fr;
+}
+
+.plan-info__body__left-column {
+  border: 2px solid lightgreen;
+  margin: 10px;
+}
+
+.plan-info__meal {
+  border: 2px solid lightgreen;
+  margin: 20px;
+  display: grid;
+  grid-template-rows: 240px 160px 80px;
+  border-radius: 1rem;
+  text-align: center;
+}
+
+.plan-info__meal-image {
+  background: url('https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg');
+  background-size: cover;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+.plan-info__meal-text {
+  margin: 25px;
+}
+
+.plan-info__meal-text h2 {
+  color: red;
+}
+
+.plan-info__meal__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  border-top: 2px solid lightgreen;
+}
+
+.plan-info__meal__stats-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  color: white;
+}
+
+.plan-info__meal__stats-stat.protein {
+  border-bottom-left-radius: 1rem;
+  background-color: darkorange;
+}
+
+.plan-info__meal__stats-stat.fat {
+  background-color: darkred;
+}
+
+.plan-info__meal__stats-stat.carbs {
+  background-color: green;
+}
+
+.plan-info__meal__stats-stat.calories {
+  background-color: darkblue;
+  border-bottom-right-radius: 1rem;
+}
+
+.plan-info__meal__stats-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.plan-info__meal__stats-type {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.plan-info__body__right-column {
+  border: 2px solid lightgreen;
+  margin: 10px;
+}
+
+.plan-info__body__shopping-list {
+  border: 2px solid lightgreen;
+  margin: 10px;
+}
+
+.plan-info__footer {
+  border: 2px solid lightgreen;
+  margin: 10px;
+}
