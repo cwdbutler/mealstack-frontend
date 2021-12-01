@@ -5,13 +5,19 @@ import usePlanList from "./hooks/usePlanList";
 function Search() {
   const [plansList, recipeList] = usePlanList();
 
-  let filteredBreakfast = null
 
   const plans = plansList.map((data) => {
-    filteredBreakfast = recipeList.filter(x => x.recipe_id == data.breakfast_id)
+    let filteredBreakfast = recipeList.find(x => x.recipe_id == data.breakfast_id);
+    let filteredLunch = recipeList.find(x => x.recipe_id == data.lunch_id);
+    let filteredDinner = recipeList.find(x => x.recipe_id == data.dinner_id);
+    let filteredSnack = recipeList.find(x => x.recipe_id == data.snack_id);
+
+    const isMealsLoaded = () => {
+      return (filteredBreakfast && filteredLunch && filteredDinner && filteredSnack) ? true : false
+    }
+
     const key = `plan-${data.id}`;
-      return ( <Plan plan={data} key={key} breakfast={filteredBreakfast}/>
-    )
+    return isMealsLoaded() ? <Plan plan={data} key={key} breakfast={filteredBreakfast} lunch={filteredLunch} dinner={filteredDinner} snack={filteredSnack}/> : <></>
     
   })
 
