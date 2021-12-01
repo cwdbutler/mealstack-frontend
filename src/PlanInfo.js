@@ -14,9 +14,7 @@ export default function PlanInfo() {
         templateColumns="repeat(6, 1fr)"
         gap={4}
       >
-        <GridItem rowSpan={3} colSpan={4} bg="papayawhip">
-          Breakfast
-        </GridItem>
+        <GridItem rowSpan={3} colSpan={4} bg="papayawhip"></GridItem>
         <GridItem rowSpan={10} colSpan={2} bg="tomato">
           Shopping List
         </GridItem>
