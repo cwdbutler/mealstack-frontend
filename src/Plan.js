@@ -3,12 +3,14 @@ import './Plan.css';
 
 export default function Plan(props) {
   const plan = props.plan;
+  const breakfastObject = props.breakfast
+  console.log(breakfastObject)
   return (
     <Link to="/plan">  
     <div className="planContainer">
       <h1>{plan.name}</h1>
       <div className="mealBox">
-        <h1>{plan.breakfast_id}</h1>
+        <h1>{breakfastObject.recipe_name}</h1>
         <img src={plan.img_url} alt="" />
       </div>
       <div className="mealBox">
