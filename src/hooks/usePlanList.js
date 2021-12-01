@@ -6,11 +6,11 @@ const usePlanList = () => {
   const getAllPlans = async () => {
     const url = 'https://mealstack-backend.herokuapp.com/plans';
 
-    const res = await fetch(url, { method: "GET" });
+    const res = await fetch(url, { method: 'GET' });
     const json = await res.json();
 
-    setPlansList(json);
-  }
+    setPlansList(json[0]);
+  };
 
   useEffect(() => getAllPlans(), []);
 
@@ -18,4 +18,3 @@ const usePlanList = () => {
 };
 
 export default usePlanList;
-
