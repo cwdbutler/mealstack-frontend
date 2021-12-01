@@ -3,34 +3,29 @@ import Home from './Home';
 import PlanInfo from './PlanInfo';
 import Search from './Search';
 import './App.css';
+import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 
 export default function App() {
   return (
     <Router>
       <>
-        <nav className="navbar">
-          <span>
+        <Flex p="2" bg="green.200">
+          <Box p="2">
+            <Heading size="md">Mealstack</Heading>
+          </Box>
+          <Spacer />
+          <Box>
             <Link to="/home">
-              <button className="navbar-btn" type="button">
-                Home
-              </button>
+              <Button mr="2">Home</Button>
             </Link>
-          </span>
-          <span>
-            <Link to="/search">
-              <button className="navbar-btn" type="button">
-                Search
-              </button>
-            </Link>
-          </span>
-          <span>
             <Link to="/plan">
-              <button className="navbar-btn" type="button">
-                Plan
-              </button>
+              <Button mr="2">Plan</Button>
             </Link>
-          </span>
-        </nav>
+            <Link to="/search">
+              <Button>Search</Button>
+            </Link>
+          </Box>
+        </Flex>
         <Routes>
           <Route path="/home" exact element={<Home />} />
           <Route path="/plan" exact element={<PlanInfo />} />
