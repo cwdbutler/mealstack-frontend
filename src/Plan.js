@@ -19,6 +19,10 @@ export default function Plan(props) {
       <h1>{plan.dinner_id}</h1>
         <img src={plan.img_url} alt="" />
       </div>
+      <div className="mealBox">
+      <h1>{plan.snack_id}</h1>
+        <img src={plan.img_url} alt="" />
+      </div>
       <div className="macrosContainer">
         <span>Fats: <strong>{plan.fat}</strong></span>
         <span>Carbs: <strong>{plan.carbs}</strong></span>
