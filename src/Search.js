@@ -1,6 +1,5 @@
-import './Search.css';
 import Plan from './Plan';
-import usePlanList from "./hooks/usePlanList";
+import usePlanList from './hooks/usePlanList';
 
 function Search() {
   const [plansList, recipeList] = usePlanList();
@@ -19,15 +18,8 @@ function Search() {
     const key = `plan-${data.id}`;
     return isMealsLoaded() ? <Plan plan={data} key={key} breakfast={filteredBreakfast} lunch={filteredLunch} dinner={filteredDinner} snack={filteredSnack}/> : <></>
     
-  })
-
-    return (
-      <div className="Search">
-        {plans}
-      </div>
-    );
-  
-  
+  });
+  return <div className="Search">{plans}</div>;
 }
 
 export default Search;
