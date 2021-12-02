@@ -9,6 +9,10 @@ import {
   ListItem,
   UnorderedList,
   Stack,
+  Stat,
+  StatLabel,
+  StatNumber,
+  Badge,
 } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
 
@@ -27,11 +31,61 @@ export default function PlanInfo() {
       >
         <GridItem rowSpan={3} colSpan={4} bg="papayawhip">
           <Flex h="100%" p="5">
-            <Image
-              src="https://insanelygoodrecipes.com/wp-content/uploads/2020/12/Chocolate-Chip-Pancakes.png"
-              alt="Breakfast"
-              borderRadius="10"
-            />
+            <Box
+              maxW="sm"
+              borderWidth="1px"
+              borderRadius="lg"
+              overflow="hidden"
+              m="4"
+            >
+              <Image
+                src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg"
+                alt="recipe image"
+              />
+
+              <Box p="6">
+                <Box display="flex" alignItems="baseline">
+                  <Badge borderRadius="full" px="2" colorScheme="teal">
+                    Calories
+                  </Badge>
+                  <Box
+                    color="gray.500"
+                    fontWeight="semibold"
+                    letterSpacing="wide"
+                    fontSize="xs"
+                    textTransform="uppercase"
+                    ml="2"
+                  >
+                    312i310
+                  </Box>
+                </Box>
+
+                <Box
+                  mt="1"
+                  fontWeight="semibold"
+                  as="h4"
+                  lineHeight="tight"
+                  isTruncated
+                >
+                  plan name
+                </Box>
+
+                <Box display="flex" mt="2" alignItems="center">
+                  <Stat>
+                    <StatLabel>Protein</StatLabel>
+                    <StatNumber>43242</StatNumber>
+                  </Stat>
+                  <Stat>
+                    <StatLabel>Fat</StatLabel>
+                    <StatNumber>77445</StatNumber>
+                  </Stat>
+                  <Stat>
+                    <StatLabel>Carbs</StatLabel>
+                    <StatNumber>32131231</StatNumber>
+                  </Stat>
+                </Box>
+              </Box>
+            </Box>
             <Spacer />
             <Box bg="yellow" w="60%" borderRadius="10">
               Lorem ipsum dolor sit amet adipiscing ipsum dolor sit amet
