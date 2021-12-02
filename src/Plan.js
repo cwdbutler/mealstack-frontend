@@ -8,6 +8,7 @@ import {
   StatNumber,
 } from '@chakra-ui/react';
 
+
 export default function Plan(props) {
   const plan = props.plan;
   const breakfastObject = props.breakfast;
