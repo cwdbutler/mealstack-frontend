@@ -1,5 +1,5 @@
-import Plan from './Plan';
-import usePlanList from './hooks/usePlanList';
+import Plan from '../../Plan';
+import usePlanList from '../../hooks/usePlanList';
 
 function Search() {
   const [plansList, recipeList] = usePlanList();
