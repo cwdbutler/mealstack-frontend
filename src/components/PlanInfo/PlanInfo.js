@@ -11,10 +11,33 @@ import {
   Stack,
   Stat,
   StatLabel,
+  StatHelpText,
   StatNumber,
   Badge,
 } from '@chakra-ui/react';
-import { Center } from '@chakra-ui/layout';
+import { Center, Divider } from '@chakra-ui/layout';
+
+import { PieChart } from 'react-minimal-pie-chart';
+
+
+import mockObj from './mockMealPlan.js'
+
+let ingredientsArray = []
+
+let allIngredients = () => {
+  mockObj.recipes.forEach( x => ingredientsArray.push(x.ingredients))
+}
+
+allIngredients()
+
+
+const ingredientsList = ingredientsArray.map((ingredient) => 
+  <Box>
+    <Divider></Divider>
+  <ListItem>{ingredient}</ListItem>
+  </Box>
+)
+
 
 export default function PlanInfo() {
   return (
@@ -29,69 +52,47 @@ export default function PlanInfo() {
         templateColumns="repeat(6, 1fr)"
         gap={4}
       >
-        <GridItem rowSpan={3} colSpan={4} bg="papayawhip">
+        <GridItem rowSpan={2} colSpan={4} bg="papayawhip">
           <Flex h="100%" p="5">
-            <Box
-              maxW="sm"
-              borderWidth="1px"
-              borderRadius="lg"
-              overflow="hidden"
-              m="4"
-            >
-              <Image
-                src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg"
-                alt="recipe image"
-              />
 
-              <Box p="6">
-                <Box display="flex" alignItems="baseline">
-                  <Badge borderRadius="full" px="2" colorScheme="teal">
+        <Stat>
+        <Badge borderRadius="full" px="2" colorScheme="teal">
                     Calories
-                  </Badge>
-                  <Box
-                    color="gray.500"
-                    fontWeight="semibold"
-                    letterSpacing="wide"
-                    fontSize="xs"
-                    textTransform="uppercase"
-                    ml="2"
-                  >
-                    312i310
-                  </Box>
-                </Box>
+        </Badge>
+        <StatLabel>Total Calories</StatLabel>
+          <StatNumber>{mockObj.mealplan.calories}</StatNumber>
+        </Stat>
+        <Stat>
+        <Badge borderRadius="full" px="2" colorScheme="yellow">
+                    Fat
+        </Badge>
+        <StatLabel>Total Fat </StatLabel>
+          <StatNumber>{mockObj.mealplan.fat}</StatNumber>
+        </Stat>
+        <Stat>
+        <Badge borderRadius="full" px="2" color="#652B19" backgroundColor="#F6AD55">
+                    Carbs
+        </Badge>
+        <StatLabel>Total Carbs</StatLabel>
+          <StatNumber>{mockObj.mealplan.carbs}</StatNumber>
+        </Stat>
+        <Stat>
+        <Badge borderRadius="full" px="2" color="#00000" backgroundColor="#C05621">
+                    Protein
+        </Badge>
+        <StatLabel>Total Protein</StatLabel>
+          <StatNumber>{mockObj.mealplan.protein}</StatNumber>
+        </Stat>
+        <Box>
+        <PieChart
+          data={[
+            { title: 'Carbs', value: mockObj.mealplan.carbs, color: '#F6AD55' },
+            { title: 'Fat', value: mockObj.mealplan.fat, color: '#FAF089' },
+            { title: 'Protein', value: mockObj.mealplan.protein, color: '#C05621' },
+          ]}
+          />
+        </Box>
 
-                <Box
-                  mt="1"
-                  fontWeight="semibold"
-                  as="h4"
-                  lineHeight="tight"
-                  isTruncated
-                >
-                  plan name
-                </Box>
-
-                <Box display="flex" mt="2" alignItems="center">
-                  <Stat>
-                    <StatLabel>Protein</StatLabel>
-                    <StatNumber>43242</StatNumber>
-                  </Stat>
-                  <Stat>
-                    <StatLabel>Fat</StatLabel>
-                    <StatNumber>77445</StatNumber>
-                  </Stat>
-                  <Stat>
-                    <StatLabel>Carbs</StatLabel>
-                    <StatNumber>32131231</StatNumber>
-                  </Stat>
-                </Box>
-              </Box>
-            </Box>
-            <Spacer />
-            <Box bg="yellow" w="60%" borderRadius="10">
-              Lorem ipsum dolor sit amet adipiscing ipsum dolor sit amet
-              adipiscing ipsum dolor sit amet adipiscing ipsum dolor sit amet
-              adipiscing ipsum dolor sit amet adipiscing
-            </Box>
           </Flex>
         </GridItem>
         <GridItem rowSpan={10} colSpan={2}>
@@ -107,43 +108,36 @@ export default function PlanInfo() {
             <Heading>Shopping List</Heading>
             <UnorderedList mt="5">
               <Stack spacing={4}>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>Consectetur adipiscing elit</ListItem>
-                <ListItem>Integer molestie lorem at massa</ListItem>
-                <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>Consectetur adipiscing elit</ListItem>
-                <ListItem>Integer molestie lorem at massa</ListItem>
-                <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>Consectetur adipiscing elit</ListItem>
-                <ListItem>Integer molestie lorem at massa</ListItem>
-                <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>Consectetur adipiscing elit</ListItem>
-                <ListItem>Integer molestie lorem at massa</ListItem>
-                <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>Consectetur adipiscing elit</ListItem>
-                <ListItem>Integer molestie lorem at massa</ListItem>
-                <ListItem>Facilisis in pretium nisl aliquet</ListItem>
-                <ListItem>Lorem ipsum dolor sit amet</ListItem>
-                <ListItem>Consectetur adipiscing elit</ListItem>
-                <ListItem>Integer molestie lorem at massa</ListItem>
-                <ListItem>Facilisis in pretium nisl aliquet</ListItem>
+                <ListItem>{ingredientsList} </ListItem>
               </Stack>
             </UnorderedList>
           </Flex>
         </GridItem>
         <GridItem rowSpan={3} colSpan={4} bg="papayawhip">
+          Breakfast
+          <Divider></Divider>{mockObj.recipes[1].label}
+          <Divider></Divider>Calories: {mockObj.recipes[1].calories}
+          <Divider></Divider>Fat: {mockObj.recipes[1].fat}
+          <Divider></Divider>Carbs: {mockObj.recipes[1].carbs}
+          <Divider></Divider>Protein: {mockObj.recipes[1].protein}
+        </GridItem>
+        <GridItem rowSpan={3} colSpan={4} bg="papayawhip">
           Lunch
+          <Divider></Divider>{mockObj.recipes[1].label}
+          <Divider></Divider>Calories: {mockObj.recipes[1].calories}
+          <Divider></Divider>Fat: {mockObj.recipes[1].fat}
+          <Divider></Divider>Carbs: {mockObj.recipes[1].carbs}
+          <Divider></Divider>Protein: {mockObj.recipes[1].protein}
         </GridItem>
         <GridItem rowSpan={3} colSpan={4} bg="papayawhip">
           Dinner
+          <Divider></Divider>{mockObj.recipes[2].label}
+          <Divider></Divider>Calories: {mockObj.recipes[2].calories}
+          <Divider></Divider>Fat: {mockObj.recipes[2].fat}
+          <Divider></Divider>Carbs: {mockObj.recipes[2].carbs}
+          <Divider></Divider>Protein: {mockObj.recipes[2].protein}
         </GridItem>
-        <GridItem rowSpan={1} colSpan={4} bg="papayawhip">
-          Total Macros
-        </GridItem>
+       
       </Grid>
     </>
   );
