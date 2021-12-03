@@ -16,6 +16,7 @@ import {
   StatHelpText,
   StatNumber,
   Badge,
+  Text
 } from '@chakra-ui/react';
 import { Center, Divider } from '@chakra-ui/layout';
 
@@ -66,12 +67,11 @@ const shoppingListDisplay = shoppingListObjectArray.map((item) =>
       </Box>
 )
 
-// const ingredientsList = ingredientsArray.map((ingredient) => 
-//   <Box>
-//     <Divider></Divider>
-//   <ListItem>{ingredient}</ListItem>
-//   </Box>
-// )
+const data = [
+  { title: 'Carbs', value: mockObj.mealplan.carbs, color: '#FED7E2' },
+  { title: 'Fat', value: mockObj.mealplan.fat, color: '#FEEBC8' },
+  { title: 'Protein', value: mockObj.mealplan.protein, color: '#FC8181' },
+]
 
 
 export default function PlanInfo() {
@@ -87,7 +87,7 @@ export default function PlanInfo() {
         templateColumns="repeat(6, 1fr)"
         gap={4}
       >
-        <GridItem rowSpan={3} colSpan={4} bg="teal.50" border="2px"
+        <GridItem rowSpan={4} colSpan={4} bg="teal.50" border="2px"
             borderColor="gray.200"
             borderRadius="10">
           <Center>
@@ -128,17 +128,18 @@ export default function PlanInfo() {
                         Macro Split
             </Badge>
             <PieChart
-              data={[
-                { title: 'Carbs', value: mockObj.mealplan.carbs, color: '#FED7E2' },
-                { title: 'Fat', value: mockObj.mealplan.fat, color: '#FEEBC8' },
-                { title: 'Protein', value: mockObj.mealplan.protein, color: '#FC8181' },
-              ]} viewBoxSize={[100, 150]}
+              data={data}
+              label={({dataEntry})=> Math.round(dataEntry.percentage) + "%"}
+              labelStyle= {{
+                fontSize: '15px',
+              }}
+               viewBoxSize={[100, 150]} 
               />
             </Box>
             
           </Flex>
         </GridItem>
-        <GridItem rowSpan={17} colSpan={2}>
+        <GridItem rowSpan={20} colSpan={2}>
           <Flex
             d="column"
             h="100%"
@@ -157,42 +158,111 @@ export default function PlanInfo() {
             </List>
           </Flex>
         </GridItem>
-        <GridItem rowSpan={3} colSpan={4} bg="teal.50" border="2px"
+        <GridItem rowSpan={4} colSpan={4} bg="teal.50" border="2px"
             borderColor="gray.200"
             borderRadius="10">
           <Center><Heading size="sm">{mockObj.recipes[0].label} for breakfast</Heading> </Center>      
           <List>
-          <ListItem>Calories: {mockObj.recipes[0].calories}</ListItem>
-          <ListItem>Fat: {mockObj.recipes[0].fat}</ListItem>
-          <ListItem>Carbs: {mockObj.recipes[0].carbs}</ListItem>
-          <ListItem>Protein: {mockObj.recipes[0].protein}</ListItem>
-          <ListItem>Ingredients: {mockObj.recipes[0].ingredients}</ListItem>
-          </List>
-        </GridItem>
-        <GridItem rowSpan={3} colSpan={4} bg="teal.50" border="2px"
-            borderColor="gray.200"
-            borderRadius="10">
-          <Heading size="sm">{mockObj.recipes[1].label} for lunch</Heading>
-          <List>
-          <ListItem>Calories: {mockObj.recipes[1].calories}</ListItem>
-          <ListItem>Fat: {mockObj.recipes[1].fat}</ListItem>
-          <ListItem>Carbs: {mockObj.recipes[1].carbs}</ListItem>
-          <ListItem>Protein: {mockObj.recipes[1].protein}</ListItem>
-          <ListItem>Ingredients: {mockObj.recipes[1].ingredients}</ListItem>
+            <ListItem>
+              <Text fontSize="sm">Calories: {mockObj.recipes[0].calories}</Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Fat: {mockObj.recipes[0].fat}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Carbs: {mockObj.recipes[0].carbs}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Protein: {mockObj.recipes[0].protein}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Prep time: {mockObj.recipes[0].totalTime} minutes
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Ingredients: {mockObj.recipes[0].ingredients.split(",").join(", ")}
+              </Text>
+            </ListItem>
           </List>
         </GridItem>
         <GridItem rowSpan={8} colSpan={4} bg="teal.50" border="2px"
             borderColor="gray.200"
-            borderRadius="10" >
-          <Heading size="sm">{mockObj.recipes[2].label} for dinner</Heading>          <List>
-          <ListItem>Calories: {mockObj.recipes[2].calories}</ListItem>
-          <ListItem>Fat: {mockObj.recipes[2].fat}</ListItem>
-          <ListItem>Carbs: {mockObj.recipes[2].carbs}</ListItem>
-          <ListItem>Protein: {mockObj.recipes[2].protein}</ListItem>
-          <ListItem>Ingredients: {mockObj.recipes[2].ingredients}</ListItem>
+            borderRadius="10">
+          <Center><Heading size="sm">{mockObj.recipes[1].label} for lunch</Heading> </Center>      
+          <List>
+            <ListItem>
+              <Text fontSize="sm">Calories: {mockObj.recipes[1].calories}</Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Fat: {mockObj.recipes[1].fat}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Carbs: {mockObj.recipes[1].carbs}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Protein: {mockObj.recipes[1].protein}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Prep time: {mockObj.recipes[1].totalTime} minutes
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Ingredients: {mockObj.recipes[1].ingredients.split(",").join(", ")}
+              </Text>
+            </ListItem>
           </List>
         </GridItem>
-       
+        <GridItem rowSpan={4} colSpan={4} bg="teal.50" border="2px"
+            borderColor="gray.200"
+            borderRadius="10">
+          <Center><Heading size="sm">{mockObj.recipes[2].label} for dinner</Heading> </Center>      
+          <List>
+            <ListItem>
+              <Text fontSize="sm">Calories: {mockObj.recipes[2].calories}</Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Fat: {mockObj.recipes[2].fat}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Carbs: {mockObj.recipes[2].carbs}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Protein: {mockObj.recipes[2].protein}
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Prep time: {mockObj.recipes[2].totalTime} minutes
+              </Text>
+            </ListItem>
+            <ListItem>
+              <Text fontSize="sm">
+                Ingredients: {mockObj.recipes[2].ingredients.split(",").join(", ")}
+              </Text>
+            </ListItem>
+          </List>
+        </GridItem>     
       </Grid>
     </>
   );
