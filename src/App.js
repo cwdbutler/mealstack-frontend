@@ -27,6 +27,7 @@ export default function App() {
           </Box>
         </Flex>
         <Routes>
+          <Route path="/" exact element={<Home />} />
           <Route path="/home" exact element={<Home />} />
           <Route path="/plan" exact element={<PlanInfo />} />
           <Route path="/search" exact element={<Search />} />
