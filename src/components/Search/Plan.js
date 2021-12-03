@@ -11,13 +11,10 @@ import {
 
 export default function Plan(props) {
   const plan = props.plan;
-  const breakfastObject = props.breakfast;
-  const lunchObject = props.lunch;
-  const dinnerObject = props.dinner;
-  const snackObject = props.snack;
+  const recipes = props.plan.recipes
 
   return (
-    <Link to="/plan">
+    
       <Box
         maxW="sm"
         borderWidth="1px"
@@ -25,9 +22,10 @@ export default function Plan(props) {
         overflow="hidden"
         m="4"
       >
+        <Link to={`/plan/${plan.id}`}>
         <Image
-          src="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg"
-          alt="recipe image"
+          src={recipes[0].recipe.image_url}
+          alt="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg"
         />
 
         <Box p="6">
@@ -72,7 +70,8 @@ export default function Plan(props) {
             </Stat>
           </Box>
         </Box>
+        </Link>
       </Box>
-    </Link>
+    
   );
 }
