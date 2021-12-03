@@ -3,6 +3,7 @@ import usePlanList from '../../hooks/usePlanList';
 
 function Search() {
   const [plansList] = usePlanList();
+  console.log(plansList)
 
 
   const plans = plansList.map((data) => {

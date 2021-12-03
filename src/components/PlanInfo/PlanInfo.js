@@ -1,3 +1,4 @@
+import {usePlanInfo } from '../../hooks/usePlanInfo'
 import {
   Checkbox,
   Grid,
@@ -18,12 +19,15 @@ import {
   Badge,
   Text
 } from '@chakra-ui/react';
+
 import { Center, Divider } from '@chakra-ui/layout';
 
 import { PieChart } from 'react-minimal-pie-chart';
 
 
 import mockObj from './mockMealPlan.js'
+import { useParams } from 'react-router';
+
 
 let ingredientsArray = []
 
@@ -57,8 +61,6 @@ let shoppingListObjectCreator = () => {
 
 shoppingListObjectCreator()
 
-console.log(shoppingListObjectArray)
-
 const shoppingListDisplay = shoppingListObjectArray.map((item) => 
       <Box>
         <Checkbox colorScheme='teal' size='sm'>
@@ -75,6 +77,9 @@ const data = [
 
 
 export default function PlanInfo() {
+  const { id } = useParams();
+
+
   return (
     <>
       <Center>

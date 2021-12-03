@@ -18,18 +18,15 @@ export default function App() {
             <Link to="/home">
               <Button mr="2">Home</Button>
             </Link>
-            <Link to="/plan">
-              <Button mr="2">Plan</Button>
-            </Link>
             <Link to="/search">
-              <Button>Search</Button>
+              <Button>Plans</Button>
             </Link>
           </Box>
         </Flex>
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/home" exact element={<Home />} />
-          <Route path="/plan" exact element={<PlanInfo />} />
+          <Route path="/plan/:id" exact element={<PlanInfo />} />
           <Route path="/search" exact element={<Search />} />
         </Routes>
       </>
