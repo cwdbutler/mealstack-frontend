@@ -6,6 +6,9 @@ import {
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  Input,
+  InputLeftElement,
+  InputRightElement,
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
@@ -13,7 +16,7 @@ import { Formik, Form, Field } from 'formik';
 export default function SearchForm() {
   return (
     <Center h="90vh">
-      <Box w="50vh">
+      <Box w="20vh">
         <Formik
           initialValues={{
             protein: '80',
@@ -36,6 +39,7 @@ export default function SearchForm() {
                   {({ field, form }) => (
                     <FormControl id="protein">
                       <FormLabel htmlFor="protein">Protein</FormLabel>
+
                       <NumberInput
                         id="protein"
                         {...field}
@@ -44,7 +48,13 @@ export default function SearchForm() {
                         defaultValue={80}
                         min={0}
                         max={300}
+                        allowMouseWheel
                       >
+                        <InputRightElement
+                          pointerEvents="none"
+                          children="g"
+                          mr={6}
+                        />
                         <NumberInputField />
                         <NumberInputStepper>
                           <NumberIncrementStepper />
@@ -57,7 +67,8 @@ export default function SearchForm() {
                 <Field name="fat">
                   {({ field, form }) => (
                     <FormControl id="fat">
-                      <FormLabel htmlFor="fat">Calories</FormLabel>
+                      <FormLabel htmlFor="fat">Fat</FormLabel>
+
                       <NumberInput
                         id="fat"
                         {...field}
@@ -66,7 +77,13 @@ export default function SearchForm() {
                         defaultValue={80}
                         min={0}
                         max={300}
+                        allowMouseWheel
                       >
+                        <InputRightElement
+                          pointerEvents="none"
+                          children="g"
+                          mr={6}
+                        />
                         <NumberInputField />
                         <NumberInputStepper>
                           <NumberIncrementStepper />
@@ -79,7 +96,8 @@ export default function SearchForm() {
                 <Field name="carbs">
                   {({ field, form }) => (
                     <FormControl id="carbs">
-                      <FormLabel htmlFor="carbs">Calories</FormLabel>
+                      <FormLabel htmlFor="carbs">Carbs</FormLabel>
+
                       <NumberInput
                         id="carbs"
                         {...field}
@@ -88,7 +106,13 @@ export default function SearchForm() {
                         defaultValue={80}
                         min={0}
                         max={300}
+                        allowMouseWheel
                       >
+                        <InputRightElement
+                          pointerEvents="none"
+                          children="g"
+                          mr={6}
+                        />
                         <NumberInputField />
                         <NumberInputStepper>
                           <NumberIncrementStepper />
@@ -102,6 +126,7 @@ export default function SearchForm() {
                   {({ field, form }) => (
                     <FormControl id="calories">
                       <FormLabel htmlFor="calories">Calories</FormLabel>
+
                       <NumberInput
                         id="calories"
                         {...field}
@@ -110,7 +135,13 @@ export default function SearchForm() {
                         defaultValue={2000}
                         min={1500}
                         max={4000}
+                        allowMouseWheel
                       >
+                        <InputRightElement
+                          pointerEvents="none"
+                          children="kcal"
+                          mr="2.1rem"
+                        />
                         <NumberInputField />
                         <NumberInputStepper>
                           <NumberIncrementStepper />
@@ -126,7 +157,7 @@ export default function SearchForm() {
                   isLoading={props.isSubmitting}
                   type="submit"
                 >
-                  Submit
+                  Search
                 </Button>
                 {/* <pre>{JSON.stringify(props.values, null, 2)}</pre> */}
               </Stack>
