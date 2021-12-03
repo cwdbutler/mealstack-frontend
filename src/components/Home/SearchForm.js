@@ -1,13 +1,11 @@
 import { Button } from '@chakra-ui/button';
-import { Box, Center, Stack } from '@chakra-ui/layout';
+import { Box, Center, Stack, Divider } from '@chakra-ui/layout';
 import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
-  Input,
-  InputLeftElement,
   InputRightElement,
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
@@ -15,8 +13,8 @@ import { Formik, Form, Field } from 'formik';
 
 export default function SearchForm() {
   return (
-    <Center h="90vh">
-      <Box w="20vh">
+    <Center h="100%" w="100%">
+      <Box boxShadow="lg" p={10} borderRadius="lg">
         <Formik
           initialValues={{
             protein: '80',
@@ -34,12 +32,13 @@ export default function SearchForm() {
         >
           {(props) => (
             <Form>
-              <Stack spacing={4}>
+              <Stack spacing={5}>
                 <Field name="protein">
                   {({ field, form }) => (
                     <FormControl id="protein">
-                      <FormLabel htmlFor="protein">Protein</FormLabel>
-
+                      <FormLabel htmlFor="protein" textAlign="center">
+                        Protein
+                      </FormLabel>
                       <NumberInput
                         id="protein"
                         {...field}
@@ -64,11 +63,13 @@ export default function SearchForm() {
                     </FormControl>
                   )}
                 </Field>
+                <Divider />
                 <Field name="fat">
                   {({ field, form }) => (
                     <FormControl id="fat">
-                      <FormLabel htmlFor="fat">Fat</FormLabel>
-
+                      <FormLabel htmlFor="fat" textAlign="center">
+                        Fat
+                      </FormLabel>
                       <NumberInput
                         id="fat"
                         {...field}
@@ -93,11 +94,13 @@ export default function SearchForm() {
                     </FormControl>
                   )}
                 </Field>
+                <Divider />
                 <Field name="carbs">
                   {({ field, form }) => (
                     <FormControl id="carbs">
-                      <FormLabel htmlFor="carbs">Carbs</FormLabel>
-
+                      <FormLabel htmlFor="carbs" textAlign="center">
+                        Carbs
+                      </FormLabel>
                       <NumberInput
                         id="carbs"
                         {...field}
@@ -122,11 +125,13 @@ export default function SearchForm() {
                     </FormControl>
                   )}
                 </Field>
+                <Divider />
                 <Field name="calories">
                   {({ field, form }) => (
                     <FormControl id="calories">
-                      <FormLabel htmlFor="calories">Calories</FormLabel>
-
+                      <FormLabel htmlFor="calories" textAlign="center">
+                        Calories
+                      </FormLabel>
                       <NumberInput
                         id="calories"
                         {...field}
