@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home/Home';
-import PlanInfo from './PlanInfo';
+import PlanInfo from './components/PlanInfo/PlanInfo';
 import Search from './components/Search/Search';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';

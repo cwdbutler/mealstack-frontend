@@ -1,4 +1,4 @@
-import Plan from '../../Plan';
+import Plan from './Plan';
 import usePlanList from '../../hooks/usePlanList';
 
 function Search() {
