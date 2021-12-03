@@ -15,7 +15,6 @@ export default function Plan(props) {
   const lunchObject = props.lunch;
   const dinnerObject = props.dinner;
   const snackObject = props.snack;
-  console.log(breakfastObject)
 
   return (
     <Link to="/plan">

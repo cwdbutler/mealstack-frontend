@@ -20,7 +20,7 @@ import { Center, Divider } from '@chakra-ui/layout';
 import { PieChart } from 'react-minimal-pie-chart';
 
 
-import mockObj from './mockMealPlan.js'
+import mockObj from '../../mockMealPlan.js'
 
 let ingredientsArray = []
 
