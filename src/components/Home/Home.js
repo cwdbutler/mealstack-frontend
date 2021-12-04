@@ -9,7 +9,13 @@ export default function Home() {
         <Heading as="h1" size="2xl">
           Find your Mealstack
         </Heading>
-        <Box boxShadow="lg" p={10} borderRadius="lg">
+        <Box
+          boxShadow="lg"
+          p={10}
+          borderRadius="lg"
+          border="1px"
+          borderColor="gray.100"
+        >
           <SearchForm />
         </Box>
       </HStack>
