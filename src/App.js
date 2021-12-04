@@ -5,6 +5,7 @@ import Search from './components/Search/Search';
 import RecipeDisplayer from './components/RecipeDisplayer/RecipeDisplayer';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
+import RecipeFilter from './components/RecipeDisplayer/RecipeFilter';
 
 export default function App() {
   return (
@@ -33,7 +34,7 @@ export default function App() {
           <Route path="/home" exact element={<Home />} />
           <Route path="/plan/:id" exact element={<PlanInfo />} />
           <Route path="/search" exact element={<Search />} />
-          <Route path="/recipes" exact element={<RecipeDisplayer />} />
+          <Route path="/recipes" exact element={<RecipeFilter />} />
         </Routes>
       </>
     </Router>
