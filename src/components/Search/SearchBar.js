@@ -1,4 +1,4 @@
-import { Stack, Divider } from '@chakra-ui/layout';
+import { HStack, Divider, Box } from '@chakra-ui/layout';
 import { SearchIcon } from '@chakra-ui/icons';
 import {
   NumberInput,
@@ -9,18 +9,33 @@ import {
   InputRightElement,
   Heading,
   IconButton,
+  Flex,
+  Spacer,
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
 
 export default function SearchForm({ params }) {
+  const defaultMacros = {
+    protein: '150',
+    fat: '50',
+    carbs: '200',
+    calories: '2000',
+  };
+
   return (
     <Formik
       initialValues={{
-        protein: `${params.get('protein')}`,
-        fat: `${params.get('fat')}`,
-        carbs: `${params.get('carbs')}`,
-        calories: `${params.get('calories')}`,
+        protein: params.get('protein')
+          ? `${params.get('protein')}`
+          : defaultMacros.protein,
+        fat: params.get('fat') ? `${params.get('fat')}` : defaultMacros.fat,
+        carbs: params.get('carbs')
+          ? `${params.get('carbs')}`
+          : defaultMacros.carbs,
+        calories: params.get('calories')
+          ? `${params.get('calories')}`
+          : defaultMacros.calories,
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
@@ -30,8 +45,8 @@ export default function SearchForm({ params }) {
       }}
     >
       {(props) => (
-        <Form>
-          <Stack spacing={5}>
+        <Flex h="10vh" bg="tomato" mt={10}>
+          <Form>
             <Field name="protein">
               {({ field, form }) => (
                 <FormControl id="protein">
@@ -43,7 +58,6 @@ export default function SearchForm({ params }) {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={150}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -62,7 +76,7 @@ export default function SearchForm({ params }) {
                 </FormControl>
               )}
             </Field>
-            <Divider />
+            <Spacer />
             <Field name="fat">
               {({ field, form }) => (
                 <FormControl id="fat">
@@ -74,7 +88,6 @@ export default function SearchForm({ params }) {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={50}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -93,7 +106,7 @@ export default function SearchForm({ params }) {
                 </FormControl>
               )}
             </Field>
-            <Divider />
+            <Spacer />
             <Field name="carbs">
               {({ field, form }) => (
                 <FormControl id="carbs">
@@ -105,7 +118,6 @@ export default function SearchForm({ params }) {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={200}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -124,7 +136,7 @@ export default function SearchForm({ params }) {
                 </FormControl>
               )}
             </Field>
-            <Divider />
+            <Spacer />
             <Field name="calories">
               {({ field, form }) => (
                 <FormControl id="calories">
@@ -136,7 +148,6 @@ export default function SearchForm({ params }) {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={100}
-                    defaultValue={2000}
                     min={1500}
                     max={4000}
                     allowMouseWheel
@@ -164,12 +175,8 @@ export default function SearchForm({ params }) {
               aria-label="Search plans"
               icon={<SearchIcon />}
             />
-            <Heading as="h5" size="sm" color="gray.500">
-              Search our collection of plans
-            </Heading>
-            {/* <pre>{JSON.stringify(props.values, null, 2)}</pre> */}
-          </Stack>
-        </Form>
+          </Form>
+        </Flex>
       )}
     </Formik>
   );

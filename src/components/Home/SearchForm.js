@@ -16,24 +16,21 @@ import { createSearchParams, useNavigate } from 'react-router-dom';
 
 export default function SearchForm() {
   let navigate = useNavigate();
+  const defaultMacros = {
+    protein: '150',
+    fat: '50',
+    carbs: '200',
+    calories: '2000',
+  };
 
   return (
     <Formik
-      initialValues={{
-        protein: '150',
-        fat: '50',
-        carbs: '200',
-        calories: '2000',
-      }}
+      initialValues={defaultMacros}
       onSubmit={(values, { setSubmitting }) => {
         navigate({
           pathname: 'search',
           search: `?${createSearchParams(values)}`,
         });
-        // setTimeout(() => {
-        //   fetch here;
-        //   setSubmitting(false);
-        // }, 1000);
         setSubmitting(false);
       }}
     >
@@ -51,7 +48,6 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={150}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -82,7 +78,6 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={50}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -113,7 +108,6 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={200}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -144,7 +138,6 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={100}
-                    defaultValue={2000}
                     min={1500}
                     max={4000}
                     allowMouseWheel
@@ -175,7 +168,6 @@ export default function SearchForm() {
             <Heading as="h5" size="sm" color="gray.500">
               Search our collection of plans
             </Heading>
-            {/* <pre>{JSON.stringify(props.values, null, 2)}</pre> */}
           </Stack>
         </Form>
       )}
