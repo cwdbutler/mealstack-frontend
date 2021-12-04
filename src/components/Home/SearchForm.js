@@ -12,22 +12,29 @@ import {
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 export default function SearchForm() {
+  let navigate = useNavigate();
+
   return (
     <Formik
       initialValues={{
-        protein: '80',
-        fat: '80',
-        carbs: '80',
+        protein: '150',
+        fat: '50',
+        carbs: '200',
         calories: '2000',
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          // async fetch POST to server goes here
-          alert(JSON.stringify(values, null, 2));
-          setSubmitting(false);
-        }, 1000);
+        navigate({
+          pathname: 'search',
+          search: `?${createSearchParams(values)}`,
+        });
+        // setTimeout(() => {
+        //   fetch here;
+        //   setSubmitting(false);
+        // }, 1000);
+        setSubmitting(false);
       }}
     >
       {(props) => (
@@ -44,7 +51,7 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={80}
+                    defaultValue={150}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -75,7 +82,7 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={80}
+                    defaultValue={50}
                     min={0}
                     max={300}
                     allowMouseWheel
@@ -106,7 +113,7 @@ export default function SearchForm() {
                     {...field}
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
-                    defaultValue={80}
+                    defaultValue={200}
                     min={0}
                     max={300}
                     allowMouseWheel

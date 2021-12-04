@@ -30,10 +30,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/plan" element={<PlanInfo />} />
-          <Route
-            path="/search/:calories/:carbs/:protein/:fats"
-            element={<Search />}
-          />
+          <Route path="/search/*" element={<Search />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </>
