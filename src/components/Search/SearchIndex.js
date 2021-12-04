@@ -1,5 +1,4 @@
 import Plan from './Plan';
-import usePlanList from '../../hooks/usePlanList';
 
 function SearchIndex(props) {
   const planList = props.plans.map((data) => {
