@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home/Home';
 import PlanInfo from './components/PlanInfo/PlanInfo';
 import Search from './components/Search/Search';
+import PlanCreator from './components/Search/PlanCreator';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/home" exact element={<Home />} />
           <Route path="/plan/:id" exact element={<PlanInfo />} />
           <Route path="/search" exact element={<Search />} />
+          <Route path="/plan-creator" exact element={<PlanCreator />} />
         </Routes>
       </>
     </Router>
