@@ -1,4 +1,4 @@
-import { Box, Center, HStack } from '@chakra-ui/layout';
+import { Center } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/react';
 import Plan from './Plan';
 

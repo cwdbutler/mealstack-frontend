@@ -6,7 +6,7 @@ import useSearch from '../../hooks/useSearch';
 function Search() {
   let [searchParams] = useSearchParams();
 
-  const [searchResults, getFilteredPlans] = useSearch(searchParams);
+  const [searchResults] = useSearch(searchParams);
 
   return (
     <>

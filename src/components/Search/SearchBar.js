@@ -1,4 +1,4 @@
-import { HStack, Divider, Box, Center } from '@chakra-ui/layout';
+import { HStack, Center } from '@chakra-ui/layout';
 import { SearchIcon } from '@chakra-ui/icons';
 import {
   NumberInput,
@@ -7,15 +7,15 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   InputRightElement,
-  Heading,
   IconButton,
-  Flex,
-  Spacer,
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 export default function SearchForm({ params }) {
+  let navigate = useNavigate();
+
   const defaultMacros = {
     protein: '150',
     fat: '50',
@@ -39,10 +39,10 @@ export default function SearchForm({ params }) {
             : defaultMacros.calories,
         }}
         onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 1000);
+          navigate({
+            search: `?${createSearchParams(values)}`,
+          });
+          setSubmitting(false);
         }}
       >
         {(props) => (
