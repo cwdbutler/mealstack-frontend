@@ -109,7 +109,7 @@ export default function SearchForm() {
                     onChange={(val) => form.setFieldValue(field.name, val)}
                     step={10}
                     min={0}
-                    max={300}
+                    max={500}
                     allowMouseWheel
                   >
                     <InputRightElement

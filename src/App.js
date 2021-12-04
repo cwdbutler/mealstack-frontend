@@ -21,9 +21,6 @@ export default function App() {
           <Button mr="2" as={Link} to="/plan">
             Plan
           </Button>
-          <Button as={Link} to="/search">
-            Search
-          </Button>
         </Box>
       </Flex>
       <Routes>

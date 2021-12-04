@@ -1,4 +1,4 @@
-import { Center } from '@chakra-ui/layout';
+import { Center, Box } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/react';
 import Plan from './Plan';
 
@@ -22,10 +22,14 @@ function SearchIndex({ plans }) {
       {planList.length > 0 ? (
         planList
       ) : (
-        <Heading mt={20}>
-          We couldn't find any plans with those filters, try widening your
-          search parameters.
-        </Heading>
+        <Box>
+          <Heading mt={20} textAlign="center" size="xl">
+            We couldn't find any plans with those filters
+          </Heading>
+          <Heading mt={10} textAlign="center" size="lg" color="gray.600">
+            Try widening your search parameters
+          </Heading>
+        </Box>
       )}
     </Center>
   );
