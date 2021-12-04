@@ -7,7 +7,7 @@ export default function Home() {
     <Center h="100%" w="100%">
       <HStack spacing={20}>
         <Heading as="h1" size="2xl">
-          Find your Mealstack...
+          Find your Mealstack
         </Heading>
         <Box boxShadow="lg" p={10} borderRadius="lg">
           <SearchForm />

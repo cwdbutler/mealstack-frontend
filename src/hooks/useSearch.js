@@ -11,7 +11,12 @@ const useSearch = (params) => {
 
     const url = `https://mealstack-backend.herokuapp.com/plans/search/${calories}&${carbs}&${protein}&${fats}`;
 
-    const res = await fetch(url, { method: 'GET' });
+    let res;
+    try {
+      res = await fetch(url, { method: 'GET' });
+    } catch (err) {
+      res = new Response(JSON.stringify({ error: 'true' }));
+    }
     const json = await res.json();
 
     setPlansList(json);
