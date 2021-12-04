@@ -1,21 +1,21 @@
-import Plan from './Plan';
-import usePlanList from '../../hooks/usePlanList';
 import { useSearchParams } from 'react-router-dom';
+import SearchBar from './SearchBar';
+// import SearchIndex from './SearchIndex';
+// import useSearch from '../../hooks/useSearch';
+// import usePlanList from '../../hooks/usePlanList';
 
 function Search() {
   let [searchParams] = useSearchParams();
-  console.log(searchParams.get('calories'));
-  console.log(searchParams.get('fat'));
-  console.log(searchParams.get('carbs'));
-  console.log(searchParams.get('protein'));
 
-  const [plansList] = usePlanList();
+  // const [searchResults, getFilteredPlans] = useSearch(searchParams);
+  // const [searchResults] = usePlanList();
 
-  const plans = plansList.map((data) => {
-    const key = `plan-${data.id}`;
-    return <Plan plan={data} key={key} />;
-  });
-  return <div className="Search">{plans}</div>;
+  return (
+    <>
+      <SearchBar params={searchParams} />
+      {/* <SearchIndex plans={searchResults} /> */}
+    </>
+  );
 }
 
 export default Search;
