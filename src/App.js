@@ -16,15 +16,15 @@ export default function App() {
           </Box>
           <Spacer />
           <Box>
-            <Link to="/">
-              <Button mr="2">Home</Button>
-            </Link>
-            <Link to="/plan">
-              <Button mr="2">Plan</Button>
-            </Link>
-            <Link to="/search">
-              <Button>Search</Button>
-            </Link>
+            <Button mr="2" as={Link} to="/">
+              Home
+            </Button>
+            <Button mr="2" as={Link} to="/plan">
+              Plan
+            </Button>
+            <Button as={Link} to="/search">
+              Search
+            </Button>
           </Box>
         </Flex>
         <Routes>
