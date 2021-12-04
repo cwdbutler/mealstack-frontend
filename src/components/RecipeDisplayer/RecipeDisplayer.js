@@ -1,13 +1,18 @@
 import Recipe from "./Recipe"
+import useRecipeList from "../../hooks/useRecipeList";
+
 
 function RecipeDisplayer(){
-  let recipes = [1,2,3]
+  const [recipeList] = useRecipeList();
 
-  let display = recipes.map(() => {
-    return  <Recipe></Recipe>
+
+  const recipes = recipeList.map((data) => {
+
+    const key = `recipe-${data.id}`
+    return  <Recipe recipe={data} key={key}/>
   });
 
-  return <div> {display} </div>
+  return <div> {recipes} </div>
 }
 
 export default RecipeDisplayer
