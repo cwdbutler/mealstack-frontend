@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const useSearch = (params) => {
+  const [loading, setLoading] = useState(true);
   const [plansList, setPlansList] = useState([]);
 
   const getFilteredPlans = async (params) => {
@@ -20,11 +21,12 @@ const useSearch = (params) => {
     const json = await res.json();
 
     setPlansList(json);
+    setLoading(false);
   };
 
   useEffect(() => getFilteredPlans(params), [params]);
 
-  return [plansList, getFilteredPlans];
+  return [plansList, loading, getFilteredPlans];
 };
 
 export default useSearch;
