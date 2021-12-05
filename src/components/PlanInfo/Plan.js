@@ -1,5 +1,3 @@
-import usePlanInfo from '../../hooks/usePlanInfo';
-import { useParams } from 'react-router-dom';
 import {
   Checkbox,
   Grid,
@@ -17,68 +15,56 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
-
 import { PieChart } from 'react-minimal-pie-chart';
 
-import mockObj from './mockMealPlan.js';
+export default function Plan({ plan, data }) {
+  console.log('plan inside Plan', plan);
+  let ingredientsArray = [];
 
-let ingredientsArray = [];
+  let allIngredients = () => {
+    plan.recipes.forEach((x) => ingredientsArray.push(x.ingredients));
+  };
 
-let allIngredients = () => {
-  mockObj.recipes.forEach((x) => ingredientsArray.push(x.ingredients));
-};
+  allIngredients();
 
-allIngredients();
+  let shoppingListArray = [];
 
-let shoppingListArray = [];
+  let shoppingListFormatter = () => {
+    for (let i = 0; i < ingredientsArray.length; i++) {
+      shoppingListArray.push(ingredientsArray[i].split(','));
+    }
+  };
 
-let shoppingListFormatter = () => {
-  for (let i = 0; i < ingredientsArray.length; i++) {
-    shoppingListArray.push(ingredientsArray[i].split(','));
-  }
-};
+  shoppingListFormatter();
 
-shoppingListFormatter();
+  let shoppingListObjectArray = [];
 
-let shoppingListObjectArray = [];
+  let shoppingListObjectCreator = () => {
+    let flattenedList = shoppingListArray.flat();
+    for (let i = 0; i < flattenedList.length; i++) {
+      let tempArr = flattenedList[i].split('g ');
+      let tempObj = { name: tempArr[1], weight: tempArr[0] };
+      shoppingListObjectArray.push(tempObj);
+    }
+  };
 
-let shoppingListObjectCreator = () => {
-  let flattenedList = shoppingListArray.flat();
-  for (let i = 0; i < flattenedList.length; i++) {
-    let tempArr = flattenedList[i].split('g ');
-    let tempObj = { name: tempArr[1], weight: tempArr[0] };
-    shoppingListObjectArray.push(tempObj);
-  }
-};
+  shoppingListObjectCreator();
 
-shoppingListObjectCreator();
+  console.log(shoppingListObjectArray);
 
-console.log(shoppingListObjectArray);
-
-const shoppingListDisplay = shoppingListObjectArray.map((item) => (
-  <Box>
-    <Checkbox colorScheme="teal" size="sm">
-      {Math.round(item.weight)}{' '}
-      {Math.round(item.weight) === 1 ? 'gram' : 'grams'} of{' '}
-      {item.name === 'eg' ? 'egg' : item.name}
-    </Checkbox>
-  </Box>
-));
-
-export default function PlanInfo() {
-  const { id } = useParams();
-  const [planInfo] = usePlanInfo(id);
-  console.log(planInfo.recipes);
-  const data = [
-    { title: 'Carbs', value: planInfo.carbs, color: '#FED7E2' },
-    { title: 'Fat', value: planInfo.fat, color: '#FEEBC8' },
-    { title: 'Protein', value: planInfo.protein, color: '#FC8181' },
-  ];
-
+  const shoppingListDisplay = shoppingListObjectArray.map((item) => (
+    <Box>
+      <Checkbox colorScheme="teal" size="sm">
+        {Math.round(item.weight)}{' '}
+        {Math.round(item.weight) === 1 ? 'gram' : 'grams'} of{' '}
+        {item.name === 'eg' ? 'egg' : item.name}
+      </Checkbox>
+    </Box>
+  ));
   return (
     <>
       <Center>
-        <Heading mt="4">Plan information for {planInfo.name}</Heading>
+        <Heading mt="4">Plan information for {plan.name}</Heading>
       </Center>
       <Grid
         h="80vh"
@@ -105,28 +91,28 @@ export default function PlanInfo() {
                 Calories
               </Badge>
               <StatLabel>Total Calories</StatLabel>
-              <StatNumber>{planInfo.calories}</StatNumber>
+              <StatNumber>{plan.calories}</StatNumber>
             </Stat>
             <Stat>
               <Badge borderRadius="full" px="2" colorScheme="orange">
                 Fat
               </Badge>
               <StatLabel>Total Fat </StatLabel>
-              <StatNumber>{planInfo.fat}</StatNumber>
+              <StatNumber>{plan.fat}</StatNumber>
             </Stat>
             <Stat>
               <Badge borderRadius="full" px="2" colorScheme="pink">
                 Carbs
               </Badge>
               <StatLabel>Total Carbs</StatLabel>
-              <StatNumber>{planInfo.carbs}</StatNumber>
+              <StatNumber>{plan.carbs}</StatNumber>
             </Stat>
             <Stat>
               <Badge borderRadius="full" px="2" colorScheme="red">
                 Protein
               </Badge>
               <StatLabel>Total Protein</StatLabel>
-              <StatNumber>{planInfo.protein}</StatNumber>
+              <StatNumber>{plan.protein}</StatNumber>
             </Stat>
             <Box>
               <Badge
@@ -178,32 +164,29 @@ export default function PlanInfo() {
           borderRadius="10"
         >
           <Center>
-            <Heading size="sm">
-              {mockObj.recipes[0].label} for breakfast
-            </Heading>{' '}
+            <Heading size="sm">{plan.recipes[0].label} for breakfast</Heading>{' '}
           </Center>
           <List>
             <ListItem>
-              <Text fontSize="sm">Calories: {mockObj.recipes[0].calories}</Text>
+              <Text fontSize="sm">Calories: {plan.recipes[0].calories}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Fat: {mockObj.recipes[0].fat}</Text>
+              <Text fontSize="sm">Fat: {plan.recipes[0].fat}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Carbs: {mockObj.recipes[0].carbs}</Text>
+              <Text fontSize="sm">Carbs: {plan.recipes[0].carbs}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Protein: {mockObj.recipes[0].protein}</Text>
+              <Text fontSize="sm">Protein: {plan.recipes[0].protein}</Text>
             </ListItem>
             <ListItem>
               <Text fontSize="sm">
-                Prep time: {mockObj.recipes[0].totalTime} minutes
+                Prep time: {plan.recipes[0].totalTime} minutes
               </Text>
             </ListItem>
             <ListItem>
               <Text fontSize="sm">
-                Ingredients:{' '}
-                {mockObj.recipes[0].ingredients.split(',').join(', ')}
+                Ingredients: {plan.recipes[0].ingredients.split(',').join(', ')}
               </Text>
             </ListItem>
           </List>
@@ -217,30 +200,29 @@ export default function PlanInfo() {
           borderRadius="10"
         >
           <Center>
-            <Heading size="sm">{mockObj.recipes[1].label} for lunch</Heading>{' '}
+            <Heading size="sm">{plan.recipes[1].label} for lunch</Heading>{' '}
           </Center>
           <List>
             <ListItem>
-              <Text fontSize="sm">Calories: {mockObj.recipes[1].calories}</Text>
+              <Text fontSize="sm">Calories: {plan.recipes[1].calories}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Fat: {mockObj.recipes[1].fat}</Text>
+              <Text fontSize="sm">Fat: {plan.recipes[1].fat}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Carbs: {mockObj.recipes[1].carbs}</Text>
+              <Text fontSize="sm">Carbs: {plan.recipes[1].carbs}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Protein: {mockObj.recipes[1].protein}</Text>
+              <Text fontSize="sm">Protein: {plan.recipes[1].protein}</Text>
             </ListItem>
             <ListItem>
               <Text fontSize="sm">
-                Prep time: {mockObj.recipes[1].totalTime} minutes
+                Prep time: {plan.recipes[1].totalTime} minutes
               </Text>
             </ListItem>
             <ListItem>
               <Text fontSize="sm">
-                Ingredients:{' '}
-                {mockObj.recipes[1].ingredients.split(',').join(', ')}
+                Ingredients: {plan.recipes[1].ingredients.split(',').join(', ')}
               </Text>
             </ListItem>
           </List>
@@ -254,30 +236,29 @@ export default function PlanInfo() {
           borderRadius="10"
         >
           <Center>
-            <Heading size="sm">{mockObj.recipes[2].label} for dinner</Heading>{' '}
+            <Heading size="sm">{plan.recipes[2].label} for dinner</Heading>{' '}
           </Center>
           <List>
             <ListItem>
-              <Text fontSize="sm">Calories: {mockObj.recipes[2].calories}</Text>
+              <Text fontSize="sm">Calories: {plan.recipes[2].calories}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Fat: {mockObj.recipes[2].fat}</Text>
+              <Text fontSize="sm">Fat: {plan.recipes[2].fat}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Carbs: {mockObj.recipes[2].carbs}</Text>
+              <Text fontSize="sm">Carbs: {plan.recipes[2].carbs}</Text>
             </ListItem>
             <ListItem>
-              <Text fontSize="sm">Protein: {mockObj.recipes[2].protein}</Text>
+              <Text fontSize="sm">Protein: {plan.recipes[2].protein}</Text>
             </ListItem>
             <ListItem>
               <Text fontSize="sm">
-                Prep time: {mockObj.recipes[2].totalTime} minutes
+                Prep time: {plan.recipes[2].totalTime} minutes
               </Text>
             </ListItem>
             <ListItem>
               <Text fontSize="sm">
-                Ingredients:{' '}
-                {mockObj.recipes[2].ingredients.split(',').join(', ')}
+                Ingredients: {plan.recipes[2].ingredients.split(',').join(', ')}
               </Text>
             </ListItem>
           </List>
