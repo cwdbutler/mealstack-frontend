@@ -1,19 +1,27 @@
-import Plan from './Plan';
-import usePlanList from '../../hooks/usePlanList';
+import { useSearchParams } from 'react-router-dom';
+import SearchBar from './SearchBar';
+import SearchIndex from './SearchIndex';
+import useSearch from '../../hooks/useSearch';
+import { Center, Spinner } from '@chakra-ui/react';
 
 function Search() {
-  const [plansList] = usePlanList();
-  console.log(plansList)
+  let [searchParams] = useSearchParams();
 
 
-  const plans = plansList.map((data) => {
+  const [searchResults, loading] = useSearch(searchParams);
 
-
-    const key = `plan-${data.id}`;
-    return <Plan plan={data} key={key} />
-    
-  });
-  return <div className="Search">{plans}</div>;
+  return (
+    <>
+      <SearchBar params={searchParams} />
+      {loading ? (
+        <Center mt={5}>
+          <Spinner size="xl" thickness="2px" speed="0.65s" color="teal.200" />
+        </Center>
+      ) : (
+        <SearchIndex plans={searchResults} />
+      )}
+    </>
+  );
 }
 
 export default Search;
