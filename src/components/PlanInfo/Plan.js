@@ -17,12 +17,20 @@ import {
 import { Center } from '@chakra-ui/layout';
 import { PieChart } from 'react-minimal-pie-chart';
 
-export default function Plan({ plan, data }) {
+export default function Plan({ plan }) {
   console.log('plan inside Plan', plan);
+
+  const data = [
+    { title: 'Carbs', value: plan.carbs, color: '#FED7E2' },
+    { title: 'Fat', value: plan.fat, color: '#FEEBC8' },
+    { title: 'Protein', value: plan.protein, color: '#FC8181' },
+  ];
   let ingredientsArray = [];
 
   let allIngredients = () => {
-    plan.recipes.forEach((x) => ingredientsArray.push(x.ingredients));
+    plan.recipes.forEach(({ recipe }) =>
+      ingredientsArray.push(recipe.ingredients)
+    );
   };
 
   allIngredients();
@@ -155,114 +163,48 @@ export default function Plan({ plan, data }) {
             </List>
           </Flex>
         </GridItem>
-        <GridItem
-          rowSpan={4}
-          colSpan={4}
-          bg="teal.50"
-          border="2px"
-          borderColor="gray.200"
-          borderRadius="10"
-        >
-          <Center>
-            <Heading size="sm">{plan.recipes[0].label} for breakfast</Heading>{' '}
-          </Center>
-          <List>
-            <ListItem>
-              <Text fontSize="sm">Calories: {plan.recipes[0].calories}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Fat: {plan.recipes[0].fat}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Carbs: {plan.recipes[0].carbs}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Protein: {plan.recipes[0].protein}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">
-                Prep time: {plan.recipes[0].totalTime} minutes
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">
-                Ingredients: {plan.recipes[0].ingredients.split(',').join(', ')}
-              </Text>
-            </ListItem>
-          </List>
-        </GridItem>
-        <GridItem
-          rowSpan={8}
-          colSpan={4}
-          bg="teal.50"
-          border="2px"
-          borderColor="gray.200"
-          borderRadius="10"
-        >
-          <Center>
-            <Heading size="sm">{plan.recipes[1].label} for lunch</Heading>{' '}
-          </Center>
-          <List>
-            <ListItem>
-              <Text fontSize="sm">Calories: {plan.recipes[1].calories}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Fat: {plan.recipes[1].fat}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Carbs: {plan.recipes[1].carbs}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Protein: {plan.recipes[1].protein}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">
-                Prep time: {plan.recipes[1].totalTime} minutes
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">
-                Ingredients: {plan.recipes[1].ingredients.split(',').join(', ')}
-              </Text>
-            </ListItem>
-          </List>
-        </GridItem>
-        <GridItem
-          rowSpan={4}
-          colSpan={4}
-          bg="teal.50"
-          border="2px"
-          borderColor="gray.200"
-          borderRadius="10"
-        >
-          <Center>
-            <Heading size="sm">{plan.recipes[2].label} for dinner</Heading>{' '}
-          </Center>
-          <List>
-            <ListItem>
-              <Text fontSize="sm">Calories: {plan.recipes[2].calories}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Fat: {plan.recipes[2].fat}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Carbs: {plan.recipes[2].carbs}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">Protein: {plan.recipes[2].protein}</Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">
-                Prep time: {plan.recipes[2].totalTime} minutes
-              </Text>
-            </ListItem>
-            <ListItem>
-              <Text fontSize="sm">
-                Ingredients: {plan.recipes[2].ingredients.split(',').join(', ')}
-              </Text>
-            </ListItem>
-          </List>
-        </GridItem>
+        {plan.recipes.map(({ recipe }, index) => {
+          return (
+            <GridItem
+              rowSpan={4}
+              colSpan={4}
+              bg="teal.50"
+              border="2px"
+              borderColor="gray.200"
+              borderRadius="10"
+            >
+              <Center>
+                <Heading size="sm">
+                  Meal {index + 1}: {recipe.label}
+                </Heading>{' '}
+              </Center>
+              <List>
+                <ListItem>
+                  <Text fontSize="sm">Calories: {recipe.calories}</Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontSize="sm">Fat: {recipe.fat}</Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontSize="sm">Carbs: {recipe.carbs}</Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontSize="sm">Protein: {recipe.protein}</Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontSize="sm">
+                    Prep time: {recipe.totalTime} minutes
+                  </Text>
+                </ListItem>
+                <ListItem>
+                  <Text fontSize="sm">
+                    Ingredients: {recipe.ingredients.split(',').join(', ')}
+                  </Text>
+                </ListItem>
+              </List>
+            </GridItem>
+          );
+        })}
       </Grid>
     </>
   );

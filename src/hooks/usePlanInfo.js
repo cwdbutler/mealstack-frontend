@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 const usePlanInfo = (id) => {
-  const [planInfo, setPlanInfo] = useState([]);
+  const [planInfo, setPlanInfo] = useState();
 
   const getPlanInfo = async (id) => {
     console.log('getting plan info 2');

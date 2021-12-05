@@ -7,8 +7,9 @@ import { Center, Spinner } from '@chakra-ui/react';
 function Search() {
   let [searchParams] = useSearchParams();
 
-
   const [searchResults, loading] = useSearch(searchParams);
+
+  console.log('search results at the start', searchResults);
 
   return (
     <>

@@ -3,6 +3,7 @@ import { Heading } from '@chakra-ui/react';
 import Plan from './Plan';
 
 function SearchIndex({ plans }) {
+  console.log('plans inside SearchIndex', plans);
   if (plans.error) {
     return (
       <Center mt={5}>
