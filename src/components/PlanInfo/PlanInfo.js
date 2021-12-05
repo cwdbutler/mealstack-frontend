@@ -1,3 +1,4 @@
+import {usePlanInfo } from '../../hooks/usePlanInfo'
 import {
   Checkbox,
   Grid,
@@ -15,6 +16,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
+
 
 import { PieChart } from 'react-minimal-pie-chart';
 
@@ -70,6 +72,9 @@ const data = [
 ];
 
 export default function PlanInfo() {
+  const { id } = useParams();
+
+
   return (
     <>
       <Center>
