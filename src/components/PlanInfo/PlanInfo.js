@@ -53,8 +53,6 @@ let shoppingListObjectCreator = () => {
 
 shoppingListObjectCreator();
 
-console.log(shoppingListObjectArray);
-
 const shoppingListDisplay = shoppingListObjectArray.map((item) => (
   <Box>
     <Checkbox colorScheme="teal" size="sm">
@@ -72,7 +70,7 @@ const data = [
 ];
 
 export default function PlanInfo() {
-  const { id } = useParams();
+  // const { id } = useParams();
 
 
   return (
