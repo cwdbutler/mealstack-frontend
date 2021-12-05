@@ -1,67 +1,176 @@
-import { Button } from '@chakra-ui/button';
-import { Box, Center, Stack } from '@chakra-ui/layout';
+import { Stack, Divider } from '@chakra-ui/layout';
+import { SearchIcon } from '@chakra-ui/icons';
 import {
   NumberInput,
   NumberInputField,
   NumberInputStepper,
   NumberIncrementStepper,
   NumberDecrementStepper,
+  InputRightElement,
+  Heading,
+  IconButton,
 } from '@chakra-ui/react';
-import { FormControl, FormLabel, FormHelperText } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
+import { Formik, Form, Field } from 'formik';
+import { createSearchParams, useNavigate } from 'react-router-dom';
 
 export default function SearchForm() {
+  let navigate = useNavigate();
+  const defaultMacros = {
+    protein: '150',
+    fat: '50',
+    carbs: '200',
+    calories: '2000',
+  };
+
   return (
-    <Center h="90vh">
-      <Box w="50vh">
-        <FormControl as="fieldset">
-          <Stack spacing={4}>
-            <FormControl id="protein">
-              <FormLabel>Protein</FormLabel>
-              <NumberInput step={10} defaultValue={100} min={0} max={300}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </FormControl>
-            <FormControl id="fats">
-              <FormLabel>Fats</FormLabel>
-              <NumberInput step={10} defaultValue={100} min={0} max={300}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </FormControl>
-            <FormControl id="carbs">
-              <FormLabel>Carbs</FormLabel>
-              <NumberInput step={10} defaultValue={100} min={0} max={300}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </FormControl>
-            <FormControl id="calories">
-              <FormLabel>Calories</FormLabel>
-              <NumberInput step={100} defaultValue={2000} min={500} max={8000}>
-                <NumberInputField />
-                <NumberInputStepper>
-                  <NumberIncrementStepper />
-                  <NumberDecrementStepper />
-                </NumberInputStepper>
-              </NumberInput>
-            </FormControl>
-            <Button>Search plans</Button>
-            <FormHelperText textAlign="center">
-              Find your Mealstack
-            </FormHelperText>
+    <Formik
+      initialValues={defaultMacros}
+      onSubmit={(values, { setSubmitting }) => {
+        navigate({
+          pathname: 'search',
+          search: `?${createSearchParams(values)}`,
+        });
+        setSubmitting(false);
+      }}
+    >
+      {(props) => (
+        <Form>
+          <Stack spacing={5}>
+            <Field name="protein">
+              {({ field, form }) => (
+                <FormControl id="protein">
+                  <FormLabel htmlFor="protein" textAlign="center">
+                    Protein
+                  </FormLabel>
+                  <NumberInput
+                    id="protein"
+                    {...field}
+                    onChange={(val) => form.setFieldValue(field.name, val)}
+                    step={10}
+                    min={0}
+                    max={300}
+                    allowMouseWheel
+                  >
+                    <InputRightElement
+                      pointerEvents="none"
+                      children="g"
+                      mr={6}
+                    />
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </FormControl>
+              )}
+            </Field>
+            <Divider />
+            <Field name="fat">
+              {({ field, form }) => (
+                <FormControl id="fat">
+                  <FormLabel htmlFor="fat" textAlign="center">
+                    Fat
+                  </FormLabel>
+                  <NumberInput
+                    id="fat"
+                    {...field}
+                    onChange={(val) => form.setFieldValue(field.name, val)}
+                    step={10}
+                    min={0}
+                    max={300}
+                    allowMouseWheel
+                  >
+                    <InputRightElement
+                      pointerEvents="none"
+                      children="g"
+                      mr={6}
+                    />
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </FormControl>
+              )}
+            </Field>
+            <Divider />
+            <Field name="carbs">
+              {({ field, form }) => (
+                <FormControl id="carbs">
+                  <FormLabel htmlFor="carbs" textAlign="center">
+                    Carbs
+                  </FormLabel>
+                  <NumberInput
+                    id="carbs"
+                    {...field}
+                    onChange={(val) => form.setFieldValue(field.name, val)}
+                    step={10}
+                    min={0}
+                    max={500}
+                    allowMouseWheel
+                  >
+                    <InputRightElement
+                      pointerEvents="none"
+                      children="g"
+                      mr={6}
+                    />
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </FormControl>
+              )}
+            </Field>
+            <Divider />
+            <Field name="calories">
+              {({ field, form }) => (
+                <FormControl id="calories">
+                  <FormLabel htmlFor="calories" textAlign="center">
+                    Calories
+                  </FormLabel>
+                  <NumberInput
+                    id="calories"
+                    {...field}
+                    onChange={(val) => form.setFieldValue(field.name, val)}
+                    step={100}
+                    min={1500}
+                    max={4000}
+                    allowMouseWheel
+                  >
+                    <InputRightElement
+                      pointerEvents="none"
+                      children="kcal"
+                      mr="2.1rem"
+                    />
+                    <NumberInputField />
+                    <NumberInputStepper>
+                      <NumberIncrementStepper />
+                      <NumberDecrementStepper />
+                    </NumberInputStepper>
+                  </NumberInput>
+                </FormControl>
+              )}
+            </Field>
+            <Divider />
+            <IconButton
+              type="submit"
+              mt={4}
+              colorScheme="teal"
+              isLoading={props.isSubmitting}
+              aria-label="Search plans"
+              icon={<SearchIcon />}
+            />
+            <Heading as="h5" size="sm" color="gray.500">
+              Search our collection of plans
+            </Heading>
           </Stack>
-        </FormControl>
-      </Box>
-    </Center>
+        </Form>
+      )}
+    </Formik>
   );
 }

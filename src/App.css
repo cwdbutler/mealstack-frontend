@@ -1,18 +1,10 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 3rem;
-  padding: 1rem;
-  border-bottom: 2px solid lightgreen;
+body,
+html {
+  height: 100%;
+  width: 100%;
 }
 
-.navbar-btn {
-  padding: 0.5rem 3rem;
-  background-color: green;
-  color: white;
-  border-radius: 1rem;
-  border: none;
-  font-size: 1.5rem;
-  font-weight: 800;
+#root {
+  height: 100%;
+  width: 100%;
 }

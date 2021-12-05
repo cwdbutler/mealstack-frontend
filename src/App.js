@@ -3,35 +3,34 @@ import Home from './components/Home/Home';
 import PlanInfo from './components/PlanInfo/PlanInfo';
 import Search from './components/Search/Search';
 import PlanCreator from './components/Search/PlanCreator';
+import NotFound from './components/NotFound';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 
 export default function App() {
   return (
     <Router>
-      <>
-        <Flex p="2" bg="green.200">
-          <Box p="2">
-            <Heading size="md">Mealstack</Heading>
-          </Box>
-          <Spacer />
-          <Box>
-            <Link to="/home">
-              <Button mr="2">Home</Button>
-            </Link>
-            <Link to="/search">
-              <Button>Plans</Button>
-            </Link>
-          </Box>
-        </Flex>
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/home" exact element={<Home />} />
-          <Route path="/plan/:id" exact element={<PlanInfo />} />
-          <Route path="/search" exact element={<Search />} />
-          <Route path="/plan-creator" exact element={<PlanCreator />} />
-        </Routes>
-      </>
+      <Flex p="2" bg="green.200">
+        <Box p="2">
+          <Heading size="md">Mealstack</Heading>
+        </Box>
+        <Spacer />
+        <Box>
+          <Button mr="2" as={Link} to="/">
+            Home
+          </Button>
+          <Button mr="2" as={Link} to="/plan">
+            Plan
+          </Button>
+        </Box>
+      </Flex>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/plan" element={<PlanInfo />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="*" element={<NotFound />} />
+        <Route path="/plan-creator" exact element={<PlanCreator />} />
+      </Routes>
     </Router>
   );
 }
