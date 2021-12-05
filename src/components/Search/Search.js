@@ -9,8 +9,6 @@ function Search() {
 
   const [searchResults, loading] = useSearch(searchParams);
 
-  console.log('search results at the start', searchResults);
-
   return (
     <>
       <SearchBar params={searchParams} />

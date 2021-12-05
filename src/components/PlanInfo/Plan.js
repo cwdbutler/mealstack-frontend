@@ -69,6 +69,7 @@ export default function Plan({ plan }) {
       </Checkbox>
     </Box>
   ));
+
   return (
     <>
       <Center>
