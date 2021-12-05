@@ -16,8 +16,8 @@ const usePlanInfo = () => {
   }
   useEffect(() => { getPlanInfo()}, []);
 
-  return [planInfo]
-  
+  return {planInfo, setPlanInfo}
+
   }
 
 export default usePlanInfo;

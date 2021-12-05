@@ -18,10 +18,43 @@ import {
 } from '@chakra-ui/react';
 
 export default function Recipe(props){
+  let tagsArray = []
+  let tagParser = () => {
+    tagsArray = props.recipe.tags.split(",")
+  }
+
+  tagParser()
+
+
+  // console.log(tagsArray)
+
+
+  let tagsToDisplay = [ "Vegetarian", "Dairy-Free", "Pork-Free", "Kosher", "Peanut-Free"]
+
+  let isTagDisplayable = (tag) => {
+    if (tagsToDisplay.includes(tag)){
+      return true 
+    } else {
+      return false
+    }
+    
+  }
+  
+  const tagsDisplay = tagsArray.map((tag) => 
+    isTagDisplayable(tag) ? <Tag variant="solid" colorScheme="orange"> {tag} </Tag> : <> </>
+  
+  )
+
+
+  const macroBadgeData = [
+    {header: 'Calories', colorScheme: "teal", value: props.recipe.calories},
+    {header: 'Fat', colorScheme: "orange", value: props.recipe.fat},
+    {header: 'Carbs', colorScheme: "pink", value: props.recipe.carbs},
+    {header: 'Protein', colorScheme: "red", value: props.recipe.protein},
+  ]
   return (
 
     <GridItem m={10} bg="teal.50" border="2px" borderColor="gray.200" borderRadius="10" colSpan={2} rowSpan={2}>
-      {/* <Flex width={160} height={350} m={5}> */}
       <Grid autoColumns >
         <GridItem m={15}>
         <GridItem>
@@ -32,31 +65,15 @@ export default function Recipe(props){
             </Flex>
         </GridItem>
         <GridItem>
-          <Flex>
-          <Stat>
-            <Badge borderRadius="full" px="2" colorScheme="teal">
-              Calories
-            </Badge>
-            <StatNumber>{props.recipe.calories}</StatNumber>
-          </Stat>
-          <Stat>
-            <Badge borderRadius="full" px="2" colorScheme="orange">
-              Fat
-            </Badge>
-            <StatNumber>{props.recipe.fat}</StatNumber>
-          </Stat>
-          <Stat>
-            <Badge borderRadius="full" px="2" colorScheme="pink">
-              Carbs
-            </Badge>
-            <StatNumber>{props.recipe.carbs}</StatNumber>
-          </Stat>  
-          <Stat>
-            <Badge borderRadius="full" px="2" colorScheme="red">
-              Protein
-            </Badge>
-            <StatNumber>{props.recipe.protein}</StatNumber>
-          </Stat> 
+          <Flex justify="center">
+            {macroBadgeData.map(({header, colorScheme, value}) => (
+              <Stat key={header} >
+                <Badge borderRadius="full" px="2" colorScheme={colorScheme}>
+                  {header}
+                </Badge>
+                <StatNumber>{value}</StatNumber>
+              </Stat>
+            ))}
           </Flex>     
           <List>
           <ListItem>
@@ -66,29 +83,14 @@ export default function Recipe(props){
           </ListItem>
         </List>
       </GridItem>
-      <Flex>
+      <Flex grow={4}>
       <Tag variant="solid" colorScheme="orange"> {props.recipe.mealType} </Tag> 
-      <Spacer />
       {props.recipe.totalTime != 0 ? <Tag variant="solid" colorScheme="orange"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
       </Flex>
-      <GridItem>Tags: {props.recipe.tags} </GridItem>
+      {tagsDisplay}
       </GridItem>
       </Grid>
-      {/* </Flex> */}
     </GridItem>
-    
-
-    // <Box>
-    
-    // <>Name: {props.recipe.label} </> 
-    // <>Calories: {props.recipe.calories} </> 
-    // <>Fat: {props.recipe.fat} </> 
-    // <>Carbs: {props.recipe.carbs} </> 
-    // <>Protein: {props.recipe.protein} </> 
-    // <>Tags: {props.recipe.tags} </> 
-    // <>Meal Type: {props.recipe.mealType} </> 
-    // <>Ingredients: {props.recipe.ingredients} </> 
-    // 
-    // </Box>
+  
   )
 }

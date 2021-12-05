@@ -6,6 +6,7 @@ import RecipeDisplayer from './components/RecipeDisplayer/RecipeDisplayer';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 import RecipeFilter from './components/RecipeDisplayer/RecipeFilter';
+import PlanCreator from './components/RecipeDisplayer/PlanCreator';
 
 export default function App() {
   return (
@@ -24,9 +25,11 @@ export default function App() {
               <Button mr="2">Recipes</Button>
             </Link>
             <Link to="/search">
-              <Button>Plans</Button>
+              <Button mr="2">Plans</Button>
             </Link>
-            
+            {/* <Link to="/plan/new">
+              <Button mr="2">Create a plan</Button>
+            </Link> */}
           </Box>
         </Flex>
         <Routes>
@@ -35,6 +38,7 @@ export default function App() {
           <Route path="/plan/:id" exact element={<PlanInfo />} />
           <Route path="/search" exact element={<Search />} />
           <Route path="/recipes" exact element={<RecipeFilter />} />
+          {/* <Route path="/plan/new" exact element={<PlanCreator />} /> */}
         </Routes>
       </>
     </Router>
