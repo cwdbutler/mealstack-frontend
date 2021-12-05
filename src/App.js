@@ -25,7 +25,7 @@ export default function App() {
       </Flex>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/plan" element={<PlanInfo />} />
+        <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/search" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
