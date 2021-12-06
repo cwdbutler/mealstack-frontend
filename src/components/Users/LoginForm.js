@@ -2,11 +2,8 @@ import { Stack, Divider } from '@chakra-ui/layout';
 import { Input, Button } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
-import { createSearchParams, useNavigate } from 'react-router-dom';
 
-export default function SearchForm() {
-  let navigate = useNavigate();
-
+export default function LoginForm() {
   return (
     <Formik
       initialValues={{
@@ -14,10 +11,10 @@ export default function SearchForm() {
         password: '',
       }}
       onSubmit={(values, { setSubmitting }) => {
-        navigate({
-          pathname: 'search',
-          search: `?${createSearchParams(values)}`,
-        });
+        // navigate({
+        //   pathname: 'search',
+        //   search: `?${createSearchParams(values)}`,
+        // });
         setSubmitting(false);
       }}
     >
