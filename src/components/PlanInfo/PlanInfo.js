@@ -1,5 +1,5 @@
 import usePlanInfo from '../../hooks/usePlanInfo';
-import Plan from './DetailedPlan';
+import DetailedPlan from './DetailedPlan';
 import NotFound from '../NotFound';
 import { Center, Spinner, Heading } from '@chakra-ui/react';
 
@@ -26,5 +26,5 @@ export default function PlanInfo() {
     return <NotFound />;
   }
 
-  return <Plan plan={planInfo} />;
+  return <DetailedPlan plan={planInfo} />;
 }
