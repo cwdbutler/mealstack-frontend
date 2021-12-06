@@ -13,7 +13,9 @@ function RecipeDisplayer(props){
         return val
       } else if (val.label.toLowerCase().includes(props.filter.toLowerCase())){
         return val
-      }})
+      } 
+        return val
+    })
     
 
   

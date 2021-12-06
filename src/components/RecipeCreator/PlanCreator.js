@@ -28,8 +28,8 @@ export default function PlanCreator(props) {
     if(props.filterParams === "") {
       return val
     } else if (val.label.toLowerCase().includes(props.filterParams.toLowerCase())){
-      return val
-    }})
+      return val 
+} return val })
 
 
 
