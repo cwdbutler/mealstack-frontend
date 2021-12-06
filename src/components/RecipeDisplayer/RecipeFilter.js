@@ -20,7 +20,7 @@ function RecipeFilter(){
               <Heading size="md">Filter by name</Heading>
       </Center>
       <Center >
-        <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
+          <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
           border={500} onChange={event => {setFilterParams(event.target.value)}} isInvalid
           errorBorderColor='teal.200' focusBorderColor="teal.600" borderRadius={5}/>
       </Center>
