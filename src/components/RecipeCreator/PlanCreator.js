@@ -3,39 +3,29 @@ import useRecipeList from "../../hooks/useRecipeList"
 import { useState } from "react"
 
 import {
-  Box,
-  Image,
   Badge,
   Stat,
   StatLabel,
-  StatNumber,
-  Divider, 
+  StatNumber, 
   Grid,
   GridItem,
   Flex,
-  List,
-  ListItem,
-  Text,
-  Center,
-  Spacer,
-  Tag, 
   Input, 
   Button
 } from '@chakra-ui/react';
 
 import Select  from 'react-select'
-import makeAnimated from 'react-select/animated'
 
 
 export default function PlanCreator(props) {
   const [recipeList] = useRecipeList()
-  const [recipesSelected, setRecipesSelect] = useState([])
+  const [recipesSelected] = useState([])
 
   console.log(recipesSelected)
 
 
   let filteredRecipes =  recipeList.filter((val)=> {
-    if(props.filterParams == "") {
+    if(props.filterParams === "") {
       return val
     } else if (val.label.toLowerCase().includes(props.filterParams.toLowerCase())){
       return val

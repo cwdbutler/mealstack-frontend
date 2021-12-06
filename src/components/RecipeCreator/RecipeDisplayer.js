@@ -1,8 +1,7 @@
 import Recipe from "./Recipe"
 import PlanCreator from "./PlanCreator";
 import useRecipeList from "../../hooks/useRecipeList";
-import { VStack, Flex, Button, Box, Grid, GridItem, Center, NumberInputField, NumberInput, Input, Divider} from '@chakra-ui/react'
-import { useState } from 'react'
+import { Grid} from '@chakra-ui/react'
 
 function RecipeDisplayer(props){
   const [recipeList] = useRecipeList();
@@ -10,7 +9,7 @@ function RecipeDisplayer(props){
  
 
     let filteredRecipes =  recipeList.filter((val)=> {
-      if(props.filter == "") {
+      if(props.filter === "") {
         return val
       } else if (val.label.toLowerCase().includes(props.filter.toLowerCase())){
         return val

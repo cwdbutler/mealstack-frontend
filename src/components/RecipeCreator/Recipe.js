@@ -1,18 +1,14 @@
 import {
-  Box,
   Image,
   Badge,
   Stat,
-  StatLabel,
   StatNumber,
-  Divider, 
   Grid,
   GridItem,
   Flex,
   List,
   ListItem,
   Text,
-  Center,
   Spacer,
   Tag
 } from '@chakra-ui/react';
@@ -85,7 +81,7 @@ export default function Recipe(props){
       </GridItem>
       <Flex grow={4}>
       <Tag variant="solid" colorScheme="orange"> {props.recipe.mealType} </Tag> 
-      {props.recipe.totalTime != 0 ? <Tag variant="solid" colorScheme="orange"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
+      {props.recipe.totalTime !== 0 ? <Tag variant="solid" colorScheme="orange"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
       </Flex>
       {tagsDisplay}
       </GridItem>

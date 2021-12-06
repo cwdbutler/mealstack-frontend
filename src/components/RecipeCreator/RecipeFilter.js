@@ -1,16 +1,12 @@
 import RecipeDisplayer from "./RecipeDisplayer";
-import { Stat, StatNumber, StatLabel, Badge, Heading, Flex, Center, Input, Box, Grid, GridItem, Button} from '@chakra-ui/react';
+import { Heading, Center, Input} from '@chakra-ui/react';
 import { useState } from 'react';
 
-import PlanCreator from "./PlanCreator"
-import useRecipeList from "../../hooks/useRecipeList";
 
 function RecipeFilter(){
 
     const [filterParams, setFilterParams] = useState('')
 
-    
-    
 
 
     return(

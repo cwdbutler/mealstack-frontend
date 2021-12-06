@@ -6,7 +6,6 @@ import NotFound from './components/NotFound';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 import RecipeFilter from './components/RecipeCreator/RecipeFilter';
-import PlanCreator from './components/RecipeCreator/PlanCreator';
 
 export default function App() {
   return (
