@@ -1,6 +1,7 @@
-import { Center, Box } from '@chakra-ui/layout';
+import { Center, Box, Stack, Divider } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/react';
 import LoginForm from './LoginForm';
+import GitHubLoginForm from './GitHubLoginForm';
 
 export default function NotFound() {
   return (
@@ -9,9 +10,11 @@ export default function NotFound() {
         <Heading as="h1" size="2xl" mb={10}>
           Login page
         </Heading>
-        <Center>
+        <Stack spacing={6}>
           <LoginForm />
-        </Center>
+          <Divider />
+          <GitHubLoginForm />
+        </Stack>
       </Box>
     </Center>
   );
