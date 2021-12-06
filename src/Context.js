@@ -16,7 +16,7 @@ export default function Context(props) {
     }
     const json = await res.json();
 
-    if (json && !json.error) {
+    if (json) {
       setUser(json);
       console.log('user data:', json);
     }

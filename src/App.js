@@ -22,7 +22,14 @@ export default function App() {
           <Heading size="md">Mealstack</Heading>
         </Box>
         <Spacer />
-        {user ? (
+        {user && user.error && (
+          <Center>
+            <Heading as="h5" size="sm" textAlign="center" mr="2">
+              ⚠️ Sorry, we are currently experiencing server issues
+            </Heading>
+          </Center>
+        )}
+        {user && !user.error ? (
           <>
             <Center>
               <Heading as="h5" size="sm" textAlign="center" mr="2">
