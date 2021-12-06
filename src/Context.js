@@ -12,7 +12,7 @@ export default function Context(props) {
     try {
       res = await fetch(url, { method: 'GET', credentials: 'include' });
     } catch (err) {
-      res = new Response(JSON.stringify({ error: 'true' }));
+      res = new Response(JSON.stringify({ error: true }));
     }
     const json = await res.json();
 

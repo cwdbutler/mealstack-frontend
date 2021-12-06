@@ -8,12 +8,23 @@ import './App.css';
 import { Flex, Spacer, Box, Button, Heading, Image } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
 import RecipeFilter from './components/RecipeCreator/RecipeFilter';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { myContext } from './Context';
 
 export default function App() {
   const user = useContext(myContext);
+  const [serverError, setServerError] = useState(null);
   console.log('user in App.js:', user);
+  const logout = async () => {
+    try {
+      fetch('http://localhost:4000/logout', {
+        credentials: 'include',
+        method: 'POST',
+      });
+    } catch (err) {
+      setServerError(true);
+    }
+  };
 
   return (
     <Router>
@@ -29,7 +40,7 @@ export default function App() {
             </Heading>
           </Center>
         )}
-        {user && !user.error ? (
+        {(user && !user.error) || serverError ? (
           <>
             <Center>
               <Heading as="h5" size="sm" textAlign="center" mr="2">
@@ -44,10 +55,14 @@ export default function App() {
               borderRadius="md"
               mr="2"
             />
-            <Button mr="2">Logout</Button>
+            <Button mr="2" onClick={logout}>
+              Logout
+            </Button>
           </>
         ) : (
-          <Button mr="2">Login</Button>
+          <Button mr="2" as={Link} to="/login">
+            Login
+          </Button>
         )}
         <Box>
           <Button mr="2" as={Link} to="/">
