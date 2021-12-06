@@ -9,10 +9,8 @@ export default function GitHubLoginForm() {
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          alert('Sending you to github');
-          setSubmitting(false);
-        }, 1000);
+        window.open('http://localhost:4000/auth/github', '_self');
+        setSubmitting(false);
       }}
     >
       {(props) => (
