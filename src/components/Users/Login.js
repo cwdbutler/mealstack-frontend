@@ -1,5 +1,5 @@
 import { Center, Box } from '@chakra-ui/layout';
-import { Heading, Button } from '@chakra-ui/react';
+import { Heading } from '@chakra-ui/react';
 import LoginForm from './LoginForm';
 
 export default function NotFound() {
