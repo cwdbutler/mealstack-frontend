@@ -3,6 +3,7 @@ import Home from './components/Home/Home';
 import PlanInfo from './components/PlanInfo/PlanInfo';
 import Search from './components/Search/Search';
 import NotFound from './components/NotFound';
+import Login from './components/Users/Login';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 
@@ -25,7 +26,8 @@ export default function App() {
       </Flex>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/plan" element={<PlanInfo />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/search" element={<Search />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
