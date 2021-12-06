@@ -1,51 +1,53 @@
 import { Stack, Divider } from '@chakra-ui/layout';
-import { Input, Button } from '@chakra-ui/react';
-import { FormControl, FormLabel } from '@chakra-ui/react';
+import {
+  Input,
+  InputRightElement,
+  Button,
+  FormControl,
+  FormLabel,
+  InputGroup,
+} from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
+import { useState } from 'react';
 
-export default function LoginForm() {
+export default function SearchForm() {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+
   return (
     <Formik
-      initialValues={{
-        username: '',
-        password: '',
-      }}
+      initialValues={{ username: '', password: '' }}
       onSubmit={(values, { setSubmitting }) => {
-        // navigate({
-        //   pathname: 'search',
-        //   search: `?${createSearchParams(values)}`,
-        // });
+        alert(JSON.stringify(values, null, 2));
         setSubmitting(false);
       }}
     >
       {(props) => (
         <Form>
-          <Stack spacing={5}>
+          <Stack spacing={4}>
             <Field name="username">
-              {({ field, form }) => (
-                <FormControl id="username">
-                  <FormLabel htmlFor="username" textAlign="center">
-                    Username
-                  </FormLabel>
-                  <Input
-                    id="username"
-                    {...field}
-                    onChange={(val) => form.setFieldValue(field.name, val)}
-                  />
+              {({ field }) => (
+                <FormControl>
+                  <Input {...field} id="username" placeholder="Username" />
                 </FormControl>
               )}
             </Field>
             <Field name="password">
-              {({ field, form }) => (
-                <FormControl id="password">
-                  <FormLabel htmlFor="password" textAlign="center">
-                    Password
-                  </FormLabel>
-                  <Input
-                    id="password"
-                    {...field}
-                    onChange={(val) => form.setFieldValue(field.name, val)}
-                  />
+              {({ field }) => (
+                <FormControl>
+                  <InputGroup size="md">
+                    <Input
+                      {...field}
+                      pr="4.5rem"
+                      type={show ? 'text' : 'password'}
+                      placeholder="Password"
+                    />
+                    <InputRightElement width="4.5rem">
+                      <Button h="1.75rem" size="sm" onClick={handleClick}>
+                        {show ? 'Hide' : 'Show'}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
               )}
             </Field>
@@ -55,8 +57,9 @@ export default function LoginForm() {
               mt={4}
               colorScheme="teal"
               isLoading={props.isSubmitting}
+              aria-label="Search plans"
             >
-              Log in
+              Log in{' '}
             </Button>
           </Stack>
         </Form>
