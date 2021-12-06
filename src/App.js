@@ -5,6 +5,7 @@ import Search from './components/Search/Search';
 import NotFound from './components/NotFound';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
+import RecipeFilter from './components/RecipeCreator/RecipeFilter';
 
 export default function App() {
   return (
@@ -18,8 +19,8 @@ export default function App() {
           <Button mr="2" as={Link} to="/">
             Home
           </Button>
-          <Button mr="2" as={Link} to="/plan">
-            Plan
+          <Button mr="2" as={Link} to="/recipes">
+            Recipes
           </Button>
         </Box>
       </Flex>
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/recipes" element={<RecipeFilter />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
