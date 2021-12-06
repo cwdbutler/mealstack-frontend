@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home/Home';
 import PlanInfo from './components/PlanInfo/PlanInfo';
+import PlanDisplayer from './components/PlanDisplayer/PlanDisplayer';
 import Search from './components/Search/Search';
 import NotFound from './components/NotFound';
 import './App.css';
@@ -22,11 +23,15 @@ export default function App() {
           <Button mr="2" as={Link} to="/recipes">
             Recipes
           </Button>
+          <Button mr="2" as={Link} to="/plan/all">
+            Plans
+          </Button>
         </Box>
       </Flex>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/plan/:id" element={<PlanInfo />} />
+        <Route path="/plan/all" element={<PlanDisplayer />} />
         <Route path="/search" element={<Search />} />
         <Route path="/recipes" element={<RecipeFilter />} />
         <Route path="*" element={<NotFound />} />
