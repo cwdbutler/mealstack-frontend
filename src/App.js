@@ -16,7 +16,7 @@ export default function App() {
           <Heading size="md">Mealstack</Heading>
         </Box>
         <Spacer />
-        <Box>
+        <Box height={3}>
           <Button mr="2" as={Link} to="/">
             Home
           </Button>
