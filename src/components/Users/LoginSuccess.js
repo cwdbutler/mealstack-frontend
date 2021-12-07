@@ -1,9 +1,24 @@
 import { Center } from '@chakra-ui/layout';
-import { Heading } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+} from '@chakra-ui/react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userContext } from '../../Context';
 
 export default function LoginSucess() {
+  const { user } = useContext(userContext);
+
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      navigate(-1);
+    }
+  });
 
   setTimeout(() => {
     navigate(-2);
@@ -12,9 +27,25 @@ export default function LoginSucess() {
 
   return (
     <Center h="100%" w="100%">
-      <Heading as="h1" size="2xl">
-        Sucess! Sending you back...
-      </Heading>
+      <Alert
+        status="success"
+        variant="subtle"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+        width="25%"
+        height="25%"
+        borderRadius="lg"
+      >
+        <AlertIcon boxSize="40px" mr={0} />
+        <AlertTitle mt={4} mb={1} fontSize="xl">
+          Success!
+        </AlertTitle>
+        <AlertDescription fontSize="lg" maxWidth="sm">
+          Sending you back...
+        </AlertDescription>
+      </Alert>
     </Center>
   );
 }
