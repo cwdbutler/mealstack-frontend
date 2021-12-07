@@ -3,6 +3,7 @@ import Home from './components/Home/Home';
 import PlanInfo from './components/PlanInfo/PlanInfo';
 import PlanDisplayer from './components/PlanDisplayer/PlanDisplayer';
 import Search from './components/Search/Search';
+import PlanCreator from './components/PlanCreator/PlanCreator';
 import NotFound from './components/NotFound';
 import './App.css';
 import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
@@ -35,6 +36,7 @@ export default function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/recipes" element={<RecipeFilter />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/plan-creator" exact element={<PlanCreator />} />
       </Routes>
     </Router>
   );
