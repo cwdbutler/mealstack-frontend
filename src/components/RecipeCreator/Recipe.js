@@ -13,6 +13,9 @@ import {
   Tag
 } from '@chakra-ui/react';
 
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 export default function Recipe(props){
   let tagsArray = []
   let tagParser = () => {
@@ -20,9 +23,6 @@ export default function Recipe(props){
   }
 
   tagParser()
-
-
-  // console.log(tagsArray)
 
 
   let tagsToDisplay = [ "Vegetarian", "Dairy-Free", "Pork-Free", "Kosher", "Peanut-Free"]
@@ -49,20 +49,63 @@ export default function Recipe(props){
     {header: 'Protein', colorScheme: "red", value: props.recipe.protein},
   ]
 
-  // setSelectedRecipes(selectedRecipes => [...selectedRecipes, newElement]);
+  const { currentSelected, updateSelected } = props 
 
+  const selectedDisplayObject = { 
+    id: props.recipe.id, 
+    label: props.recipe.label, 
+    image_url: props.recipe.image_url, 
+    calories: props.recipe.calories,
+    fat: props.recipe.fat,
+    carbs: props.recipe.carbs,
+    protein: props.recipe.protein
+  }
 
-  // const handleClick = () => {
-  //   props.updateSelected(props.currentSelected => [...props.currentSelected]) 
-  // }
+  const [addedState, setAddedState] = useState(false)
 
   
 
-  // console.log(props.currentSelected)
+  const checkAddedState = () => {
+        if(currentSelected.some(item => item.id === selectedDisplayObject.id)) {
+          setAddedState(true)
+        } else {
+          setAddedState(false)
+        }
+      }
+  
+  useEffect(() => {
+    checkAddedState()
+  })
+  
+
+
+  const exceededMaxRecipes = () => {
+    return currentSelected.length >= 3 ? true : false 
+  }
+
+
+  const addToSelected = () => {
+    if (addedState || exceededMaxRecipes()) {
+      console.log("I'm already added, or you've reached your max")
+    } else {
+      updateSelected(currentSelected => [...currentSelected, selectedDisplayObject])
+      setAddedState(true)
+    }
+  }
+
+  const removeFromSelected = () => {
+    if (addedState) {
+      updateSelected(currentSelected.filter(item => item.id !== selectedDisplayObject.id));
+      setAddedState(false)
+    } else if (addedState === false ) {
+      console.log("We can't remove something that doesnt exist")
+    }
+  }
+
 
   return (
 
-    <GridItem m={10} bg="teal.50" border="2px" borderColor="gray.200" borderRadius="10" colSpan={2} rowSpan={2}>
+    <GridItem  m={10} bg="teal.50" border="2px" borderColor="gray.200" borderRadius="10" colSpan={2} rowSpan={2}>
       <Grid autoColumns >
         <GridItem m={15}>
         <GridItem>
@@ -70,7 +113,7 @@ export default function Recipe(props){
                 <Image boxSize='100px' borderRadius={15} src={props.recipe.image_url} alt="https://images.squarespace-cdn.com/content/v1/5c4238fb85ede19f16731a58/1630067985233-XPCZAEQGZN6639PBNKIW/image-asset.jpeg"></Image>
                   <Spacer />
                 <Text fontSize="lg">{props.recipe.label} </Text>
-                <button > Add to mealplan </button>
+                {addedState == true ? <button onClick={()=>{removeFromSelected(selectedDisplayObject)}}> Remove </button> : <button onClick={()=>{addToSelected(selectedDisplayObject)}}> Add to mealplan </button>}
             </Flex>
         </GridItem>
         <GridItem>
