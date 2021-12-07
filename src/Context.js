@@ -8,17 +8,17 @@ export default function Context(props) {
   const getUser = async () => {
     const url = 'http://localhost:4000/user';
 
-    let res;
+    let data;
     try {
-      res = await fetch(url, { method: 'GET', credentials: 'include' });
+      data = await fetch(url, { method: 'GET', credentials: 'include' });
     } catch (err) {
-      res = new Response(JSON.stringify({ error: true }));
+      console.log('Error fetching user');
+      data = new Response({ error: true });
     }
-    const json = await res.json();
+    const response = await data.json();
 
-    if (json) {
-      setUser(json);
-      console.log('user data:', json);
+    if (response.logged_in) {
+      setUser(response.user);
     }
   };
 

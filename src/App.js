@@ -8,23 +8,13 @@ import './App.css';
 import { Flex, Spacer, Box, Button, Heading, Image } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
 import RecipeFilter from './components/RecipeCreator/RecipeFilter';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { myContext } from './Context';
+import LogoutButton from './components/Users/LogoutButton';
 
 export default function App() {
   const user = useContext(myContext);
-  const [serverError, setServerError] = useState(null);
   console.log('user in App.js:', user);
-  const logout = async () => {
-    try {
-      fetch('http://localhost:4000/logout', {
-        credentials: 'include',
-        method: 'POST',
-      });
-    } catch (err) {
-      setServerError(true);
-    }
-  };
 
   return (
     <Router>
@@ -40,24 +30,22 @@ export default function App() {
             </Heading>
           </Center>
         )}
-        {(user && !user.error) || serverError ? (
+        {user && !user.error ? (
           <>
             <Center>
               <Heading as="h5" size="sm" textAlign="center" mr="2">
-                {user.displayName}
+                {user.username}
               </Heading>
             </Center>
             <Image
-              src={user._json.avatar_url}
+              src={user.image}
               alt="GitHub logo"
               boxSize="40px"
               objectFit="cover"
               borderRadius="md"
               mr="2"
             />
-            <Button mr="2" onClick={logout}>
-              Logout
-            </Button>
+            <LogoutButton />
           </>
         ) : (
           <Button mr="2" as={Link} to="/login">
