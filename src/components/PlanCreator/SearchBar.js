@@ -16,7 +16,7 @@ import { Formik, Form, Field } from 'formik';
 export default function SearchForm({formData, setFormData}) {
   const defaultMacros = {
     protein: '150',
-    fat: '50',
+    fat: '200',
     carbs: '200',
     calories: '3000',
   };
