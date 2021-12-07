@@ -1,25 +1,16 @@
-import PlanGeneratorForm from './PlanGeneratorForm';
-import { useSearchParams } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchIndex from './SearchIndex';
-import useSearch from '../../hooks/useSearch';
 import { Center, Spinner } from '@chakra-ui/react';
+import { useState, useEffect } from 'react';
+import useGeneratedPlan from '../../hooks/useGeneratedPlan';
 
 export default function PlanCreator() {
-  let [searchParams] = useSearchParams();
-
-  const [searchResults, loading] = useSearch(searchParams);
-
+  const [formData, setFormData] = useState(null);
+  const [plan] = useGeneratedPlan(formData);
   return (
     <>
-      <SearchBar params={searchParams} />
-      {loading ? (
-        <Center mt={5}>
-          <Spinner size="xl" thickness="2px" speed="0.65s" color="teal.200" />
-        </Center>
-      ) : (
-        <SearchIndex plans={searchResults} />
-      )}
+      <SearchBar formData={formData} setFormData={setFormData} />
+      <SearchIndex plan={plan} />
     </>
   );
 }

@@ -12,53 +12,44 @@ import {
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
-import { createSearchParams, useNavigate } from 'react-router-dom';
 
-export default function SearchForm({ params }) {
-  let navigate = useNavigate();
-
+export default function SearchForm({formData, setFormData}) {
   const defaultMacros = {
     protein: '150',
     fat: '50',
     carbs: '200',
-    calories: '2000',
-  };
-
-  const [formData, setFormData] = useState(defaultMacros);
-
-  const handleChange = (val, field) => {
-    setFormData({
-      ...formData,
-
-      // Trimming any whitespace
-      [field.name]: val
-    });
+    calories: '3000',
   };
 
   const handleSubmit = (e) => {
-    console.log(formData);
+    setFormData({
+      protein: e.protein,
+      fat: e.fat,
+      calories: e.calories,
+      carbs: e.carbs
+    })
   };
 
   return (
     <Center p={20} w="100%">
       <Formik
         initialValues={{
-          protein: params.get('protein')
-            ? `${params.get('protein')}`
+          protein: formData != null
+            ? `${formData.protein}`
             : defaultMacros.protein,
-          fat: params.get('fat') ? `${params.get('fat')}` : defaultMacros.fat,
-          carbs: params.get('carbs')
-            ? `${params.get('carbs')}`
+          fat: formData != null ? `${formData.fat}` : defaultMacros.fat,
+          carbs: formData != null
+            ? `${formData.carbs}`
             : defaultMacros.carbs,
-          calories: params.get('calories')
-            ? `${params.get('calories')}`
+          calories: formData != null
+            ? `${formData.calories}`
             : defaultMacros.calories,
         }}
         onSubmit={(values, { setSubmitting }) => {
-          navigate({
-            search: `?${createSearchParams(values)}`,
-          });
-          handleSubmit();
+          // navigate({
+          //   search: `?${createSearchformData(values)}`,
+          // });
+          handleSubmit(values);
           setSubmitting(false);
         }}
       >
@@ -85,7 +76,6 @@ export default function SearchForm({ params }) {
                       id="protein"
                       {...field}
                       onChange={(val) => {
-                        handleChange(val, field);
                         form.setFieldValue(field.name, val);
                       }}
                       step={10}
@@ -118,7 +108,6 @@ export default function SearchForm({ params }) {
                       id="fat"
                       {...field}
                       onChange={(val) => {
-                        handleChange(val, field);
                         form.setFieldValue(field.name, val);
                       }}
                       step={10}
@@ -151,7 +140,6 @@ export default function SearchForm({ params }) {
                       id="carbs"
                       {...field}
                       onChange={(val) => {
-                        handleChange(val, field);
                         form.setFieldValue(field.name, val);
                       }}
                       step={10}
@@ -184,7 +172,6 @@ export default function SearchForm({ params }) {
                       id="calories"
                       {...field}
                       onChange={(val) => {
-                        handleChange(val, field);
                         form.setFieldValue(field.name, val);
                       }}
                       step={100}
