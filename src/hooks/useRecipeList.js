@@ -6,8 +6,7 @@ const useRecipeList = (filterParam) => {
 
 
   const getAllRecipes = async (filterParam) => {
-    // const url = 'https://mealstack-backend.herokuapp.com/recipes/filter';
-    const url = 'http://localhost:3000/recipes/filter'
+    const url = 'https://mealstack-backend.herokuapp.com/recipes/filter'
 
     const res = await fetch(url, { method: 'POST', body: new URLSearchParams({"label": filterParam})});
     const json = await res.json();
