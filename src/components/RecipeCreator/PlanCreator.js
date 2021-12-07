@@ -1,150 +1,103 @@
-
-
 import {
   Badge,
   Stat,
   StatLabel,
-  StatNumber, 
+  StatNumber,
   Flex,
   Input,
   Center,
-  Button
 } from '@chakra-ui/react';
 
-
-
+// import usePlanCreator from '../../hooks/usePlanCreator';
 
 export default function PlanCreator(props) {
+  const { currentSelected, updateSelected } = props;
 
-  // props.updateSelected() 
+  // const planParams = null;
 
-  // props.currentSelected
+  // const parsePlanParams = () => {
+  //   planParams = {
+  //     label: planParams.label,
+  //     first: planParams.first,
+  //     second: planParams.second,
+  //     third: planParams.third,
+  //   };
+  // };
 
-  // console.log(recipesSelected)
+  // const [createdPlan, loading] = usePlanCreator(planParams);
 
-  // let selected = []
+  const deselectRecipe = (clickedItem) => {
+    updateSelected(
+      currentSelected.filter(
+        (selectedItem) => selectedItem.id !== clickedItem.id
+      )
+    );
+  };
 
-  // const addToSelected = (item) => {
-  //   selected.push(item)
-  // }
-
-  // console.log(selected)
-
-
-//Every time you click on a recipe "add recipe" button on each recipe -> it store a recipe in the recipesSelected state array
-//That way, recipes can be selected, and you can search for something else 
-
-
-  return ( 
-  
-  <> 
-    <div>      
-      <Center mt={3}>Plan Name</Center> 
-      <Input mt={3} placeholder="Enter a plan name"/> 
-    </div>
-    <div>
-      <div height="30%">    
-        <Center mt={3}>Recipes selected</Center> 
-      </div> 
-      <div height="70%">
-        <div>
-          {props.currentSelected.map((item)=> (
-            <Center key={item.label} > {item.label} </Center>))}
+  return (
+    <>
+      <div>
+        <Center mt={3}>Plan Name</Center>
+        <Input mt={3} placeholder="Enter a plan name" />
+      </div>
+      <div>
+        <div height="30%">
+          <Center mt={3}>Recipes selected</Center>
         </div>
-      </div> 
-      {/* < MultiSelect options={props.filteredList} onSelect={addToSelected(recipesSelected)} onChange={setRecipesSelected} value={recipesSelected} labelledBy="Select" hasSelectAll={false} disableSearch={true}/>  */}
-    </div>
-    <div>
-    <Flex justify="right" m={3}>
-      <Flex m={2}>
-      <Stat>
-      <Badge borderRadius="full" px="2" colorScheme="teal">
-                  Calories
-      </Badge>
-      <StatLabel>Total Calories</StatLabel>
-        <StatNumber>0</StatNumber>
-      </Stat>
-      </Flex>
-      <Flex m={2}>
-        <Stat>
-        <Badge borderRadius="full" px="2" colorScheme="orange">
-                    Fat
-        </Badge>
-        <StatLabel>Total Fat </StatLabel>
-          <StatNumber>0</StatNumber>
-        </Stat>
-      </Flex>
-      <Flex m={2}>
-        <Stat>
-        <Badge borderRadius="full" px="2" colorScheme="pink">
-                    Carbs
-        </Badge>
-        <StatLabel>Total Carbs</StatLabel>
-          <StatNumber>0</StatNumber>
-        </Stat>
-      </Flex>
-      <Flex m={2}>
-        <Stat>
-        <Badge borderRadius="full" px="2" colorScheme="red">
-                    Protein
-        </Badge>
-        <StatLabel>Total Protein</StatLabel>
-          <StatNumber>0</StatNumber>
-        </Stat>
-      </Flex>
-    </Flex>
-    </div>
-    <div>
-      <Button mt={3}>
-              Create Mealplan
-        </Button>
-    </div>
-  
-  {/* Plan form 
-  <Grid templateColumns="repeat(4, 1fr)">
-    <GridItem colspan={3}>
-    < MultiSelect options={props.filteredList} onChange={setRecipesSelected} value={recipesSelected} labelledBy="Select" hasSelectAll={false} disableSearch={true}/> 
-    </GridItem>
-    <GridItem>
-      <Input placeholder="Enter a plan name"/>
-    </GridItem>
-    <Flex justify="right" m={5}>
-                <Stat>
-                <Badge borderRadius="full" px="2" colorScheme="teal">
-                            Calories
-                </Badge>
-                <StatLabel>Total Calories</StatLabel>
-                  <StatNumber>0</StatNumber>
-                </Stat>
-                <Stat>
-                <Badge borderRadius="full" px="2" colorScheme="orange">
-                            Fat
-                </Badge>
-                <StatLabel>Total Fat </StatLabel>
-                  <StatNumber>0</StatNumber>
-                </Stat>
-                <Stat>
-                <Badge borderRadius="full" px="2" colorScheme="pink">
-                            Carbs
-                </Badge>
-                <StatLabel>Total Carbs</StatLabel>
-                  <StatNumber>0</StatNumber>
-                </Stat>
-                <Stat>
-                <Badge borderRadius="full" px="2" colorScheme="red">
-                            Protein
-                </Badge>
-                <StatLabel>Total Protein</StatLabel>
-                  <StatNumber>0</StatNumber>
-                </Stat>       
-        <Button>
-              Create Mealplan
-        </Button>        
-      </Flex>
-  </Grid> */}
-
-  </>
-
-  
-  )
+        <div height="70%">
+          <div>
+            {props.currentSelected.map((item) => (
+              <Center key={item.label}>
+                {item.label}
+                <button onClick={() => deselectRecipe(item)}>X</button>
+              </Center>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div>
+        <Flex justify="right" m={3}>
+          <Flex m={2}>
+            <Stat>
+              <Badge borderRadius="full" px="2" colorScheme="teal">
+                Calories
+              </Badge>
+              <StatLabel>Total Calories</StatLabel>
+              <StatNumber>0</StatNumber>
+            </Stat>
+          </Flex>
+          <Flex m={2}>
+            <Stat>
+              <Badge borderRadius="full" px="2" colorScheme="orange">
+                Fat
+              </Badge>
+              <StatLabel>Total Fat </StatLabel>
+              <StatNumber>0</StatNumber>
+            </Stat>
+          </Flex>
+          <Flex m={2}>
+            <Stat>
+              <Badge borderRadius="full" px="2" colorScheme="pink">
+                Carbs
+              </Badge>
+              <StatLabel>Total Carbs</StatLabel>
+              <StatNumber>0</StatNumber>
+            </Stat>
+          </Flex>
+          <Flex m={2}>
+            <Stat>
+              <Badge borderRadius="full" px="2" colorScheme="red">
+                Protein
+              </Badge>
+              <StatLabel>Total Protein</StatLabel>
+              <StatNumber>0</StatNumber>
+            </Stat>
+          </Flex>
+        </Flex>
+      </div>
+      <div style={{ 'margin-top': '2em' }}>
+        <button margin="3">Create Mealplan</button>
+      </div>
+    </>
+  );
 }
