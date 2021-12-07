@@ -11,55 +11,7 @@ function RecipeFilter(){
     const [recipeList, loading] = useRecipeList(filterParams);
 
     const [selectedRecipes, setSelectedRecipes] = useState([]);
-
-    // console.log(selectedRecipes)
-
-
-    // setSelectedRecipes(selectedRecipes => [...selectedRecipes, newElement]);
- 
-
-    // let filteredRecipes =  recipeList.filter((val)=> {
-    //   if(filterParams === "") {
-    //     return val
-    //   } else if (val.label.toLowerCase().includes(filterParams.toLowerCase())){
-    //     return val
-    //   } 
-    //   return false 
-    // })
-
-
-    // const SubpageTemplate = ({planCreator, filterInput, recipeDisplay}) => (
-    //   <div style={{height: "calc(100% - 3em)"}}>
-    //     <div style={{height: "calc(40%)", position: "sticky"}} id="fixed-top-half"> 
-    //       <div style={{height: "calc(50%)"}} >{planCreator}</div>
-    //       <div style={{height: "calc(50%)"}}>{filterInput}</div>
-    //     </div>
-    //     <div style={{height: "auto"}} id="scrollable-bottom-half"> 
-    //       <div> {recipeDisplay} </div>
-    //     </div>
-    //   </div>
-    // )
-
-
-    // let FilterInput = () => {
-
-    //   // const [filterParams, setFilterParams] = useState('')
-
-    //   return (
-    //   <>
-    //   <Center mt={7}>
-    //     <Heading size="md">Filter by name</Heading>
-    //   </Center>
-    //   <Center >
-    //       <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
-    //       border={500} onChange={event => {setFilterParams(event.target.value)}} isInvalid
-    //       errorBorderColor='teal.200' focusBorderColor="teal.600" borderRadius={5}/>
-    //   </Center> 
-    //   </>
-    //   )
-
-    // }
-
+    const [currentStats, setCurrentStats] = useState({calories: 0, fat: 0, carbs: 0, protein: 0})
 
     if (loading) {
       return (
@@ -83,20 +35,19 @@ function RecipeFilter(){
       </Center>
     )
 
-    // if(recipeList.length == 0) {
-    //   return (
-    //     <Center h="100%" mt={5} >
-    //       <Heading> No results found </Heading>
-    //     </Center>
-    //   )
-    // }
-
-
     return(
       <> 
       <div style={{height: "calc(100% - 3em)"}}>
         <div style={{height: "calc(40%)", position: "sticky"}} id="fixed-top-half"> 
-          <div style={{height: "calc(50%)", display: "flex", justifyContent: "space-around"}} > {<PlanCreator filteredList={recipeList} updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} />}</div>
+          <div style={{height: "calc(50%)", display: "flex", justifyContent: "space-around"}} > 
+            {<PlanCreator
+              filteredList={recipeList} 
+              updateSelected={setSelectedRecipes} 
+              currentSelected={selectedRecipes} 
+              currentStats = {currentStats}
+              updateCurrentStats = {setCurrentStats}
+              />}
+          </div>
           <div style={{height: "calc(50%)"}}>
           <Center mt={7}>
               <Heading size="md">Filter by food name</Heading>
@@ -109,29 +60,9 @@ function RecipeFilter(){
           </div>
         </div>
         <div style={{height: "auto"}} id="scrollable-bottom-half"> 
-          {recipeList.length === 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList}/> </div>}
+          {recipeList.length === 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList} currentStats = {currentStats} updateCurrentStats = {setCurrentStats} /> </div> }
         </div>
       </div>
-
-
-      {/* <PlanCreator filteredList={recipeList}/>
-      <Center mt={7}>
-              <Heading size="md">Filter by name</Heading>
-      </Center>
-      <Center >
-          <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
-          border={500} onChange={event => {setFilterParams(event.target.value)}} isInvalid
-          errorBorderColor='teal.200' focusBorderColor="teal.600" borderRadius={5}/>
-      </Center>
-      <RecipeDisplayer filteredList={recipeList} filterParams={filterParams}/> */}
-
-
-      {/* <SubpageTemplate 
-      planCreator = { <PlanCreator filteredList={recipeList} /> } 
-      filterInput = { <FilterInput/> } 
-      recipeDisplay = {  <RecipeDisplayer filteredList={recipeList}/> }
-      /> */}
-
       </>
     )
 }

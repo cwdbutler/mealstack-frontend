@@ -4,12 +4,9 @@ import {
   StatLabel,
   StatNumber, 
   Flex,
-  Input,
   Center,
-  Button
 } from '@chakra-ui/react';
 
-import usePlanCreator from '../../hooks/usePlanCreator';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
@@ -18,12 +15,11 @@ export default function PlanCreator(props) {
 
   let navigate = useNavigate();
 
-  const [createdPlan, setCreatedPlan] = useState([])
-
-
   const { currentSelected, updateSelected } = props
+  const { currentStats } = props
 
   const [planLabel, setPlanLabel] = useState(null)
+
 
   let planParams = null
 
@@ -39,17 +35,18 @@ export default function PlanCreator(props) {
     
   }
 
-  // const [createdPlan , loading] = usePlanCreator(planParams);
-
-
-
   const deselectRecipe = (clickedItem) => {
     updateSelected(currentSelected.filter(selectedItem => selectedItem.id !== clickedItem.id))
+    // updateCurrentStats({
+    //   ...currentStats, 
+
+    // })
+
   }
 
   const getCreatedPlan = async (planParams) => {
-    // https://mealstack-backend.herokuapp.com/recipes/new
-    const url = 'http://localhost:4000/plans/new'
+    // 'http://localhost:4000/plans/new'
+    const url = 'https://mealstack-backend.herokuapp.com/recipes/new'
 
     const res = await fetch(url, {
       method: 'POST', 
@@ -61,27 +58,26 @@ export default function PlanCreator(props) {
       })
     })
     const json = await res.json();
-
-    setCreatedPlan(json);
+    return (json)
   }
 
   parsePlanParams()
 
 
-  const sendParams = () => {
+
+  const sendParams = async () => {
     parsePlanParams()
 
     if (planParams) {
       console.log(planParams)
-      getCreatedPlan(planParams)
+      let newPlan = await getCreatedPlan(planParams)
+      console.log(newPlan)
+      navigate(`/plan/${newPlan.id}`)
     } else {
       console.log(planParams)
       console.log("You need full params")
     }
   }
-
-
-
 
   return ( 
   
@@ -112,7 +108,7 @@ export default function PlanCreator(props) {
                   Calories
       </Badge>
       <StatLabel>Total Calories</StatLabel>
-        <StatNumber>0</StatNumber>
+        <StatNumber>{currentStats.calories}</StatNumber>
       </Stat>
       </Flex>
       <Flex m={2}>
@@ -121,7 +117,7 @@ export default function PlanCreator(props) {
                     Fat
         </Badge>
         <StatLabel>Total Fat </StatLabel>
-          <StatNumber>0</StatNumber>
+          <StatNumber>{currentStats.fat}</StatNumber>
         </Stat>
       </Flex>
       <Flex m={2}>
@@ -130,7 +126,7 @@ export default function PlanCreator(props) {
                     Carbs
         </Badge>
         <StatLabel>Total Carbs</StatLabel>
-          <StatNumber>0</StatNumber>
+          <StatNumber>{currentStats.carbs}</StatNumber>
         </Stat>
       </Flex>
       <Flex m={2}>
@@ -139,7 +135,7 @@ export default function PlanCreator(props) {
                     Protein
         </Badge>
         <StatLabel>Total Protein</StatLabel>
-          <StatNumber>0</StatNumber>
+          <StatNumber>{currentStats.protein}</StatNumber>
         </Stat>
       </Flex>
     </Flex>

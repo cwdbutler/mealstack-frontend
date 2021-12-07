@@ -113,7 +113,7 @@ export default function Recipe(props){
                 <Image boxSize='100px' borderRadius={15} src={props.recipe.image_url} alt="https://images.squarespace-cdn.com/content/v1/5c4238fb85ede19f16731a58/1630067985233-XPCZAEQGZN6639PBNKIW/image-asset.jpeg"></Image>
                   <Spacer />
                 <Text fontSize="lg">{props.recipe.label} </Text>
-                {addedState == true ? <button onClick={()=>{removeFromSelected(selectedDisplayObject)}}> Remove </button> : <button onClick={()=>{addToSelected(selectedDisplayObject)}}> Add to mealplan </button>}
+                {addedState === true ? <button onClick={()=>{removeFromSelected(selectedDisplayObject)}}> Remove </button> : <button onClick={()=>{addToSelected(selectedDisplayObject)}}> Add to mealplan </button>}
             </Flex>
         </GridItem>
         <GridItem>
