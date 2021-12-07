@@ -55,7 +55,6 @@ export default function App() {
           </Button>
         )}
         <Box>
-        <Box>
           <Button mr="2" as={Link} to="/">
             Home
           </Button>
