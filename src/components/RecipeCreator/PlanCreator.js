@@ -6,26 +6,25 @@ import {
   Flex,
   Input,
   Center,
-  Button,
 } from '@chakra-ui/react';
 
-import usePlanCreator from '../../hooks/usePlanCreator';
+// import usePlanCreator from '../../hooks/usePlanCreator';
 
 export default function PlanCreator(props) {
   const { currentSelected, updateSelected } = props;
 
-  const planParams = null;
+  // const planParams = null;
 
-  const parsePlanParams = () => {
-    planParams = {
-      label: planParams.label,
-      first: planParams.first,
-      second: planParams.second,
-      third: planParams.third,
-    };
-  };
+  // const parsePlanParams = () => {
+  //   planParams = {
+  //     label: planParams.label,
+  //     first: planParams.first,
+  //     second: planParams.second,
+  //     third: planParams.third,
+  //   };
+  // };
 
-  const [createdPlan, loading] = usePlanCreator(planParams);
+  // const [createdPlan, loading] = usePlanCreator(planParams);
 
   const deselectRecipe = (clickedItem) => {
     updateSelected(
