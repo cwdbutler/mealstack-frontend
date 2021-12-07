@@ -10,8 +10,7 @@ import {
   ListItem,
   Text,
   Spacer,
-  Tag,
-  Button
+  Tag
 } from '@chakra-ui/react';
 
 export default function Recipe(props){
@@ -37,8 +36,8 @@ export default function Recipe(props){
     
   }
   
-  const tagsDisplay = tagsArray.map((tag) => 
-    isTagDisplayable(tag) ? <Tag variant="solid" colorScheme="orange"> {tag} </Tag> : <> </>
+  const tagsDisplay = tagsArray.map((tag, index) => 
+    isTagDisplayable(tag) ? <Tag key={`tag-${index}`} variant="solid" colorScheme="orange"> {tag} </Tag> : <> </>
   
   )
 
@@ -95,7 +94,7 @@ export default function Recipe(props){
       </GridItem>
       <Flex grow={4}>
       <Tag variant="solid" colorScheme="orange"> {props.recipe.mealType} </Tag> 
-      {props.recipe.totalTime != 0 ? <Tag variant="solid" colorScheme="orange"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
+      {props.recipe.totalTime !== 0 ? <Tag variant="solid" colorScheme="orange"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
       </Flex>
       {tagsDisplay}
       </GridItem>

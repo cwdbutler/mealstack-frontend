@@ -1,25 +1,17 @@
-import useRecipeList from "../../hooks/useRecipeList"
 
-import { useState } from "react"
 
 import {
   Badge,
   Stat,
   StatLabel,
   StatNumber, 
-  Grid,
-  GridItem,
   Flex,
   Input,
   Center,
-  Heading,
   Button
 } from '@chakra-ui/react';
 
-import Select  from 'react-select'
-import { MultiSelect } from "react-multi-select-component"
 
-import fakeDisplay from "./fakeRecipeDisplay";
 
 
 export default function PlanCreator(props) {
@@ -57,7 +49,7 @@ export default function PlanCreator(props) {
       <div height="70%">
         <div>
           {props.currentSelected.map((item)=> (
-            <Center> {item.label} </Center>))}
+            <Center key={item.label} > {item.label} </Center>))}
         </div>
       </div> 
       {/* < MultiSelect options={props.filteredList} onSelect={addToSelected(recipesSelected)} onChange={setRecipesSelected} value={recipesSelected} labelledBy="Select" hasSelectAll={false} disableSearch={true}/>  */}

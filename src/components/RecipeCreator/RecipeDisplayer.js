@@ -1,5 +1,5 @@
 import Recipe from "./Recipe"
-import { Grid, Center, Spinner, Flex } from '@chakra-ui/react'
+import { Grid } from '@chakra-ui/react'
 
 function RecipeDisplayer(props){
 
@@ -9,7 +9,7 @@ function RecipeDisplayer(props){
     const recipes = props.filteredList.map((data) => {
   
     const key = `recipe-${data.id}`
-    return <Recipe currentSelected={currentSelected} updateSelected={updateSelected} recipe={data} key={key} /> 
+    return <Recipe key={key} currentSelected={currentSelected} updateSelected={updateSelected} recipe={data}  /> 
   });
 
 

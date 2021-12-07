@@ -109,7 +109,7 @@ function RecipeFilter(){
           </div>
         </div>
         <div style={{height: "auto"}} id="scrollable-bottom-half"> 
-          {recipeList.length == 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList}/> </div>}
+          {recipeList.length === 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList}/> </div>}
         </div>
       </div>
 
