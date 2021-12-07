@@ -12,15 +12,13 @@ import {
 import usePlanCreator from '../../hooks/usePlanCreator';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 export default function PlanCreator(props) {
 
-    const [createdPlan, setCreatedPlan] = useState([])
-  
-    
-  
- 
- 
+  let navigate = useNavigate();
+
+  const [createdPlan, setCreatedPlan] = useState([])
 
 
   const { currentSelected, updateSelected } = props
@@ -30,7 +28,7 @@ export default function PlanCreator(props) {
   let planParams = null
 
   const parsePlanParams = () => {
-    if(currentSelected){
+    if(currentSelected[2]){
       planParams = {
         'label': planLabel,
         'first': currentSelected[0].id.toString(), 
@@ -51,7 +49,7 @@ export default function PlanCreator(props) {
 
   const getCreatedPlan = async (planParams) => {
     // https://mealstack-backend.herokuapp.com/recipes/new
-    const url = 'http://localhost:3000/recipes/new'
+    const url = 'http://localhost:4000/plans/new'
 
     const res = await fetch(url, {
       method: 'POST', 
@@ -75,7 +73,7 @@ export default function PlanCreator(props) {
 
     if (planParams) {
       console.log(planParams)
-       return getCreatedPlan(planParams)
+      getCreatedPlan(planParams)
     } else {
       console.log(planParams)
       console.log("You need full params")
