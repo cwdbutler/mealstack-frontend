@@ -1,12 +1,10 @@
 import usePlanInfo from '../../hooks/usePlanInfo';
-import { useParams } from 'react-router-dom';
-import Plan from './Plan';
+import DetailedPlan from './DetailedPlan';
 import NotFound from '../NotFound';
 import { Center, Spinner, Heading } from '@chakra-ui/react';
 
 export default function PlanInfo() {
-  const { id } = useParams();
-  const [planInfo, loading] = usePlanInfo(id);
+  const [planInfo, loading] = usePlanInfo();
 
   if (loading) {
     return (
@@ -28,5 +26,5 @@ export default function PlanInfo() {
     return <NotFound />;
   }
 
-  return <Plan plan={planInfo} />;
+  return <DetailedPlan plan={planInfo} />;
 }
