@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 export const userContext = createContext(null);
 
 export default function Context(props) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(true);
 
   const getUser = async () => {
     const url = 'https://mealstack-backend.herokuapp.com/user';

@@ -13,6 +13,7 @@ import { userContext } from './Context';
 import LoginSuccess from './components/Users/LoginSuccess';
 import LoginRouter from './components/Users/LoginRouter';
 import NavBar from './components/NavBar';
+import Dashboard from './components/Users/Dashboard';
 
 export default function App() {
   const { user } = useContext(userContext);
@@ -35,8 +36,9 @@ export default function App() {
         <Route path="/plan/all" element={<PlanDisplayer />} />
         <Route path="/search" element={<Search />} />
         <Route path="/recipes" element={<RecipeFilter />} />
+        <Route path="/plan-creator" element={<PlanCreator />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/plan-creator" exact element={<PlanCreator />} />
       </Routes>
     </Router>
   );
