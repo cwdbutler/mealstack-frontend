@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
-export const myContext = createContext(null);
+export const userContext = createContext(null);
 
 export default function Context(props) {
   const [user, setUser] = useState(null);
@@ -24,5 +24,9 @@ export default function Context(props) {
 
   useEffect(() => getUser(), []);
 
-  return <myContext.Provider value={user}>{props.children}</myContext.Provider>;
+  return (
+    <userContext.Provider value={{ user, setUser }}>
+      {props.children}
+    </userContext.Provider>
+  );
 }

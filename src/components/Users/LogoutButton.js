@@ -1,14 +1,24 @@
 import { Button } from '@chakra-ui/button';
+import { useContext } from 'react';
+import { userContext } from '../../Context';
 
 export default function LogoutButton() {
+  const { setUser } = useContext(userContext);
   const logout = async () => {
+    let res;
     try {
-      fetch('http://localhost:4000/logout', {
+      res = await fetch('http://localhost:4000/logout', {
         credentials: 'include',
         method: 'POST',
       });
     } catch (err) {
       console.log('Error logging out, please try again');
+    }
+
+    const json = await res.json();
+
+    if (json.logged_out) {
+      setUser(null);
     }
   };
 

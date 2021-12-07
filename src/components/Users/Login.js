@@ -3,7 +3,7 @@ import { Heading } from '@chakra-ui/react';
 import LoginForm from './LoginForm';
 import GitHubLoginForm from './GitHubLoginForm';
 
-export default function NotFound() {
+export default function Login() {
   return (
     <Center h="100%" w="100%">
       <Box>

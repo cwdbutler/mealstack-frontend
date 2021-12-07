@@ -9,13 +9,13 @@ import { Flex, Spacer, Box, Button, Heading, Image } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
 import RecipeFilter from './components/RecipeCreator/RecipeFilter';
 import { useContext } from 'react';
-import { myContext } from './Context';
+import { userContext } from './Context';
 import LogoutButton from './components/Users/LogoutButton';
+import LoginSuccess from './components/Users/LoginSuccess';
+import LoginRouter from './components/Users/LoginRouter';
 
 export default function App() {
-  const user = useContext(myContext);
-  console.log('user in App.js:', user);
-
+  const { user } = useContext(userContext);
   return (
     <Router>
       <Flex p="2" bg="green.200">
@@ -63,7 +63,14 @@ export default function App() {
       </Flex>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        {user ? (
+          <Route path="login" element={<LoginRouter />} />
+        ) : (
+          <Route path="login" element={<LoginRouter />}>
+            <Route index element={<Login />} />
+            <Route path="success" element={<LoginSuccess />} />
+          </Route>
+        )}
         <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/search" element={<Search />} />
         <Route path="/recipes" element={<RecipeFilter />} />
