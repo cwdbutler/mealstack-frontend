@@ -1,19 +1,22 @@
 import { useState, useEffect } from 'react';
 
-const useRecipeList = () => {
+const useRecipeList = (filterParam) => {
   const [recipeList, setRecipeList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const getAllRecipes = async () => {
-    const url = 'https://mealstack-backend.herokuapp.com/recipes';
 
-    const res = await fetch(url, { method: 'GET' });
+  const getAllRecipes = async (filterParam) => {
+    const url = 'https://mealstack-backend.herokuapp.com/recipes/filter'
+
+    const res = await fetch(url, { method: 'POST', body: new URLSearchParams({"label": filterParam})});
     const json = await res.json();
 
     setRecipeList(json);
+    setLoading(false);
   }
-  useEffect(() => getAllRecipes(), []);
+  useEffect(() => getAllRecipes(filterParam), [filterParam]);
 
-  return [recipeList];
+  return [recipeList, loading];
 };
 
 export default useRecipeList;

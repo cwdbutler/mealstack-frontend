@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router';
 
-const usePlanInfo = (id) => {
+const usePlanInfo = () => {
   const [loading, setLoading] = useState(true);
   const [planInfo, setPlanInfo] = useState();
+
+  let { id } = useParams()
 
   const getPlanInfo = async (id) => {
     const url = `https://mealstack-backend.herokuapp.com/plans/${id}`;
