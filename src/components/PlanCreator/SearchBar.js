@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { HStack, Center } from '@chakra-ui/layout';
 import { SearchIcon } from '@chakra-ui/icons';
 import {

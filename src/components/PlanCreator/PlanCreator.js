@@ -1,7 +1,6 @@
 import SearchBar from './SearchBar';
 import SearchIndex from './SearchIndex';
-import { Center, Spinner } from '@chakra-ui/react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import useGeneratedPlan from '../../hooks/useGeneratedPlan';
 
 export default function PlanCreator() {
