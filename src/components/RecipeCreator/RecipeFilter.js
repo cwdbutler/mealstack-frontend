@@ -8,7 +8,14 @@ import { useState } from 'react';
 function RecipeFilter(){
 
     const [filterParams, setFilterParams] = useState('')
-    const [recipeList, loading] = useRecipeList(filterParams);  
+    const [recipeList, loading] = useRecipeList(filterParams);
+
+    const [selectedRecipes, setSelectedRecipes] = useState([]);
+
+    // console.log(selectedRecipes)
+
+
+    // setSelectedRecipes(selectedRecipes => [...selectedRecipes, newElement]);
  
 
     // let filteredRecipes =  recipeList.filter((val)=> {
@@ -89,10 +96,10 @@ function RecipeFilter(){
       <> 
       <div style={{height: "calc(100% - 3em)"}}>
         <div style={{height: "calc(40%)", position: "sticky"}} id="fixed-top-half"> 
-          <div style={{height: "calc(50%)", display: "flex", justifyContent: "space-around"}} > {<PlanCreator filteredList={recipeList} />}</div>
+          <div style={{height: "calc(50%)", display: "flex", justifyContent: "space-around"}} > {<PlanCreator filteredList={recipeList} updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} />}</div>
           <div style={{height: "calc(50%)"}}>
           <Center mt={7}>
-              <Heading size="md">Filter by name</Heading>
+              <Heading size="md">Filter by food name</Heading>
           </Center>
           <Center >
               <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
@@ -102,7 +109,7 @@ function RecipeFilter(){
           </div>
         </div>
         <div style={{height: "auto"}} id="scrollable-bottom-half"> 
-          {recipeList.length == 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer filteredList={recipeList}/> </div>}
+          {recipeList.length == 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList}/> </div>}
         </div>
       </div>
 

@@ -3,11 +3,13 @@ import { Grid, Center, Spinner, Flex } from '@chakra-ui/react'
 
 function RecipeDisplayer(props){
 
+  const { currentSelected, updateSelected } = props  
+
  
     const recipes = props.filteredList.map((data) => {
   
     const key = `recipe-${data.id}`
-    return <Recipe recipe={data} key={key} /> 
+    return <Recipe currentSelected={currentSelected} updateSelected={updateSelected} recipe={data} key={key} /> 
   });
 
 

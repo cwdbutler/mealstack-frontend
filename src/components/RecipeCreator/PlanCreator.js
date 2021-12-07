@@ -19,21 +19,28 @@ import {
 import Select  from 'react-select'
 import { MultiSelect } from "react-multi-select-component"
 
+import fakeDisplay from "./fakeRecipeDisplay";
+
 
 export default function PlanCreator(props) {
-  const [recipesSelected, setRecipesSelected] = useState([])
 
-  console.log(recipesSelected)
+  // props.updateSelected() 
 
-  const selected = []
+  // props.currentSelected
 
-  const addToSelected = (item) => {
-    selected.push(item)
-  }
+  // console.log(recipesSelected)
 
-  console.log(selected)
+  // let selected = []
 
-// NEXT I NEED TO MAKE THE SELECTOR STORE UP TO 3 at a time
+  // const addToSelected = (item) => {
+  //   selected.push(item)
+  // }
+
+  // console.log(selected)
+
+
+//Every time you click on a recipe "add recipe" button on each recipe -> it store a recipe in the recipesSelected state array
+//That way, recipes can be selected, and you can search for something else 
 
 
   return ( 
@@ -43,12 +50,21 @@ export default function PlanCreator(props) {
       <Center mt={3}>Plan Name</Center> 
       <Input mt={3} placeholder="Enter a plan name"/> 
     </div>
-    <div>      
-      <Center mt={3}>Select your recipes</Center> 
-      < MultiSelect options={props.filteredList} onSelect={addToSelected(recipesSelected)} onChange={setRecipesSelected} value={recipesSelected} labelledBy="Select" hasSelectAll={false} disableSearch={true}/> 
+    <div>
+      <div height="30%">    
+        <Center mt={3}>Recipes selected</Center> 
+      </div> 
+      <div height="70%">
+        <div>
+          {props.currentSelected.map((item)=> (
+            <Center> {item.label} </Center>))}
+        </div>
+      </div> 
+      {/* < MultiSelect options={props.filteredList} onSelect={addToSelected(recipesSelected)} onChange={setRecipesSelected} value={recipesSelected} labelledBy="Select" hasSelectAll={false} disableSearch={true}/>  */}
     </div>
     <div>
     <Flex justify="right" m={3}>
+      <Flex m={2}>
       <Stat>
       <Badge borderRadius="full" px="2" colorScheme="teal">
                   Calories
@@ -56,27 +72,34 @@ export default function PlanCreator(props) {
       <StatLabel>Total Calories</StatLabel>
         <StatNumber>0</StatNumber>
       </Stat>
-      <Stat>
-      <Badge borderRadius="full" px="2" colorScheme="orange">
-                  Fat
-      </Badge>
-      <StatLabel>Total Fat </StatLabel>
-        <StatNumber>0</StatNumber>
-      </Stat>
-      <Stat>
-      <Badge borderRadius="full" px="2" colorScheme="pink">
-                  Carbs
-      </Badge>
-      <StatLabel>Total Carbs</StatLabel>
-        <StatNumber>0</StatNumber>
-      </Stat>
-      <Stat>
-      <Badge borderRadius="full" px="2" colorScheme="red">
-                  Protein
-      </Badge>
-      <StatLabel>Total Protein</StatLabel>
-        <StatNumber>0</StatNumber>
-      </Stat>
+      </Flex>
+      <Flex m={2}>
+        <Stat>
+        <Badge borderRadius="full" px="2" colorScheme="orange">
+                    Fat
+        </Badge>
+        <StatLabel>Total Fat </StatLabel>
+          <StatNumber>0</StatNumber>
+        </Stat>
+      </Flex>
+      <Flex m={2}>
+        <Stat>
+        <Badge borderRadius="full" px="2" colorScheme="pink">
+                    Carbs
+        </Badge>
+        <StatLabel>Total Carbs</StatLabel>
+          <StatNumber>0</StatNumber>
+        </Stat>
+      </Flex>
+      <Flex m={2}>
+        <Stat>
+        <Badge borderRadius="full" px="2" colorScheme="red">
+                    Protein
+        </Badge>
+        <StatLabel>Total Protein</StatLabel>
+          <StatNumber>0</StatNumber>
+        </Stat>
+      </Flex>
     </Flex>
     </div>
     <div>
