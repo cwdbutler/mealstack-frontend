@@ -27,6 +27,9 @@ export default function App() {
           <Button mr="2" as={Link} to="/plan/all">
             Plans
           </Button>
+          <Button mr="2" as={Link} to="/plan-creator">
+            Make Me a Plan
+          </Button>
         </Box>
       </Flex>
       <Routes>
