@@ -9,7 +9,10 @@ export default function GitHubLoginForm() {
     <Formik
       initialValues={{ username: '', password: '' }}
       onSubmit={(values, { setSubmitting }) => {
-        window.open('http://localhost:4000/auth/github', '_self');
+        window.open(
+          'https://mealstack-backend.herokuapp.com/auth/github',
+          '_self'
+        );
         setSubmitting(false);
       }}
     >

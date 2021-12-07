@@ -6,7 +6,7 @@ export default function Context(props) {
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
-    const url = 'http://localhost:4000/user';
+    const url = 'https://mealstack-backend.herokuapp.com/user';
 
     let data;
     try {

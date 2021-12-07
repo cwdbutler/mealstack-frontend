@@ -7,7 +7,7 @@ export default function LogoutButton() {
   const logout = async () => {
     let res;
     try {
-      res = await fetch('http://localhost:4000/logout', {
+      res = await fetch('https://mealstack-backend.herokuapp.com/logout', {
         credentials: 'include',
         method: 'POST',
       });
