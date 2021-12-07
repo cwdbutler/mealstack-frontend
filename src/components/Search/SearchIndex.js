@@ -1,5 +1,5 @@
 import { Center, Box } from '@chakra-ui/layout';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Wrap, WrapItem } from '@chakra-ui/react';
 import Plan from './Plan';
 
 function SearchIndex({ plans }) {
@@ -15,13 +15,13 @@ function SearchIndex({ plans }) {
   }
 
   const planList = plans.map((data) => {
-    return <Plan plan={data} key={data.id} />;
+    return <WrapItem><Plan key={data.id.toString()} plan={data} /></WrapItem>;
   });
 
   return (
     <Center mt={5}>
       {planList.length > 0 ? (
-        planList
+        <Wrap>{planList}</Wrap>
       ) : (
         <Box>
           <Heading mt={20} textAlign="center" size="xl">
