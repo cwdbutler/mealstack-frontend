@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 export const userContext = createContext(null);
 
 export default function Context(props) {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(null);
 
   const getUser = async () => {
     const url = 'https://mealstack-backend.herokuapp.com/user';
@@ -17,9 +17,7 @@ export default function Context(props) {
     }
     const response = await data.json();
 
-    if (response.logged_in) {
-      setUser(response.user);
-    }
+    setUser(response.user);
   };
 
   useEffect(() => getUser(), []);

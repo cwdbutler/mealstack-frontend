@@ -6,7 +6,6 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-  Button,
 } from '@chakra-ui/react';
 
 export default function UserPlan(props) {
