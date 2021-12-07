@@ -39,6 +39,9 @@ export default function NavBar() {
             mr="2"
           />
           <LogoutButton />
+          <Button mr="2" as={Link} to="/account">
+            Account
+          </Button>
         </>
       ) : (
         <Button mr="2" as={Link} to="/login">
@@ -46,8 +49,8 @@ export default function NavBar() {
         </Button>
       )}
       <Box>
-        <Button mr="2" as={Link} to="/">
-          Home
+        <Button mr="2" as={Link} to="/plan-creator">
+          Make Me a Plan
         </Button>
         <Button mr="2" as={Link} to="/recipes">
           Recipes
@@ -55,8 +58,8 @@ export default function NavBar() {
         <Button mr="2" as={Link} to="/plan/all">
           Plans
         </Button>
-        <Button mr="2" as={Link} to="/plan-creator">
-          Make Me a Plan
+        <Button mr="2" as={Link} to="/">
+          Home
         </Button>
       </Box>
     </Flex>

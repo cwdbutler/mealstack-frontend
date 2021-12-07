@@ -13,7 +13,7 @@ export default function LoginSucess() {
   return (
     <Center h="100%" w="100%">
       <Heading as="h1" size="2xl">
-        Successfully Logged in
+        Sucess! Sending you back...
       </Heading>
     </Center>
   );

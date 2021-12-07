@@ -37,7 +37,7 @@ export default function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/recipes" element={<RecipeFilter />} />
         <Route path="/plan-creator" element={<PlanCreator />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/account" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
