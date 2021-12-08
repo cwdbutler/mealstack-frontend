@@ -9,9 +9,7 @@ function RecipeFilter(){
 
     const [filterParams, setFilterParams] = useState('')
     const [recipeList, loading] = useRecipeList(filterParams);
-
     const [selectedRecipes, setSelectedRecipes] = useState([]);
-    const [currentStats, setCurrentStats] = useState({calories: 0, fat: 0, carbs: 0, protein: 0})
 
     if (loading) {
       return (
@@ -38,29 +36,38 @@ function RecipeFilter(){
     return(
       <> 
       <div style={{height: "calc(100% - 3em)"}}>
-        <div style={{height: "calc(40%)", position: "sticky"}} id="fixed-top-half"> 
+        <div style={{height: "calc(50%)", position: "sticky"}} id="fixed-top-half"> 
           <div style={{height: "calc(50%)", display: "flex", justifyContent: "space-around"}} > 
             {<PlanCreator
               filteredList={recipeList} 
               updateSelected={setSelectedRecipes} 
               currentSelected={selectedRecipes} 
-              currentStats = {currentStats}
-              updateCurrentStats = {setCurrentStats}
               />}
           </div>
           <div style={{height: "calc(50%)"}}>
-          <Center mt={7}>
+          <Center mt={20}>
               <Heading size="md">Filter by food name</Heading>
           </Center>
           <Center >
               <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
               border={500} onChange={event => {setFilterParams(event.target.value)}} isInvalid
-              errorBorderColor='teal.200' focusBorderColor="teal.600" borderRadius={5}/>
+              errorBorderColor='green.200' focusBorderColor="teal.600" borderRadius={5}/>
           </Center>
           </div>
         </div>
         <div style={{height: "auto"}} id="scrollable-bottom-half"> 
-          {recipeList.length === 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList} currentStats = {currentStats} updateCurrentStats = {setCurrentStats} /> </div> }
+          {recipeList.length === 0 ? ( 
+          <NoResultsFound/> 
+          ) : ( 
+                <div style={{marginTop: 10}}> 
+                  <RecipeDisplayer 
+                  updateSelected={setSelectedRecipes} 
+                  currentSelected={selectedRecipes} 
+                  filteredList={recipeList} 
+                  /> 
+                </div> 
+              ) 
+              }
         </div>
       </div>
       </>
