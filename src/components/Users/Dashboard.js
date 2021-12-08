@@ -14,7 +14,7 @@ export default function Dashboard() {
       navigate('/login');
     }
   });
-  const [plansList, loading] = useUserPlans(1);
+  const [plansList, loading] = useUserPlans(user.id);
 
   return (
     <Box p={10}>
