@@ -5,12 +5,23 @@ import {
   StatNumber,
   Flex,
   Center,
+  Input,
+  Heading,
+  Tag,
+  TagLabel, 
+  TagCloseButton,
+  Avatar,
+  Button
 } from '@chakra-ui/react';
+
+import { useToast } from '@chakra-ui/toast';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 export default function PlanCreator(props) {
+
+  const toast = useToast()
 
   let navigate = useNavigate();
 
@@ -34,7 +45,7 @@ export default function PlanCreator(props) {
 
   let planParams = null
 
-  const parsePlanParams = () => {
+  const parsePlanParams = async () => {
     if(currentSelected[2]){
       planParams = {
         'label': planLabel,
@@ -70,16 +81,34 @@ export default function PlanCreator(props) {
   parsePlanParams()
 
 
-
   const sendParams = async () => {
-    parsePlanParams()
 
-    if (planParams) {
+
+
+    if(planLabel === null){
+      toast({
+        title: "Please enter a plan name",
+        status: "error",
+        isClosable: true,
+      })
+
+    }
+
+    if(currentSelected.length < 3){
+      toast({
+        title: "Please add three recipes",
+        status: "error",
+        isClosable: true,
+      })
+
+    }
+
+    if ((planLabel !== null) && (currentSelected.length > 2)) {
       let newPlan = await getCreatedPlan(planParams)
-      // Flash success
+      // Flash s
       navigate(`/plan/${newPlan.id}`)
     } else {
-      // Turn to a flash
+      
       console.log("You need full params")
     }
   }
@@ -88,20 +117,25 @@ export default function PlanCreator(props) {
   
   <> 
     <div>      
-      <Center mt={3}>Plan Name</Center> 
-      <input onChange={(e) => {setPlanLabel(e.target.value);}} placeholder="Enter a plan name"/> 
+      <Center mt={3}><Heading as="h2" size="md">Plan name</Heading></Center> 
+      
+      <Input variant="outline" mt={3} backgroundColor="gray.50" color="black.500" errorBorderColor='green.200' focusBorderColor="teal.600" borderRadius={5}
+              border={5} onChange={(e) => {setPlanLabel(e.target.value);}} placeholder="Enter your plan name" isInvalid/> 
     </div>
     <div>
       <div height="30%">    
-        <Center mt={3}>Recipes selected</Center> 
+        <Center mt={3}><Heading as="h2" size="md">Recipes selected</Heading></Center> 
       </div> 
       <div height="70%">
-        <div>
+        <div margin-top="3em">
           {props.currentSelected.map((item)=> (
-            <Center key={item.label} > 
-            {item.label} 
-            <button onClick={()=>deselectRecipe(item)}>X</button>
-            </Center>))}
+            <div key={item.label}>
+            <Tag color="green.600" backgroundColor="gray.50" mt={2} borderRadius={5} variant="solid" width={200}>
+              <Avatar src={item.image_url} mr={2} ml={-1}/>
+              <TagLabel>{item.label} </TagLabel>
+              <TagCloseButton onClick={()=>deselectRecipe(item)} />
+            </Tag>
+            </div>))}
         </div>
       </div> 
     </div>
@@ -146,10 +180,10 @@ export default function PlanCreator(props) {
     </Flex>
     </div>
     <div style={{ "marginTop": "2em"}}>
-      <button 
-      onClick={()=>sendParams()}
-      margin="3">Create Mealplan</button>
-    </div>
+      <Button variant='outline' colorScheme="green" onClick={()=>sendParams()} >
+        Create Your Mealplan
+      </Button>
+      </div>
   </>
   )
 }

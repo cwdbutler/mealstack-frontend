@@ -36,7 +36,7 @@ function RecipeFilter(){
     return(
       <> 
       <div style={{height: "calc(100% - 3em)"}}>
-        <div style={{height: "calc(40%)", position: "sticky"}} id="fixed-top-half"> 
+        <div style={{height: "calc(50%)", position: "sticky"}} id="fixed-top-half"> 
           <div style={{height: "calc(50%)", display: "flex", justifyContent: "space-around"}} > 
             {<PlanCreator
               filteredList={recipeList} 
@@ -45,13 +45,13 @@ function RecipeFilter(){
               />}
           </div>
           <div style={{height: "calc(50%)"}}>
-          <Center mt={7}>
+          <Center mt={20}>
               <Heading size="md">Filter by food name</Heading>
           </Center>
           <Center >
               <Input variant="outline" placeholder="What are you craving..." width={480} mt={30} mb={30} backgroundColor="gray.50" color="black.500"
               border={500} onChange={event => {setFilterParams(event.target.value)}} isInvalid
-              errorBorderColor='teal.200' focusBorderColor="teal.600" borderRadius={5}/>
+              errorBorderColor='green.200' focusBorderColor="teal.600" borderRadius={5}/>
           </Center>
           </div>
         </div>
