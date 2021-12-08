@@ -3,7 +3,6 @@ import { createContext, useEffect, useState } from 'react';
 export const userContext = createContext(null);
 
 export default function Context(props) {
-  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
 
   const getUser = async () => {
@@ -19,13 +18,12 @@ export default function Context(props) {
     const response = await data.json();
 
     setUser(response.user);
-    setLoading(false);
   };
 
   useEffect(() => getUser(), []);
 
   return (
-    <userContext.Provider value={{ user, setUser, loading }}>
+    <userContext.Provider value={{ user, setUser }}>
       {props.children}
     </userContext.Provider>
   );
