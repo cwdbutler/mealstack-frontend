@@ -30,7 +30,7 @@ export default function NavBar() {
           </Heading>
         </Center>
       )}
-      {(user && !user.error) || location.state.user ? (
+      {(user && !user.error) || (location.state && location.state.user) ? (
         <>
           <Center>
             <Heading as="h5" size="sm" textAlign="center" mr="2">
