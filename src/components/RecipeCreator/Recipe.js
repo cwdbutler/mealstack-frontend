@@ -24,7 +24,6 @@ export default function Recipe(props){
 
   tagParser()
 
-
   let tagsToDisplay = [ "Vegetarian", "Dairy-Free", "Pork-Free", "Kosher", "Peanut-Free"]
 
   let isTagDisplayable = (tag) => {
@@ -37,10 +36,9 @@ export default function Recipe(props){
   }
   
   const tagsDisplay = tagsArray.map((tag, index) => 
-    isTagDisplayable(tag) ? <Tag key={`tag-${index}`} variant="solid" colorScheme="orange"> {tag} </Tag> : <> </>
+    isTagDisplayable(tag) ? <Tag key={`tag-${index}`} variant="solid" colorScheme="teal"> {tag} </Tag> : <> </>
   
   )
-
 
   const macroBadgeData = [
     {header: 'Calories', colorScheme: "teal", value: props.recipe.calories},
@@ -63,8 +61,6 @@ export default function Recipe(props){
 
   const [addedState, setAddedState] = useState(false)
 
-  
-
   const checkAddedState = () => {
         if(currentSelected.some(item => item.id === selectedDisplayObject.id)) {
           setAddedState(true)
@@ -77,12 +73,9 @@ export default function Recipe(props){
     checkAddedState()
   })
   
-
-
   const exceededMaxRecipes = () => {
     return currentSelected.length >= 3 ? true : false 
   }
-
 
   const addToSelected = () => {
     if (addedState || exceededMaxRecipes()) {
@@ -105,12 +98,12 @@ export default function Recipe(props){
 
   return (
 
-    <GridItem  m={10} bg="teal.50" border="2px" borderColor="gray.200" borderRadius="10" colSpan={2} rowSpan={2}>
+    <GridItem  m={10} bg="white" border="2px" borderColor="gray.200" borderRadius="10" colSpan={2} rowSpan={2}>
       <Grid autoColumns >
         <GridItem m={15}>
         <GridItem>
             <Flex >
-                <Image boxSize='100px' borderRadius={15} src={props.recipe.image_url} alt="https://images.squarespace-cdn.com/content/v1/5c4238fb85ede19f16731a58/1630067985233-XPCZAEQGZN6639PBNKIW/image-asset.jpeg"></Image>
+                <Image boxSize='80px' borderRadius={15} src={props.recipe.image_url} alt="https://images.squarespace-cdn.com/content/v1/5c4238fb85ede19f16731a58/1630067985233-XPCZAEQGZN6639PBNKIW/image-asset.jpeg"></Image>
                   <Spacer />
                 <Text fontSize="lg">{props.recipe.label} </Text>
                 {addedState === true ? <button onClick={()=>{removeFromSelected(selectedDisplayObject)}}> Remove </button> : <button onClick={()=>{addToSelected(selectedDisplayObject)}}> Add to mealplan </button>}
@@ -136,8 +129,8 @@ export default function Recipe(props){
         </List>
       </GridItem>
       <Flex grow={4}>
-      <Tag variant="solid" colorScheme="orange"> {props.recipe.mealType} </Tag> 
-      {props.recipe.totalTime !== 0 ? <Tag variant="solid" colorScheme="orange"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
+      <Tag variant="solid" colorScheme="teal"> {props.recipe.mealType} </Tag> 
+      {props.recipe.totalTime !== 0 ? <Tag variant="solid" colorScheme="teal"> Prep time: {props.recipe.totalTime} minutes </Tag> : <> </>}
       </Flex>
       {tagsDisplay}
       </GridItem>

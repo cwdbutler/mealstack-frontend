@@ -9,9 +9,7 @@ function RecipeFilter(){
 
     const [filterParams, setFilterParams] = useState('')
     const [recipeList, loading] = useRecipeList(filterParams);
-
     const [selectedRecipes, setSelectedRecipes] = useState([]);
-    const [currentStats, setCurrentStats] = useState({calories: 0, fat: 0, carbs: 0, protein: 0})
 
     if (loading) {
       return (
@@ -44,8 +42,6 @@ function RecipeFilter(){
               filteredList={recipeList} 
               updateSelected={setSelectedRecipes} 
               currentSelected={selectedRecipes} 
-              currentStats = {currentStats}
-              updateCurrentStats = {setCurrentStats}
               />}
           </div>
           <div style={{height: "calc(50%)"}}>
@@ -60,7 +56,18 @@ function RecipeFilter(){
           </div>
         </div>
         <div style={{height: "auto"}} id="scrollable-bottom-half"> 
-          {recipeList.length === 0 ? <NoResultsFound/>  : <div> <RecipeDisplayer updateSelected={setSelectedRecipes} currentSelected={selectedRecipes} filteredList={recipeList} currentStats = {currentStats} updateCurrentStats = {setCurrentStats} /> </div> }
+          {recipeList.length === 0 ? ( 
+          <NoResultsFound/> 
+          ) : ( 
+                <div> 
+                  <RecipeDisplayer 
+                  updateSelected={setSelectedRecipes} 
+                  currentSelected={selectedRecipes} 
+                  filteredList={recipeList} 
+                  /> 
+                </div> 
+              ) 
+              }
         </div>
       </div>
       </>

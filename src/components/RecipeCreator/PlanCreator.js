@@ -15,10 +15,22 @@ export default function PlanCreator(props) {
   let navigate = useNavigate();
 
   const { currentSelected, updateSelected } = props
-  const { currentStats } = props
 
   const [planLabel, setPlanLabel] = useState(null)
 
+
+  const getStats = (input) => {
+    if (currentSelected.length === 0){
+      return 0
+    } else if (currentSelected.length === 1){
+      return currentSelected[0][input]
+    } else if (currentSelected.length === 2){
+      return (currentSelected[0][input] + currentSelected[1][input])
+    } else if (currentSelected.length === 3) {
+      return (currentSelected[0][input] + currentSelected[1][input] + currentSelected[2][input])
+    }
+  }
+  
 
   let planParams = null
 
@@ -36,11 +48,6 @@ export default function PlanCreator(props) {
 
   const deselectRecipe = (clickedItem) => {
     updateSelected(currentSelected.filter(selectedItem => selectedItem.id !== clickedItem.id))
-    // updateCurrentStats({
-    //   ...currentStats, 
-
-    // })
-
   }
 
   const getCreatedPlan = async (planParams) => {
@@ -68,12 +75,11 @@ export default function PlanCreator(props) {
     parsePlanParams()
 
     if (planParams) {
-      console.log(planParams)
       let newPlan = await getCreatedPlan(planParams)
-      console.log(newPlan)
+      // Flash success
       navigate(`/plan/${newPlan.id}`)
     } else {
-      console.log(planParams)
+      // Turn to a flash
       console.log("You need full params")
     }
   }
@@ -107,7 +113,7 @@ export default function PlanCreator(props) {
                   Calories
       </Badge>
       <StatLabel>Total Calories</StatLabel>
-        <StatNumber>{currentStats.calories}</StatNumber>
+        <StatNumber>{getStats("calories")}</StatNumber>
       </Stat>
       </Flex>
       <Flex m={2}>
@@ -116,7 +122,7 @@ export default function PlanCreator(props) {
                     Fat
         </Badge>
         <StatLabel>Total Fat </StatLabel>
-          <StatNumber>{currentStats.fat}</StatNumber>
+          <StatNumber>{getStats("fat")}</StatNumber>
         </Stat>
       </Flex>
       <Flex m={2}>
@@ -125,7 +131,7 @@ export default function PlanCreator(props) {
                     Carbs
         </Badge>
         <StatLabel>Total Carbs</StatLabel>
-          <StatNumber>{currentStats.carbs}</StatNumber>
+          <StatNumber>{getStats("carbs")}</StatNumber>
         </Stat>
       </Flex>
       <Flex m={2}>
@@ -134,12 +140,12 @@ export default function PlanCreator(props) {
                     Protein
         </Badge>
         <StatLabel>Total Protein</StatLabel>
-          <StatNumber>{currentStats.protein}</StatNumber>
+          <StatNumber>{getStats("protein")}</StatNumber>
         </Stat>
       </Flex>
     </Flex>
     </div>
-    <div style={{ "margin-top": "2em"}}>
+    <div style={{ "marginTop": "2em"}}>
       <button 
       onClick={()=>sendParams()}
       margin="3">Create Mealplan</button>

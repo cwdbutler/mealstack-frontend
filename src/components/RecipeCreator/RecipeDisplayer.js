@@ -5,13 +5,12 @@ function RecipeDisplayer(props){
 
   const { currentSelected, updateSelected } = props  
 
- 
-    const recipes = props.filteredList.map((data) => {
+  const recipes = props.filteredList.map((data) => {
   
     const key = `recipe-${data.id}`
     return <Recipe key={key} currentSelected={currentSelected} updateSelected={updateSelected} recipe={data}  /> 
   });
-
+    
 
   return (
     <>
