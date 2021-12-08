@@ -13,15 +13,13 @@ export default function LoginSucess() {
   const { user } = useContext(userContext);
   let navigate = useNavigate();
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/login');
-    } else {
-      setTimeout(() => {
-        navigate(-1);
-      }, 1000);
-    }
-  });
+  if (!user) {
+    navigate('/login');
+  } else {
+    setTimeout(() => {
+      navigate(-1);
+    }, 1000);
+  }
 
   return (
     <Center h="100%" w="100%">
