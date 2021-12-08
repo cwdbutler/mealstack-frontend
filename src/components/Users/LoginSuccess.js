@@ -9,7 +9,7 @@ export default function LoginSucess() {
   let navigate = useNavigate();
 
   const goToPreviousPath = () => {
-    navigate(-1, { user });
+    navigate(-1, { state: user });
   };
 
   // redirect !user
