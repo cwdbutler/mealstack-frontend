@@ -5,6 +5,7 @@ import LogoutButton from './Users/LogoutButton';
 import defaultPic from '.././assets/default-pic.jpg';
 import { useContext } from 'react';
 import { userContext } from '../Context';
+import GitHubLoginButton from './Users/GitHubLoginButton';
 
 export default function NavBar() {
   const { user } = useContext(userContext);
@@ -44,12 +45,10 @@ export default function NavBar() {
           </Button>
         </>
       ) : (
-        <Button mr="2" as={Link} to="/login">
-          Login
-        </Button>
+        <GitHubLoginButton />
       )}
       <Box>
-        <Button mr="2" as={Link} to="/plan-creator">
+        <Button ml="2" mr="2" as={Link} to="/plan-creator">
           Make Me a Plan
         </Button>
         <Button mr="2" as={Link} to="/recipes">

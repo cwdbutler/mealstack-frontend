@@ -24,9 +24,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {user ? (
-          <Route path="/login/success" element={<LoginSuccess />} />
+          <>
+            <Route path="/login" element={<LoginRouter />} />
+            <Route path="/login/success" element={<LoginSuccess />} />
+          </>
         ) : (
           <Route path="login" element={<LoginRouter />}>
+            <Route path="/login/success" element={<LoginSuccess />} />
             <Route index element={<Login />} />
           </Route>
         )}

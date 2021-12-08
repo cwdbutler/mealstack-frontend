@@ -11,19 +11,17 @@ import { userContext } from '../../Context';
 
 export default function LoginSucess() {
   const { user } = useContext(userContext);
-
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
-      navigate(-1);
+    if (!user) {
+      navigate('/login');
+    } else {
+      setTimeout(() => {
+        navigate(-1);
+      }, 1000);
     }
   });
-
-  setTimeout(() => {
-    navigate(-2);
-    // sends you back to the page you were on before going to /login
-  }, 1000);
 
   return (
     <Center h="100%" w="100%">
