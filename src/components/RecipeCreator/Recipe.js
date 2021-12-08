@@ -7,15 +7,11 @@ import {
   List,
   ListItem,
   Text,
-  Spacer,
   Tag,
   Center,
   Button, 
-  ButtonGroup,
-  Stack,
   StackDivider,
   VStack,
-  Flex, 
   Heading
 } from '@chakra-ui/react';
 
