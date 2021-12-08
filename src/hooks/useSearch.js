@@ -8,19 +8,33 @@ const useSearch = (params) => {
     let calories = params.get('calories');
     let carbs = params.get('carbs');
     let protein = params.get('protein');
-    let fats = params.get('fat');
+    let fat = params.get('fat');
 
-    const url = `https://mealstack-backend.herokuapp.com/plans/search/${calories}&${carbs}&${protein}&${fats}`;
+    const url = `https://mealstack-backend.herokuapp.com/plans/search`;
+
+    let fetchBody = {
+      "calories": calories != null ? calories : undefined,
+      "carbs": carbs != null ? carbs : undefined,
+      "protein": protein != null ? protein : undefined,
+      "fat": fat != null ? fat : undefined
+    };
 
     let res;
     try {
-      res = await fetch(url, { method: 'GET' });
+      res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(fetchBody)
+      });
     } catch (err) {
       res = new Response(JSON.stringify({ error: 'true' }));
     }
     const json = await res.json();
-
-    setPlansList(json);
+    const body = await json.body;
+    
+    setPlansList(body);
     setLoading(false);
   };
 

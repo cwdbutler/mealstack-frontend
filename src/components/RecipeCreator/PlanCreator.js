@@ -2,11 +2,10 @@ import {
   Badge,
   Stat,
   StatLabel,
-  StatNumber, 
+  StatNumber,
   Flex,
   Center,
 } from '@chakra-ui/react';
-
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router';

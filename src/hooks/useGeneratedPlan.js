@@ -7,7 +7,7 @@ const useGeneratedPlan = (formData) => {
     const getPlan = async () => {
       if (formData != null) {
         const { calories, carbs, protein, fat } = formData;
-        const url = `http://localhost:3000/plans/new/custom`;
+        const url = `https://mealstack-backend.herokuapp.com/plans/new/custom`;
         console.log(formData);
         let fetchBody = {
           "calories": calories,

@@ -1,36 +1,36 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import PlanInfo from './components/PlanInfo/PlanInfo';
 import PlanDisplayer from './components/PlanDisplayer/PlanDisplayer';
 import Search from './components/Search/Search';
 import PlanCreator from './components/PlanCreator/PlanCreator';
 import NotFound from './components/NotFound';
+import Login from './components/Users/Login';
 import './App.css';
-import { Flex, Spacer, Box, Button, Heading } from '@chakra-ui/react';
 import RecipeFilter from './components/RecipeCreator/RecipeFilter';
+import { useContext } from 'react';
+import { userContext } from './Context';
+import LoginSuccess from './components/Users/LoginSuccess';
+import LoginRouter from './components/Users/LoginRouter';
+import NavBar from './components/NavBar';
 
 export default function App() {
+  const { user } = useContext(userContext);
+
   return (
     <Router>
-      <Flex p="2" bg="green.200">
-        <Box p="2">
-          <Heading size="md">Mealstack</Heading>
-        </Box>
-        <Spacer />
-        <Box height={3}>
-          <Button mr="2" as={Link} to="/">
-            Home
-          </Button>
-          <Button mr="2" as={Link} to="/recipes">
-            Recipes
-          </Button>
-          <Button mr="2" as={Link} to="/plan/all">
-            Plans
-          </Button>
-        </Box>
-      </Flex>
+      <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        {user ? (
+          <Route path="login" element={<LoginRouter />}>
+            <Route path="success" element={<LoginSuccess />} />
+          </Route>
+        ) : (
+          <Route path="login" element={<LoginRouter />}>
+            <Route index element={<Login />} />
+          </Route>
+        )}
         <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/plan/all" element={<PlanDisplayer />} />
         <Route path="/search" element={<Search />} />
