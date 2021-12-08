@@ -12,8 +12,7 @@ export default function NavBar() {
   const { user, setUser } = useContext(userContext);
   const location = useLocation();
   console.log('location', location);
-  console.log('location.state.user', location.state.user);
-  if (location.state.user) {
+  if (location.state && location.state.user) {
     console.log('setting user: ', location.state.user);
     setUser(location.state.user);
   }
