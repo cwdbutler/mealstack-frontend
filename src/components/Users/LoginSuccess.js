@@ -5,15 +5,8 @@ import {
   AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react';
-import { useNavigate } from 'react-router-dom';
 
 export default function LoginSucess() {
-  let navigate = useNavigate();
-
-  setTimeout(() => {
-    navigate(-1);
-  }, 1000);
-
   return (
     <Center h="100%" w="100%">
       <Alert
