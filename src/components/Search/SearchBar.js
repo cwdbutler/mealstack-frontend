@@ -9,7 +9,6 @@ import {
   InputRightElement,
   IconButton,
   Checkbox,
-  CheckboxGroup,
   Stack,
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
