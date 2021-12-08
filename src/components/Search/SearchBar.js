@@ -33,13 +33,13 @@ export default function SearchForm({ params }) {
           fat: params.get('fat') ? `${params.get('fat')}` : defaultMacros.fat,
           carbs: params.get('carbs') ? `${params.get('carbs')}` : defaultMacros.carbs,
           calories: params.get('calories') ? `${params.get('calories')}` : defaultMacros.calories,
-          dairyFree: params.get('dairyFree') ? `${params.get('dairyFree')}` : defaultMacros.dairyFree,
-          glutenFree: params.get('glutenFree') ? `${params.get('glutenFree')}` : defaultMacros.glutenFree,
-          kosher: params.get('kosher') ? `${params.get('kosher')}` : defaultMacros.kosher,
-          peanutFree: params.get('peanutFree') ? `${params.get('peanutFree')}` : defaultMacros.peanutFree,
-          porkFree: params.get('porkFree') ? `${params.get('porkFree')}` : defaultMacros.porkFree,
-          vegan: params.get('vegan') ? `${params.get('vegan')}` : defaultMacros.vegan,
-          vegetarian: params.get('vegetarian') ? `${params.get('vegetarian')}` : defaultMacros.vegetarian
+          dairyFree: params.get('dairyFree') ? `${params.get('dairyFree')}` : false,
+          glutenFree: params.get('glutenFree') ? `${params.get('glutenFree')}` : false,
+          kosher: params.get('kosher') ? `${params.get('kosher')}` : false,
+          peanutFree: params.get('peanutFree') ? `${params.get('peanutFree')}` : false,
+          porkFree: params.get('porkFree') ? `${params.get('porkFree')}` : false,
+          vegan: params.get('vegan') ? `${params.get('vegan')}` : false,
+          vegetarian: params.get('vegetarian') ? `${params.get('vegetarian')}` : false
         }}
         onSubmit={(values, { setSubmitting }) => {
           console.log(values);
