@@ -17,9 +17,7 @@ export default function Context(props) {
     }
     const response = await data.json();
 
-    if (response.logged_in) {
-      setUser(response.user);
-    }
+    setUser(response.user);
   };
 
   useEffect(() => getUser(), []);

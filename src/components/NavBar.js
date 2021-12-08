@@ -23,7 +23,7 @@ export default function NavBar() {
           </Heading>
         </Center>
       )}
-      {user && !user.error ? (
+      {user ? (
         <>
           <Center>
             <Heading as="h5" size="sm" textAlign="center" mr="2">
