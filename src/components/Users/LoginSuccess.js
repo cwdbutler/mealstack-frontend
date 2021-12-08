@@ -1,15 +1,15 @@
 import { Center } from '@chakra-ui/layout';
 import { Alert, AlertIcon, AlertTitle, Button } from '@chakra-ui/react';
-// import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router';
-// import { userContext } from '../../Context';
+import { userContext } from '../../Context';
 
 export default function LoginSucess() {
-  // const { user } = useContext(userContext);
+  const { user } = useContext(userContext);
   let navigate = useNavigate();
 
   const goToPreviousPath = () => {
-    navigate(-1);
+    navigate(-1, { user });
   };
 
   // redirect !user
