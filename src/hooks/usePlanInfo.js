@@ -8,6 +8,7 @@ const usePlanInfo = () => {
   let { id } = useParams()
 
   const getPlanInfo = async (id) => {
+    //`http://localhost:4000/plans/${id}`
     const url = `https://mealstack-backend.herokuapp.com/plans/${id}`;
 
     let res;
