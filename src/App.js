@@ -30,7 +30,6 @@ export default function App() {
           </>
         ) : (
           <Route path="login" element={<LoginRouter />}>
-            <Route path="/login/success" element={<LoginSuccess />} />
             <Route index element={<Login />} />
           </Route>
         )}
