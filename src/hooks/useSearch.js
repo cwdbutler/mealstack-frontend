@@ -9,6 +9,13 @@ const useSearch = (params) => {
     let carbs = params.get('carbs');
     let protein = params.get('protein');
     let fat = params.get('fat');
+    let dairyFree = params.get('dairyFree');
+    let glutenFree = params.get('glutenFree');
+    let kosher = params.get('kosher');
+    let peanutFree = params.get('peanutFree');
+    let porkFree = params.get('porkFree');
+    let vegan = params.get('vegan');
+    let vegetarian = params.get('vegatarian');
 
     const url = `https://mealstack-backend.herokuapp.com/plans/search`;
 
@@ -16,7 +23,14 @@ const useSearch = (params) => {
       "calories": calories != null ? calories : undefined,
       "carbs": carbs != null ? carbs : undefined,
       "protein": protein != null ? protein : undefined,
-      "fat": fat != null ? fat : undefined
+      "fat": fat != null ? fat : undefined,
+      "dairyFree": dairyFree != null && dairyFree? dairyFree : undefined,
+      "glutenFree": glutenFree != null && glutenFree? glutenFree : undefined,
+      "kosher": kosher != null ? kosher && kosher: undefined,
+      "peanutFree": peanutFree != null && peanutFree? peanutFree : undefined,
+      "porkFree": porkFree != null && porkFree? porkFree : undefined,
+      "vegan": vegan != null ? vegan && vegan: undefined,
+      "vegetarian": vegetarian != null && vegetarian? vegetarian : undefined,
     };
 
     let res;
