@@ -8,6 +8,9 @@ import {
   NumberDecrementStepper,
   InputRightElement,
   IconButton,
+  Checkbox,
+  CheckboxGroup,
+  Stack,
 } from '@chakra-ui/react';
 import { FormControl, FormLabel } from '@chakra-ui/react';
 import { Formik, Form, Field } from 'formik';
@@ -28,6 +31,7 @@ export default function SearchForm({ params }) {
       <Formik
         initialValues={{
           protein: params.get('protein')
+            
             ? `${params.get('protein')}`
             : defaultMacros.protein,
           fat: params.get('fat') ? `${params.get('fat')}` : defaultMacros.fat,
@@ -178,6 +182,29 @@ export default function SearchForm({ params }) {
                   </FormControl>
                 )}
               </Field>
+              <Stack spacing={10} direction='row'>
+                <Checkbox colorScheme='teal'>
+                  Dairy Free
+                </Checkbox>
+                <Checkbox colorScheme='teal'>
+                  Gluten Free
+                </Checkbox>
+                <Checkbox colorScheme='teal'>
+                  Kosher
+                </Checkbox>
+                <Checkbox colorScheme='teal'>
+                  Peanut Free
+                </Checkbox>
+                <Checkbox colorScheme='teal'>
+                  Pork Free
+                </Checkbox>
+                <Checkbox colorScheme='teal'>
+                  Vegetarian
+                </Checkbox>
+                <Checkbox colorScheme='teal'>
+                  Vegan
+                </Checkbox>
+              </Stack>
               <IconButton
                 type="submit"
                 colorScheme="teal"
