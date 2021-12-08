@@ -6,9 +6,11 @@ import defaultPic from '.././assets/default-pic.jpg';
 import { useContext } from 'react';
 import { userContext } from '../Context';
 import GitHubLoginButton from './Users/GitHubLoginButton';
+import { useLocation } from 'react-router-dom';
 
 export default function NavBar() {
   const { user } = useContext(userContext);
+  const location = useLocation();
 
   return (
     <Flex p="2" bg="green.200">
@@ -23,7 +25,7 @@ export default function NavBar() {
           </Heading>
         </Center>
       )}
-      {user && !user.error ? (
+      {(user && !user.error) || location.state.user ? (
         <>
           <Center>
             <Heading as="h5" size="sm" textAlign="center" mr="2">
