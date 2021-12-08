@@ -45,7 +45,7 @@ export default function PlanCreator(props) {
 
   const getCreatedPlan = async (planParams) => {
     // 'http://localhost:4000/plans/new'
-    const url = 'https://mealstack-backend.herokuapp.com/recipes/new'
+    const url = 'https://mealstack-backend.herokuapp.com/plans/new'
 
     const res = await fetch(url, {
       method: 'POST', 
