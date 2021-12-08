@@ -23,7 +23,7 @@ export default function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        {user ? (
+        {user && !user.error ? (
           <>
             <Route path="/login" element={<LoginRouter />} />
             <Route path="/login/success" element={<LoginSuccess />} />
