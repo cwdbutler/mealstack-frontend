@@ -5,7 +5,7 @@ import {
   AlertTitle,
   AlertDescription,
 } from '@chakra-ui/react';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { userContext } from '../../Context';
 
@@ -13,9 +13,13 @@ export default function LoginSucess() {
   const { user } = useContext(userContext);
   let navigate = useNavigate();
 
-  if (user) {
-    navigate(-1);
-  }
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        navigate(-1);
+      }, 1500);
+    }
+  });
 
   return (
     <Center h="100%" w="100%">
