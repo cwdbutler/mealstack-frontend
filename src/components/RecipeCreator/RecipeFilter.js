@@ -59,7 +59,7 @@ function RecipeFilter(){
           {recipeList.length === 0 ? ( 
           <NoResultsFound/> 
           ) : ( 
-                <div> 
+                <div style={{marginTop: 10}}> 
                   <RecipeDisplayer 
                   updateSelected={setSelectedRecipes} 
                   currentSelected={selectedRecipes} 
