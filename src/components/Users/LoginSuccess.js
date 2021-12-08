@@ -16,7 +16,7 @@ export default function LoginSucess() {
   useEffect(() => {
     if (user) {
       setTimeout(() => {
-        navigate(-1);
+        navigate(-1, { replace: true });
       }, 1500);
     } // else
   });
