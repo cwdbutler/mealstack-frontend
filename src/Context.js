@@ -20,7 +20,7 @@ export default function Context(props) {
     setUser(response.user);
   };
 
-  useEffect(() => getUser(), []);
+  useEffect(() => getUser());
 
   return (
     <userContext.Provider value={{ user, setUser }}>
