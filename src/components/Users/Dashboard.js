@@ -2,8 +2,9 @@ import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../Context';
 import { Center, Box } from '@chakra-ui/layout';
-import { Heading } from '@chakra-ui/react';
+import { Heading, Spinner } from '@chakra-ui/react';
 import UserPlanIndex from './UserPlanIndex';
+import useUserPlans from '../../hooks/useUserPlans';
 
 export default function Dashboard() {
   const { user } = useContext(userContext);
@@ -13,15 +14,20 @@ export default function Dashboard() {
       navigate('/login');
     }
   });
-
-  // a hook that fetches all plans the user saved
+  const [plansList, loading] = useUserPlans(1);
 
   return (
     <Box p={10}>
       <Center mt={5}>
         <Heading>Your saved plans</Heading>
       </Center>
-      <UserPlanIndex />
+      {loading ? (
+        <Center mt={5}>
+          <Spinner size="xl" thickness="2px" speed="0.65s" color="teal.200" />
+        </Center>
+      ) : (
+        <UserPlanIndex plans={plansList} />
+      )}
     </Box>
   );
 }
