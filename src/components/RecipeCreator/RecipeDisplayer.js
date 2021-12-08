@@ -1,5 +1,4 @@
 import Recipe from "./Recipe"
-import { Grid } from '@chakra-ui/react'
 
 function RecipeDisplayer(props){
 

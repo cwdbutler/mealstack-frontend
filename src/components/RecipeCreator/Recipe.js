@@ -19,7 +19,6 @@ import { useToast } from '@chakra-ui/toast';
 
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 export default function Recipe(props){
 
@@ -132,7 +131,7 @@ export default function Recipe(props){
                   <div style={{height: "267px", width: "40%", overflow: "hidden", justifyContent: "center", alignItems: "center"}}>
                   <VStack mt={12} spacing='10' divider={<StackDivider borderColor='gray.200' />} >
                     <div>
-                      <a href={props.recipe.url} target="_blank" >
+                      <a href={props.recipe.url} rel="noreferrer" target="_blank" >
                           <Button variant='outline' size="md" colorScheme="blue" > More Info</Button>
                       </a>
                     </div>
