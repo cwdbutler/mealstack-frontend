@@ -7,8 +7,10 @@ import { userContext } from '../../Context';
 export default function LoginSucess() {
   const { user } = useContext(userContext);
   let navigate = useNavigate();
+  console.log('user in loginsucess:', user);
 
   const goToPreviousPath = () => {
+    console.log('navigating with state:', user);
     navigate(-1, { state: user });
   };
 
