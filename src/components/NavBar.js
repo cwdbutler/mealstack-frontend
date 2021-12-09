@@ -41,7 +41,7 @@ export default function NavBar() {
           />
           <LogoutButton />
           <Button mr="2" as={Link} to="/account">
-            Account
+            My Plans
           </Button>
         </>
       ) : (
