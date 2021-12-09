@@ -49,7 +49,7 @@ export default function NavBar() {
       )}
       <Box>
         <Button ml="2" mr="2" as={Link} to="/generate">
-          Make Me a Plan
+          Generate a Plan
         </Button>
         <Button mr="2" as={Link} to="/create">
           Make My Own Plan
