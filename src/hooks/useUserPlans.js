@@ -5,7 +5,7 @@ const useUserPlans = (userId) => {
   const [plansList, setPlansList] = useState([]);
 
   const getUserPlans = async (userId) => {
-    const url = `https://mealstack-backend.herokuapp.com/user/${userId}/plans`;
+    const url = `http://localhost:4000/user/2/plans`;
 
     const res = await fetch(url, { method: 'GET' });
     const json = await res.json();
