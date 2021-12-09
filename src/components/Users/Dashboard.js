@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../Context';
 import { Center, Box } from '@chakra-ui/layout';
@@ -14,7 +14,11 @@ export default function Dashboard() {
       navigate('/login');
     }
   });
-  const [plansList, loading] = useUserPlans(user.id);
+  const [reload, setReload] = useState(0);
+  const [plansList, loading] = useUserPlans(user.id, reload);
+  const forceReload = () => {
+    setReload(reload + 1);
+  };
 
   return (
     <Box p={10}>
@@ -26,7 +30,7 @@ export default function Dashboard() {
           <Spinner size="xl" thickness="2px" speed="0.65s" color="teal.200" />
         </Center>
       ) : (
-        <UserPlanIndex plans={plansList} />
+        <UserPlanIndex plans={plansList} forceReload={forceReload} />
       )}
     </Box>
   );
