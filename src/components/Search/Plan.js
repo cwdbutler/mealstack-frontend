@@ -12,10 +12,12 @@ export default function Plan(props) {
   const plan = props.plan;
   const recipes = props.plan.recipes;
 
+  const fallbackUrl = 'https://media.istockphoto.com/vectors/thumbnail-image-vector-graphic-vector-id1147544807?k=20&m=1147544807&s=612x612&w=0&h=pBhz1dkwsCMq37Udtp9sfxbjaMl27JUapoyYpQm0anc=';
+
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" m="4">
       <Link to={`/plan/${plan.id}`}>
-        <Image src={recipes[0].recipe.image_url} alt="Plan preview" />
+        <Image src={recipes[0].recipe.image_url} fallbackSrc={fallbackUrl} />
 
         <Box p="6">
           <Box display="flex" alignItems="baseline">
