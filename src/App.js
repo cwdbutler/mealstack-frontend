@@ -41,8 +41,8 @@ export default function App() {
         <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/plan/all" element={<PlanDisplayer />} />
         <Route path="/search" element={<Search />} />
-        <Route path="/recipes" element={<RecipeFilter />} />
-        <Route path="/plan-creator" element={<PlanCreator />} />
+        <Route path="/create" element={<RecipeFilter />} />
+        <Route path="/generate" element={<PlanCreator />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
