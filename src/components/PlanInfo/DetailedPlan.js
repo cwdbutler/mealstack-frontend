@@ -248,7 +248,6 @@ const NutritionalInfoCard = ({ recipeData }) => {
   return (
     <>
     <Center><Heading size="sm">{recipe.label}</Heading> </Center> 
-        <SavePlanButton id={plan.id} name={plan.name} />
       <List>
         {recipeNutritionalInfoDisplay}
       </List>
