@@ -5,15 +5,26 @@ import {
   Flex,
   List,
   ListItem,
-  Stack,
   Stat,
   StatLabel,
   StatNumber,
   Badge,
   Text,
+  Modal, 
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  ModalCloseButton,
+  Button,
+  Stack,
+  StackDivider
 } from '@chakra-ui/react';
-import { Center } from '@chakra-ui/layout';
+import { Center, VStack } from '@chakra-ui/layout';
 import { PieChart } from 'react-minimal-pie-chart';
+import { useDisclosure} from '@chakra-ui/hooks';
+import React from 'react'
 
 export default function DetailedPlan ({plan}) {
   
@@ -31,12 +42,25 @@ export default function DetailedPlan ({plan}) {
 
       let shoppingListObjectArray = []
 
+      // let shoppingListObjectCreator = () => {
+      //   for (let i = 0; i < shoppingListArray.length; i++) {
+      //     let tempArr = shoppingListArray[i].split("g ")
+      //     let tempObj = {name: tempArr[1], weight: tempArr[0]}
+      //     shoppingListObjectArray.push(tempObj)
+      //   }
+      // }
+
       let shoppingListObjectCreator = () => {
         for (let i = 0; i < shoppingListArray.length; i++) {
           let tempArr = shoppingListArray[i].split("g ")
           let tempObj = {name: tempArr[1], weight: tempArr[0]}
           shoppingListObjectArray.push(tempObj)
         }
+        shoppingListObjectArray = Object.values(shoppingListObjectArray.reduce((c, { name, weight }) => {
+          c[name] = c[name] || {name,weight: 0};
+          c[name].weight = (parseInt(c[name].weight) + parseInt(weight)).toString();
+          return c;
+        }, {}));
       }
 
       shoppingListObjectCreator()
@@ -56,6 +80,10 @@ export default function DetailedPlan ({plan}) {
     {header: 'Protein', label: 'Total Protein', colorScheme: "red", value: plan.protein},
   ]
 
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const btnRef = React.useRef()
+
   if (!plan.recipes) return <div />
 
   return (
@@ -72,55 +100,87 @@ export default function DetailedPlan ({plan}) {
           </Center>
           <Flex h="40%" p="5">
             <MacroBadges macroBadgeData={macroBadgeData} />
-            <Box>
-            <Badge borderRadius="full" px="2" colorScheme="gray" variant="solid">Macro Split</Badge>
-            <PieChart
-              data={data}
-              label={({dataEntry})=> Math.round(dataEntry.percentage) + "%"}
-              labelStyle= {{
-                fontSize: '15px',
-              }}
-              viewBoxSize={[100, 150]} 
-            />
-            </Box>
-            </Flex>
+          </Flex>
           </>
+      }
+      pieChart={
+        <VStack>
+        <div style={{height: "30%"}}>
+        <Center mb={2}>
+            <Badge borderRadius="full" px="3" colorScheme="gray" variant="solid">Macro Split</Badge>
+        </Center>
+        </div>
+        <div style={{height: "30%", overflow: "hidden"}}>
+        <PieChart
+          data={data}
+          label={({dataEntry})=> Math.round(dataEntry.percentage) + "%"}
+          labelStyle= {{
+            fontSize: '8px',
+          }}
+        />
+        </div>
+        </VStack>
       }      
-      recipeData={plan.recipes?.map((recipeData, idx)=> (            
-            <Box key={idx} /*bg="teal.50"*/ border="2px" borderColor="gray.200" borderRadius="10" p="5" my="1" m="3">
-              <NutritionalInfoCard key={recipeData.recipe.id} recipeData={recipeData} />
+      recipeData={ 
+        plan.recipes?.map((recipeData, idx)=> (
+            <> 
+            <Box key={idx} boxShadow="lg"
+            p={5}
+            borderRadius="xl"
+            border="1px"
+            borderColor="gray.100"
+            m={1}>
+              <Stack direction="row" divider={<StackDivider borderColor='gray.200' />} >
+                <div id="Recipe-data" style={{width: '80%'}}>
+                  <NutritionalInfoCard key={recipeData.recipe.id} recipeData={recipeData} />
+                </div>
+                <div id="Recipe-link" style={{width: '20%'}} >
+                <a href={recipeData.recipe.url} rel="noreferrer" target="_blank" >
+                  <Button variant='outline' size="md" colorScheme="blue" m={12} >More Info</Button>
+                </a>
+                </div>
+              </Stack>
             </Box>
-          ))}
+            </>
+          ))
+        
+        }
       aside={
-        <Flex
-          d="column"
-          h="100%"
-          // height={620}
-          // figure out how to make this cut off at bottom
-          p="5"
-          overflow="scroll"
-          border="2px"
-          borderColor="gray.200"
-          borderRadius="10"
-          marginLeft="4"
-          // backgroundColor="teal.50"
-        >
-          <Heading>Shopping List</Heading>
-          <List mt="5">
-            <Stack spacing={4}>
-              <ListItem>{shoppingListDisplay}</ListItem>
-            </Stack>
-          </List>
-        </Flex>
+        <>
+      <Center>
+        <Button colorScheme="teal" variant="outline" mt={3} ref={btnRef} onClick={onOpen}>
+          View shopping list
+        </Button>
+      </Center>
+
+      <Modal
+        onClose={onClose}
+        finalFocusRef={btnRef}
+        isOpen={isOpen}
+        scrollBehavior={'outside'}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Shopping list</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {shoppingListDisplay}
+          </ModalBody>
+          <ModalFooter>
+            <Button onClick={onClose}>Close</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+        </>
       }
     />
   )
 }
 
-const SubpageTemplate = ({heading, nutritionalInfo, recipeData, aside}) => (
+const SubpageTemplate = ({heading, nutritionalInfo, recipeData, aside, pieChart}) => (
     <div style={{
       width: '100%',
-      // height: '650px',
+      height: '80%',
       display: 'flex',
       flexDirection: 'column',
       position: 'relative',
@@ -128,27 +188,26 @@ const SubpageTemplate = ({heading, nutritionalInfo, recipeData, aside}) => (
       <div style={{position: 'sticky' }}>{heading}</div>
       <div id="main content" style={{display: 'flex', marginBottom: 10, height: '100%'}}>
         <div id="left-side">
-          <div style={{height: "auto"}}>{nutritionalInfo}</div>
-          <div id="shopping list" style={{height: "auto" , width: 424}}>
-            {aside}
-          </div>
+          <div style={{height: "15%"}}> {aside}</div>
+          <div style={{height: "35%"}}>{nutritionalInfo}</div>
+          <div style={{height: "50%"}}>{pieChart}</div>
         </div>
-        <div id="right-side" style={{overflowY: 'scroll', height: "100%"}}>{recipeData} </div>
+        <div id="right-side" style={{ height: "auto"}}>{recipeData} </div>
       </div>
     </div>
 )
 
 const MacroBadges = ({macroBadgeData}) => (
   macroBadgeData.map(({header, colorScheme, value, label}) => (
-    <Stat key={header}>
-      <Box px="2">
-        <Flex flexDirection="column" justifyContent="center" alignItems="center">
-          <Badge p={1} borderRadius="full" colorScheme={colorScheme}>{header}</Badge>
-          <StatLabel p={1} >{label}</StatLabel>
-        </Flex >
-      </Box>
-      <StatNumber>{value}</StatNumber>
-    </Stat>
+    <Flex m={2}>
+      <Stat>
+        <Badge borderRadius="full" px="2" colorScheme={colorScheme}>
+                    {header}
+        </Badge>
+        <StatLabel>{label}</StatLabel>
+        <StatNumber>{value}</StatNumber>
+      </Stat>
+    </Flex>
   ))
 )
 
@@ -169,16 +228,18 @@ const NutritionalInfoCard = ( {recipeData}) => {
 
 
   const recipeNutritionalInfoDisplay = recipeNutritionalInfo.map(({key, value}) => (
-      <ListItem key={key}>
-          <Text fontSize="sm">
-            {`${key}: ${value}`}
-          </Text>
-      </ListItem>
+      <Box mr={4}>
+        <ListItem key={key}>
+            <Text fontSize="sm">
+              {`${key}: ${value}`}
+            </Text>
+        </ListItem>
+      </Box>
     ))
 
   return (
     <>
-    <Center><Heading size="sm">{recipe.label}</Heading> </Center>      
+    <Center><Heading size="sm">{recipe.label}</Heading> </Center> 
       <List>
         {recipeNutritionalInfoDisplay}
       </List>
