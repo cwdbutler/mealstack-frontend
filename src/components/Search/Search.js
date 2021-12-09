@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import SearchIndex from './SearchIndex';
 import useSearch from '../../hooks/useSearch';
-import { Center, Spinner } from '@chakra-ui/react';
+import { Center, Spinner, Flex } from '@chakra-ui/react';
 
 function Search() {
   let [searchParams] = useSearchParams();
@@ -17,7 +17,9 @@ function Search() {
           <Spinner size="xl" thickness="2px" speed="0.65s" color="teal.200" />
         </Center>
       ) : (
-        <SearchIndex plans={searchResults} />
+        <Flex justify="space-around">
+          <SearchIndex plans={searchResults} />
+        </Flex>
       )}
     </>
   );

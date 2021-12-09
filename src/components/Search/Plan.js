@@ -17,7 +17,7 @@ export default function Plan(props) {
   return (
     <Box maxW="sm" borderWidth="1px" borderRadius="lg" overflow="hidden" m="4">
       <Link to={`/plan/${plan.id}`}>
-        <Image src={recipes[0].recipe.image_url} fallbackSrc={fallbackUrl} boxSize='300px'/>
+        <Image boxSize='300px' src={recipes[0].recipe.image_url} fallbackSrc={fallbackUrl}/>
 
         <Box p="6">
           <Box display="flex" alignItems="baseline">

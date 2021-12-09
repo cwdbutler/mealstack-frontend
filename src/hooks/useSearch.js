@@ -17,7 +17,7 @@ const useSearch = (params) => {
     let vegan = params.get('vegan');
     let vegetarian = params.get('vegetarian');
 
-    const url = `https://mealstack-backend.herokuapp.com/plans/search`;
+    const url = `http://localhost:4000/plans/search`;
 
     let fetchBody = {
       "calories": calories != null ? calories : undefined,
