@@ -48,7 +48,7 @@ function SearchIndex({ plans }) {
   return (
     <Center mt={5}>
       {planList.length > 0 ? (
-        <Wrap>{planList}</Wrap>
+        <Wrap justify="space-around">{planList}</Wrap>
       ) : (
         <Box>
           <Heading mt={20} textAlign="center" size="xl">

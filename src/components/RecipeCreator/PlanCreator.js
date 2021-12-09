@@ -81,10 +81,15 @@ export default function PlanCreator(props) {
     return json;
   };
 
-  parsePlanParams();
+
+  console.log(planLabel)
+
 
   const sendParams = async () => {
-    if (planLabel === null) {
+
+
+
+    if((planLabel === null) || (planLabel === "")){
       toast({
         title: 'Please enter a plan name',
         status: 'error',
@@ -100,8 +105,9 @@ export default function PlanCreator(props) {
       });
     }
 
-    if (planLabel !== null && currentSelected.length > 2) {
-      let newPlan = await getCreatedPlan(planParams);
+
+    if ((planLabel !== null) && (planLabel !== "") && (currentSelected.length > 2)) {
+      let newPlan = await getCreatedPlan(planParams)
       // Flash s
       navigate(`/plan/${newPlan.id}`);
     } else {
