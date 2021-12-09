@@ -1,4 +1,4 @@
-import { Center, Box } from '@chakra-ui/layout';
+import { Center, Flex } from '@chakra-ui/layout';
 import { Heading } from '@chakra-ui/react';
 import Plan from '../Search/Plan';
 
@@ -18,14 +18,14 @@ function SearchIndex({ plan }) {
       {plan != null ? (
         <Plan plan={plan} key={plan.id} />
       ) : (
-        <Box>
+        <Flex justify="space-around">
           <Heading mt={20} textAlign="center" size="xl">
             Enter your macros and hit submit so we can generate a plan for you!
           </Heading>
           {/* <Heading mt={10} textAlign="center" size="lg" color="gray.600">
             Try altering your search parameters
           </Heading> */}
-        </Box>
+        </Flex>
       )}
     </Center>
   );
