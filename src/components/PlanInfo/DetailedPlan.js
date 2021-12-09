@@ -27,9 +27,13 @@ export default function DetailedPlan ({plan}) {
       const shoppingListArray =  ingredientsArray.reduce((acc, ingredientsItem) => [
           ...acc,
           ...ingredientsItem.split(","),
-        ], [])
+      ], [])
 
       let shoppingListObjectArray = []
+      
+      function add(accumulator, a) {
+        return accumulator + a;
+      }
 
       let shoppingListObjectCreator = () => {
         for (let i = 0; i < shoppingListArray.length; i++) {
@@ -37,7 +41,18 @@ export default function DetailedPlan ({plan}) {
           let tempObj = {name: tempArr[1], weight: tempArr[0]}
           shoppingListObjectArray.push(tempObj)
         }
+        let result = Object.values(shoppingListObjectArray.reduce((c, { name, weight }) => {
+          console.log(name);
+          console.log(weight);
+          c[name] = c[name] || {name,weight: []};
+          c[name].weight = c[name].weight.concat(Array.isArray(weight) ? weight : [weight]).reduce(add, 0); 
+          // c[name].weight = c[name].weight;
+          return c;
+        }, {}));
+        console.log(result);
       }
+  
+      
 
       shoppingListObjectCreator()
 

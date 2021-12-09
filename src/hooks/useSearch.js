@@ -15,7 +15,7 @@ const useSearch = (params) => {
     let peanutFree = params.get('peanutFree');
     let porkFree = params.get('porkFree');
     let vegan = params.get('vegan');
-    let vegetarian = params.get('vegatarian');
+    let vegetarian = params.get('vegetarian');
 
     const url = `https://mealstack-backend.herokuapp.com/plans/search`;
 
