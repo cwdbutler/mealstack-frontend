@@ -14,6 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { Center } from '@chakra-ui/layout';
 import { PieChart } from 'react-minimal-pie-chart';
+import SavePlanButton from '../SavePlanButton';
 
 export default function DetailedPlan({ plan }) {
   const data = [
@@ -97,6 +98,7 @@ export default function DetailedPlan({ plan }) {
       heading={
         <Center>
           <Heading m="4">{plan.name}</Heading>
+          <SavePlanButton id={plan.id} name={plan.name} />
         </Center>
       }
       nutritionalInfo={

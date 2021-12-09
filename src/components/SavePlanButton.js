@@ -2,16 +2,16 @@ import { useToast, Button } from '@chakra-ui/react';
 import { useContext } from 'react';
 import { userContext } from '../Context';
 
-export default function SavePlanButton() {
+export default function SavePlanButton({ name, id }) {
   const { user } = useContext(userContext);
   const toast = useToast();
   // needs testing on prod
 
-  const savePlan = async (planId, planName) => {
+  const savePlan = async () => {
     let res;
     try {
       res = await fetch(
-        `https://mealstack-backend.herokuapp.com/user/plans/${planId}`,
+        `https://mealstack-backend.herokuapp.com/user/plans/${id}`,
         {
           method: 'POST',
           headers: {
@@ -27,7 +27,7 @@ export default function SavePlanButton() {
     if (json.createdAt) {
       toast({
         title: 'Saved',
-        description: `${planName} has been saved to your account`,
+        description: `${name} has been saved to your account`,
         status: 'success',
         duration: 3000,
         variant: 'subtle',
