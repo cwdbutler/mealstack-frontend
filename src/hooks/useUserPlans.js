@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useUserPlans = (userId) => {
+const useUserPlans = (userId, reload) => {
   const [loading, setLoading] = useState(true);
   const [plansList, setPlansList] = useState([]);
 
@@ -13,7 +13,7 @@ const useUserPlans = (userId) => {
     setPlansList(json);
     setLoading(false);
   };
-  useEffect(() => getUserPlans(userId), [userId]);
+  useEffect(() => getUserPlans(userId), [userId, reload]);
   return [plansList, loading];
 };
 

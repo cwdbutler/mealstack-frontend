@@ -3,7 +3,13 @@ import UserPlan from './UserPlan';
 
 export default function UserPlanIndex(props) {
   const userPlans = props.plans.map((userPlan) => {
-    return <UserPlan key={userPlan.planId} userPlan={userPlan} />;
+    return (
+      <UserPlan
+        key={userPlan.planId}
+        userPlan={userPlan}
+        forceReload={props.forceReload}
+      />
+    );
   });
 
   return (
