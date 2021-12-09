@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-const useUserPlans = (userId) => {
+const useUserPlans = (userId, reload) => {
   const [loading, setLoading] = useState(true);
   const [plansList, setPlansList] = useState([]);
 
   const getUserPlans = async (userId) => {
-    const url = `http://localhost:4000/user/2/plans`;
+    const url = `https://mealstack-backend.herokuapp.com/user/${userId}/plans`;
 
     const res = await fetch(url, { method: 'GET' });
     const json = await res.json();
@@ -13,7 +13,7 @@ const useUserPlans = (userId) => {
     setPlansList(json);
     setLoading(false);
   };
-  useEffect(() => getUserPlans(userId), [userId]);
+  useEffect(() => getUserPlans(userId), [userId, reload]);
   return [plansList, loading];
 };
 

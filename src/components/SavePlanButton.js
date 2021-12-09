@@ -21,32 +21,36 @@ export default function SavePlanButton({ name, id }) {
   const toast = useToast();
 
   const savePlan = async () => {
-    let res;
-    try {
-      res = await fetch(
-        `https://mealstack-backend.herokuapp.com/user/plans/${id}`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ userid: user.id }),
+    fetch(`https://mealstack-backend.herokuapp.com/user/plans/${id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userid: user.id }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        if (json.createdAt) {
+          toast({
+            title: 'Saved',
+            description: `${name} has been saved to your plans`,
+            status: 'success',
+            duration: 3000,
+            variant: 'subtle',
+            isClosable: true,
+          });
         }
-      );
-    } catch (err) {
-      res = new Response(JSON.stringify({ error: 'true' }));
-    }
-    const json = await res.json();
-    if (json.createdAt) {
-      toast({
-        title: 'Saved',
-        description: `${name} has been saved to your account`,
-        status: 'success',
-        duration: 3000,
-        variant: 'subtle',
-        isClosable: true,
+      })
+      .catch((err) => {
+        toast({
+          title: 'Error',
+          description: `You have already saved ${name}`,
+          status: 'warning',
+          duration: 3000,
+          variant: 'subtle',
+          isClosable: true,
+        });
       });
-    }
   };
   if (user) {
     return (
