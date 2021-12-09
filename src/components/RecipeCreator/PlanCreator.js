@@ -78,7 +78,9 @@ export default function PlanCreator(props) {
     return (json)
   }
 
+  // parsePlanParams()
   parsePlanParams()
+
 
   console.log(planLabel)
 
