@@ -1,3 +1,11 @@
 {
-  "baseUrl": "http://localhost:3000"
+  "baseUrl": "http://localhost:3006",
+  "component" : {
+    "testFiles": "**/*.test.{js,ts,jsx,tsx}",
+    "componentFolder": "src"
+  },
+  "integration" : {
+    "testFiles": "**/*.spec.js",
+    "integrationFolder": "cypress/integration"
+  }
 }
