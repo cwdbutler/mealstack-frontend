@@ -25,6 +25,8 @@ import { Center, VStack } from '@chakra-ui/layout';
 import { PieChart } from 'react-minimal-pie-chart';
 import { useDisclosure} from '@chakra-ui/hooks';
 import React from 'react'
+import SavePlanButton from '../SavePlanButton';
+
 
 export default function DetailedPlan ({plan}) {
   
@@ -86,11 +88,13 @@ export default function DetailedPlan ({plan}) {
 
   if (!plan.recipes) return <div />
 
+
   return (
     <SubpageTemplate
       heading={
         <Center>
           <Heading m="4">{plan.name}</Heading>
+          <SavePlanButton id={plan.id} name={plan.name} />
         </Center>
       }
       nutritionalInfo={
@@ -174,11 +178,12 @@ export default function DetailedPlan ({plan}) {
         </>
       }
     />
-  )
+  );
 }
 
 const SubpageTemplate = ({heading, nutritionalInfo, recipeData, aside, pieChart}) => (
     <div style={{
+
       width: '100%',
       height: '80%',
       display: 'flex',
@@ -193,9 +198,11 @@ const SubpageTemplate = ({heading, nutritionalInfo, recipeData, aside, pieChart}
           <div style={{height: "50%"}}>{pieChart}</div>
         </div>
         <div id="right-side" style={{ height: "auto"}}>{recipeData} </div>
+
       </div>
     </div>
-)
+  </div>
+);
 
 const MacroBadges = ({macroBadgeData}) => (
   macroBadgeData.map(({header, colorScheme, value, label}) => (
@@ -211,10 +218,12 @@ const MacroBadges = ({macroBadgeData}) => (
   ))
 )
 
-const getTimeLabel = (minutes) => `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`
 
-const NutritionalInfoCard = ( {recipeData}) => {
-  const {recipe} = recipeData ?? {};
+const getTimeLabel = (minutes) =>
+  `${minutes} ${minutes === 1 ? 'minute' : 'minutes'}`;
+
+const NutritionalInfoCard = ({ recipeData }) => {
+  const { recipe } = recipeData ?? {};
 
   const recipeNutritionalInfo = [
     {key: "Calories", value: recipe.calories },
@@ -240,10 +249,11 @@ const NutritionalInfoCard = ( {recipeData}) => {
   return (
     <>
     <Center><Heading size="sm">{recipe.label}</Heading> </Center> 
+        <SavePlanButton id={plan.id} name={plan.name} />
       <List>
         {recipeNutritionalInfoDisplay}
       </List>
-    </>
-  )
-}
 
+    </>
+  );
+};

@@ -41,21 +41,21 @@ export default function NavBar() {
           />
           <LogoutButton />
           <Button mr="2" as={Link} to="/account">
-            Account
+            My Plans
           </Button>
         </>
       ) : (
         <GitHubLoginButton />
       )}
       <Box>
-        <Button ml="2" mr="2" as={Link} to="/plan-creator">
+        <Button ml="2" mr="2" as={Link} to="/generate">
           Make Me a Plan
         </Button>
-        <Button mr="2" as={Link} to="/recipes">
-          Recipes
+        <Button mr="2" as={Link} to="/create">
+          Make My Own Plan
         </Button>
-        <Button mr="2" as={Link} to="/plan/all">
-          Plans
+        <Button mr="2" as={Link} to="/search">
+          Search Plans
         </Button>
         <Button mr="2" as={Link} to="/">
           Home
