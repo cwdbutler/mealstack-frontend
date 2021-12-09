@@ -27,19 +27,22 @@ export default function App() {
           <>
             <Route path="/login" element={<LoginRouter />} />
             <Route path="/login/success" element={<LoginSuccess />} />
+            <Route path="/account" element={<Dashboard />} />
           </>
         ) : (
-          <Route path="login" element={<LoginRouter />}>
-            <Route path="/login/success" element={<LoginSuccess />} />
-            <Route index element={<Login />} />
-          </Route>
+          <>
+            <Route path="login" element={<LoginRouter />}>
+              <Route path="/login/success" element={<LoginSuccess />} />
+              <Route index element={<Login />} />
+            </Route>
+            <Route path="/account" element={<LoginRouter />} />
+          </>
         )}
         <Route path="/plan/:id" element={<PlanInfo />} />
         <Route path="/plan/all" element={<PlanDisplayer />} />
         <Route path="/search" element={<Search />} />
         <Route path="/recipes" element={<RecipeFilter />} />
         <Route path="/plan-creator" element={<PlanCreator />} />
-        <Route path="/account" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
