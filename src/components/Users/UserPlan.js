@@ -11,7 +11,6 @@ import { Flex, Spacer } from '@chakra-ui/layout';
 import DeletePlanButton from '../DeletePlanButton';
 
 export default function UserPlan({ userPlan, forceReload }) {
-  console.log('hello');
   const { plan } = userPlan;
 
   return (

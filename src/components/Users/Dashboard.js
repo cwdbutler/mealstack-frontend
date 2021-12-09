@@ -17,7 +17,6 @@ export default function Dashboard() {
   const [reload, setReload] = useState(0);
   const [plansList, loading] = useUserPlans(user.id, reload);
   const forceReload = () => {
-    console.log('force reloading');
     setReload(reload + 1);
   };
 
