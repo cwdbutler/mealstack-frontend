@@ -201,7 +201,6 @@ const SubpageTemplate = ({heading, nutritionalInfo, recipeData, aside, pieChart}
 
       </div>
     </div>
-  </div>
 );
 
 const MacroBadges = ({macroBadgeData}) => (
