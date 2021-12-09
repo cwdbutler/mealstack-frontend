@@ -24,18 +24,20 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {user && !user.error ? (
+          // logged in
           <>
             <Route path="/login" element={<LoginRouter />} />
             <Route path="/login/success" element={<LoginSuccess />} />
             <Route path="/account" element={<Dashboard />} />
           </>
         ) : (
+          // not loggedin
           <>
             <Route path="login" element={<LoginRouter />}>
               <Route path="/login/success" element={<LoginSuccess />} />
               <Route index element={<Login />} />
             </Route>
-            <Route path="/account" element={<LoginRouter />} />
+            <Route path="/account" element={<Login />} />
           </>
         )}
         <Route path="/plan/:id" element={<PlanInfo />} />
