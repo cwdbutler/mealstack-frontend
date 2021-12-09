@@ -11,7 +11,7 @@ import {
 import Plan from './Plan';
 
 function SearchIndex({ plans }) {
-  if (plans.error) {
+  if (plans && plans.error) {
     return (
       <Center h="100%" w="100%">
         <Alert
@@ -36,14 +36,17 @@ function SearchIndex({ plans }) {
       </Center>
     );
   }
+  let planList = [];
 
-  const planList = plans.map((data) => {
-    return (
-      <WrapItem>
-        <Plan key={data.id.toString()} plan={data} />
-      </WrapItem>
-    );
-  });
+  if (plans && plans.error) {
+    planList = plans.map((data) => {
+      return (
+        <WrapItem>
+          <Plan key={data.id.toString()} plan={data} />
+        </WrapItem>
+      );
+    });
+  }
 
   return (
     <Center mt={5}>

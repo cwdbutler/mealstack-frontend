@@ -18,9 +18,9 @@ export default function SearchForm() {
   let navigate = useNavigate();
   const defaultMacros = {
     protein: '150',
-    fat: '50',
-    carbs: '200',
-    calories: '2000',
+    fat: '175',
+    carbs: '125',
+    calories: '2700',
   };
 
   return (
