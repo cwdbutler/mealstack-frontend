@@ -54,10 +54,8 @@
 &nbsp;
 
 ### Search pre-existing plans:
- 
-[![Image from Gyazo](https://i.gyazo.com/49255d4c6d501eaf78a6adb6c0c9571d.gif)](https://gyazo.com/49255d4c6d501eaf78a6adb6c0c9571d)
-  
-<img src="https://i.gyazo.com/58d898d060d3581da2bdac352e8bcc67.gif" width="800px">
+   
+<img src="https://i.gyazo.com/49255d4c6d501eaf78a6adb6c0c9571d.gif" width="800px">
 
 &nbsp;
 
@@ -69,7 +67,7 @@
 
 ### Sign in with GitHub OAuth and view user saved plans:
 
-[![Image from Gyazo](https://i.gyazo.com/05c92ac54b47869dc14524873d8fcb19.gif)](https://gyazo.com/05c92ac54b47869dc14524873d8fcb19)
+<img src="https://i.gyazo.com/05c92ac54b47869dc14524873d8fcb19.gif" width="800px">
   
 &nbsp;
 
