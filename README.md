@@ -16,6 +16,8 @@
 
 ## [Backend Repository](https://github.com/emanfolo/mealstack-backend)
 
+## [Video Presentation](https://youtu.be/B76vAgGgh4I)
+
 ### Made by:
 
 ### Emmanuel [@emanfolo](https://github.com/emanfolo) &nbsp;&middot;&nbsp; Conor [@ConorButler](https://github.com/conorbutler) &nbsp;&middot;&nbsp; Doug [@dpkerins](https://github.com/dpkerins)
@@ -68,13 +70,13 @@
 
 &nbsp;
 
-### Saving a Plan - validations for saving a plan twice:
+### Saving a Plan with validations for saving a plan twice:
 
 <img src="https://i.gyazo.com/fdc6be3b4689b672d269f4d5b840ab6b.gif" width="800px">
 
 &nbsp;
 
-### Deleting a Plan - confirmation message and list instantly updates
+### Deleting a Plan with confirmation message and list instantly updates:
 
 <img src="https://i.gyazo.com/c64d3235f578b14f8d459d6fc57a8f5e.gif" width="800px">
 
@@ -87,3 +89,31 @@
 &nbsp;
 
 </div>
+
+## User Stories
+
+Here are the user stories we initially set out to achieve:
+
+```
+
+As a User
+So that I can stay on track for my health goals
+I want to enter my daily calories and macros and see meal plans that fit these requirements ✓
+
+As a User
+So that I can conveniently get more information
+I want to see the nutrition details and recipe instructions ✓
+
+As a User
+So that I don't have to calculate it myself
+I want to see a shopping list of all the ingredients ✓
+
+As a User
+So that I can keep track of what I have bought
+I want to tick the ingredients on the shopping list ✓
+
+As a User
+So that I can remember all of my meal plans
+I want to save a plan and see it on my profile ✓
+
+```
