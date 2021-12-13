@@ -37,10 +37,22 @@
 
 &nbsp;
   
-### Detailed plans page with shopping list
+### Detailed plan page with shopping list
 
 <img src="gifs/Detailed_AdobeCreativeCloudExpress.gif" width="800px">
 
 &nbsp;
 
 </div>
+
+
+## Team
+
+> Emmanuel &nbsp;&middot;&nbsp;
+> GitHub [@emanfolo](https://github.com/emanfolo) &nbsp;&middot;&nbsp;
+
+> Conor &nbsp;&middot;&nbsp;
+> GitHub [@conorbutler](https://github.com/conorbutler) &nbsp;&middot;&nbsp;
+
+> Doug &nbsp;&middot;&nbsp;
+> GitHub [@dkerins](https://github.com/dkerins) &nbsp;&middot;&nbsp;
