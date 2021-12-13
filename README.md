@@ -47,20 +47,22 @@
 &nbsp;
 
 ### Create your own plan by selecting recipes:
+  
 
-<img src="gifs/Make_my_own_AdobeCreativeCloudExpress.gif" width="800px">
+<img src="https://i.gyazo.com/b41d976e406d899b961186ebe66eed13.gif" width="800px">
 
 &nbsp;
 
 ### Search pre-existing plans:
+  
 
-<img src="gifs/Search_AdobeCreativeCloudExpress.gif" width="800px">
+<img src="https://i.gyazo.com/58d898d060d3581da2bdac352e8bcc67.gif" width="800px">
 
 &nbsp;
 
 ### Detailed plan page with a shopping list:
-
-<img src="gifs/Detailed_AdobeCreativeCloudExpress.gif" width="800px">
+  
+<img src="https://i.gyazo.com/6c367c1c898bfdb8636fbd1d7132bd3c.gif" width="800px">
 
 &nbsp;
 
