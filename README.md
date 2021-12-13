@@ -55,4 +55,4 @@
 > GitHub [@ConorButler](https://github.com/conorbutler) &nbsp;&middot;&nbsp;
 
 > Doug &nbsp;&middot;&nbsp;
-> GitHub [@dpkerins](https://github.com/dkerins) &nbsp;&middot;&nbsp;
+> GitHub [@dpkerins](https://github.com/dpkerins) &nbsp;&middot;&nbsp;
