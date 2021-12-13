@@ -42,9 +42,7 @@
 
 ### Enter macros and automatically generate a custom plan:
 
-  [![Image from Gyazo](https://i.gyazo.com/c905d2c41b313e734e5c653224f310cc.gif)](https://gyazo.com/c905d2c41b313e734e5c653224f310cc)
-
-<img src="https://gyazo.com/79cf8564c1a9e556a389ce1191df6a5c" width="800px">
+<img src="https://i.gyazo.com/c905d2c41b313e734e5c653224f310cc.gif" width="800px">
 
 &nbsp;
 
