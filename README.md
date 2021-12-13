@@ -52,7 +52,7 @@
 > GitHub [@emanfolo](https://github.com/emanfolo) &nbsp;&middot;&nbsp;
 
 > Conor &nbsp;&middot;&nbsp;
-> GitHub [@conorbutler](https://github.com/conorbutler) &nbsp;&middot;&nbsp;
+> GitHub [@ConorButler](https://github.com/conorbutler) &nbsp;&middot;&nbsp;
 
 > Doug &nbsp;&middot;&nbsp;
-> GitHub [@dkerins](https://github.com/dkerins) &nbsp;&middot;&nbsp;
+> GitHub [@dpkerins](https://github.com/dkerins) &nbsp;&middot;&nbsp;
