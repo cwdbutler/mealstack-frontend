@@ -56,7 +56,7 @@
 ### Search pre-existing plans:
  
 [![Image from Gyazo](https://i.gyazo.com/58d898d060d3581da2bdac352e8bcc67.gif)](https://gyazo.com/58d898d060d3581da2bdac352e8bcc67)
-
+  
 <img src="https://i.gyazo.com/58d898d060d3581da2bdac352e8bcc67.gif" width="800px">
 
 &nbsp;
@@ -69,8 +69,8 @@
 
 ### Sign in with GitHub OAuth and view user saved plans:
 
-<img src="gifs/Auth_v2_AdobeCreativeCloudExpress.gif" width="800px">
-
+[![Image from Gyazo](https://i.gyazo.com/05c92ac54b47869dc14524873d8fcb19.gif)](https://gyazo.com/05c92ac54b47869dc14524873d8fcb19)
+  
 &nbsp;
 
 ### Saving a Plan with validations for saving a plan twice:
