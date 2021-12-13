@@ -55,7 +55,7 @@
 
 ### Search pre-existing plans:
    
-<img src="https://i.gyazo.com/49255d4c6d501eaf78a6adb6c0c9571d.gif" width="800px">
+<img src="https://i.gyazo.com/1a44da89e663b6cbbde1e1faac5979be.gif" width="800px">
 
 &nbsp;
 
