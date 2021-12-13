@@ -42,7 +42,7 @@
 
 ### Enter macros and automatically generate a custom plan:
 
-<img src="gifs/Generate_AdobeCreativeCloudExpress.gif" width="800px">
+<img src="https://gyazo.com/79cf8564c1a9e556a389ce1191df6a5c" width="800px">
 
 &nbsp;
 
